@@ -263,6 +263,7 @@ p.status-icon-text{
     color:white;
 }
 
+/* кнопки gps и закладок */
 button.btn.btn-hollow.btn-gps{
     width:44px;
     height: 44px;
@@ -289,4 +290,34 @@ button.btn.btn-hollow.btn-favourite{
 button.btn.btn-hollow.btn-favourite:active{
     background-color: #DDDDDD;
     box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* тексты */
+h3.text-attention{
+    font-family: gilroy;
+    font-weight: 400;
+    font-size:28px;
+    text-align: center;
+    color:rgba(65, 65, 65, 1);
+}
+h3.text-header{
+    font-family: gilroy;
+    font-weight: 500;
+    font-size:18px;
+    text-align: center;
+    color:rgba(65, 65, 65, 1);
+}
+h3.text-bold{
+    font-family: gilroy;
+    font-weight: 700;
+    font-size:24px;
+    text-align: center;
+    color:rgba(65, 65, 65, 1);
+}
+h3.text-common{
+    font-family: gilroy;
+    font-weight: 400;
+    font-size:18px;
+    text-align: center;
+    color:rgba(65, 65, 65, 1);
 }
