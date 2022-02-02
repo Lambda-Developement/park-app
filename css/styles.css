@@ -5,7 +5,7 @@
 }
 
 /* отключение бутстраповской мешанины */
-input[type="checkbox"]:focus,input[type="radio"]:focus, .btn:focus {
+input[type="checkbox"]:focus,input[type="radio"]:focus,select.form-select:focus, .btn:focus {
     outline: 0 none ;
     box-shadow: none ;
 }
@@ -152,4 +152,33 @@ input[type="email"].form-control:focus,input[type="password"].form-control:focus
 }
 input[type="password"].form-control{
     -webkit-text-security: disc; /* поменяю в будущем */
+}
+
+/* дропдауны */
+select.form-select{
+    position: absolute;
+    border: 0;
+    border-radius: 0;
+    height: 42px;
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 18px;
+    padding-left: 60px;
+}
+option{
+    background-color: rgb(255,255,255);
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: rgba(30, 30, 30, 1);
+}
+.lang-icon{
+    position: absolute;
+    background-color:white;
+    background-image: url("../svg/lang.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 24px;
+    height: 42px;
+    width: 42px;
+    z-index: 10;
 }
