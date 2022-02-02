@@ -52,14 +52,14 @@ input[type="checkbox"]:focus,input[type="radio"]:focus, .btn:focus {
 .checkbox-wrapper{
     background: #FFFFFF;
 }
-input[type="checkbox"].form-check-input{
+.form-check-inline > input[type="checkbox"].form-check-input{
     width: 16px;
     height: 16px;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 4px;
 }
-input[type="checkbox"].form-check-input:checked{
+.form-check-inline > input[type="checkbox"].form-check-input:checked{
     border: 1px solid #4D99FE;
     background-color: #3486F4;
     background-image: url("../svg/white_check.svg");
@@ -67,7 +67,7 @@ input[type="checkbox"].form-check-input:checked{
     background-size: 10px;
     background-position:  center center;
 }
-input[type="checkbox"].form-check-input:disabled{
+.form-check-inline > input[type="checkbox"].form-check-input:disabled{
     border: 1px solid #DCDCDC;
     background-color: #C4C4C4;
     background-image: url("../svg/white_check_disabled.svg");
@@ -76,14 +76,14 @@ input[type="checkbox"].form-check-input:disabled{
     background-position:  center center;
     border: 1px solid #DCDCDC;
 }
-input[type="radio"].form-check-input{
+.form-check-inline > input[type="radio"].form-check-input{
     width: 16px;
     height: 16px;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
     border-radius: 16px;
 }
-input[type="radio"].form-check-input:checked{
+.form-check-inline > input[type="radio"].form-check-input:checked{
     border: 1px solid #4D99FE;
     background-color: #FFFFFF;
     background-image: url("../svg/blue_circle.svg");
@@ -91,7 +91,7 @@ input[type="radio"].form-check-input:checked{
     background-size: 10px;
     background-position:  center center;
 }
-input[type="radio"].form-check-input:disabled{
+.form-check-inline > input[type="radio"].form-check-input:disabled{
     border: 1px solid #DCDCDC;
     background-color: #FFFFFF;
     background-image: url("../svg/white_circle.svg");
@@ -105,4 +105,51 @@ label.form-check-label{
     font-weight: 400;
     font-size:14px;
     color:rgba(128, 128, 128, 1); /* несостыковка */
+}
+
+/* лайн эдиты и прочее */
+input[type="email"].form-control,input[type="password"].form-control{
+    background: #F0F0F0;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 18px;
+    padding-left: 43px;
+    border: 1.75px solid #F0F0F0;
+}
+input[type="email"].form-control.line-danger{
+    border-color: #DD3A3A;
+    box-shadow: none;
+}
+input[type="email"].form-control.line-success{
+    border-color: #74CA65;
+    box-shadow: none;
+}
+.form-label.line-success{
+    width:100%;
+    text-align: center;
+    color: #74CA65;
+    margin-bottom: 0;
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 14px;
+}
+.form-label.line-danger{
+    width:100%;
+    text-align: center;
+    color: #DD3A3A;
+    margin-bottom: 0;
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 14px;
+}
+input[type="email"].form-control:focus,input[type="password"].form-control:focus{
+    background: #CDDEEA;
+    border: 1.75px solid #2B63AE;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+input[type="password"].form-control{
+    -webkit-text-security: disc; /* поменяю в будущем */
 }
