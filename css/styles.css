@@ -182,3 +182,85 @@ option{
     width: 42px;
     z-index: 10;
 }
+
+/* иконки статуса */
+.status-icon-0{
+    width: 28px;
+    height: 28px;
+    background: #39C236;
+    border-radius: 8px;
+}
+.status-icon-1{
+    width: 28px;
+    height: 28px;
+    background: #63C236;
+    border-radius: 8px;
+}
+.status-icon-2{
+    width: 28px;
+    height: 28px;
+    background: #74C236;
+    border-radius: 8px;
+}
+.status-icon-3{
+    width: 28px;
+    height: 28px;
+    background: #96C236;
+    border-radius: 8px;
+}
+.status-icon-4{
+    width: 28px;
+    height: 28px;
+    background: #C2B436;
+    border-radius: 8px;
+}.status-icon-5{
+     width: 28px;
+     height: 28px;
+     background: #C28236;
+     border-radius: 8px;
+ }
+.status-icon-6{
+    width: 28px;
+    height: 28px;
+    background: #C27A36;
+    border-radius: 8px;
+}
+.status-icon-7{
+    width: 28px;
+    height: 28px;
+    background: #CB693F;
+    border-radius: 8px;
+}
+.status-icon-8{
+    width: 28px;
+    height: 28px;
+    background: #DD613A;
+    border-radius: 8px;
+}
+.status-icon-9{
+    width: 28px;
+    height: 28px;
+    background: #DD4E3A;
+    border-radius: 8px;
+}
+.status-icon-10{
+    width: 28px;
+    height: 28px;
+    background: #DD3A3A;
+    border-radius: 8px;
+}
+.status-icon-p{
+    width: 36px;
+    height: 36px;
+    background:rgba(52, 52, 52, 1);
+    border-radius: 8px;
+}
+
+
+p.status-icon-text{
+    font-family: gilroy;
+    font-weight: 500;
+    font-size: 15px;
+    margin:0;
+    color:white;
+}
