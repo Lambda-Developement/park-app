@@ -5,9 +5,9 @@
 }
 
 /* отключение бутстраповской мешанины */
-.btn:focus {
-    outline: 0 none;
-    box-shadow: none;
+input[type="checkbox"]:focus,input[type="radio"]:focus, .btn:focus {
+    outline: 0 none ;
+    box-shadow: none ;
 }
 .btn{
     width: 280px;
@@ -36,6 +36,7 @@
 .btn-text{
     font-family: gilroy;
     font-size: 18px;
+    font-weight: 500;
     color:rgba(174,174,174,1);
     margin: 0;
 }
@@ -44,4 +45,64 @@
 }
 .btn-filled > .btn-text{
     color: rgba(255,255,255,1);
+}
+
+
+/* чек боксы и прочее */
+.checkbox-wrapper{
+    background: #FFFFFF;
+}
+input[type="checkbox"].form-check-input{
+    width: 16px;
+    height: 16px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+input[type="checkbox"].form-check-input:checked{
+    border: 1px solid #4D99FE;
+    background-color: #3486F4;
+    background-image: url("../svg/white_check.svg");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position:  center center;
+}
+input[type="checkbox"].form-check-input:disabled{
+    border: 1px solid #DCDCDC;
+    background-color: #C4C4C4;
+    background-image: url("../svg/white_check_disabled.svg");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position:  center center;
+    border: 1px solid #DCDCDC;
+}
+input[type="radio"].form-check-input{
+    width: 16px;
+    height: 16px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 16px;
+}
+input[type="radio"].form-check-input:checked{
+    border: 1px solid #4D99FE;
+    background-color: #FFFFFF;
+    background-image: url("../svg/blue_circle.svg");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position:  center center;
+}
+input[type="radio"].form-check-input:disabled{
+    border: 1px solid #DCDCDC;
+    background-color: #FFFFFF;
+    background-image: url("../svg/white_circle.svg");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position:  center center;
+    border: 1px solid #DCDCDC;
+}
+label.form-check-label{
+    font-family: gilroy;
+    font-weight: 400;
+    font-size:14px;
+    color:rgba(128, 128, 128, 1); /* несостыковка */
 }
