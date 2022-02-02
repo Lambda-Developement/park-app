@@ -1,3 +1,47 @@
-.btn-login{
+@font-face {
+    font-family: 'gilroy';
+    src: url("../fonts/Gilroy-Regular.ttf");
+    font-style: normal;
+}
 
+/* отключение бутстраповской мешанины */
+.btn:focus {
+    outline: 0 none;
+    box-shadow: none;
+}
+.btn{
+    width: 280px;
+    height: 48px;
+    border-radius: 12px;
+    border: 0;
+}
+
+
+/* cтили кнопок */
+.btn-hollow, .btn-hollow2{
+    background: linear-gradient(180deg, #FAFBFD 0%, #EDEDED 100%);
+}
+.btn-hollow:active, .btn-hollow2:active{
+    background: linear-gradient(180deg, #EBEDF1 0%, #DDDDDD 100%);
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+.btn-filled{
+    background: linear-gradient(122.6deg, #3486F4 2.97%, #264F87 105.31%);
+    box-shadow: 0px 0px 14px rgba(0, 117, 255, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.14);
+}
+.btn-filled:active{
+    background: linear-gradient(122.6deg, #226ACA 2.97%, #183965 105.31%);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.14), inset 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+.btn-text{
+    font-family: gilroy;
+    font-size: 18px;
+    color:rgba(174,174,174,1);
+    margin: 0;
+}
+.btn-hollow2 > .btn-text{
+    color: rgba(43, 99, 174, 1);
+}
+.btn-filled > .btn-text{
+    color: rgba(255,255,255,1);
 }
