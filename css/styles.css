@@ -165,7 +165,7 @@ select.form-select{
     font-size: 18px;
     padding-left: 60px;
 }
-option{
+option{ /* я ебал */
     background-color: rgb(255,255,255);
     border-bottom: 1px;
     border-style: solid;
@@ -255,12 +255,38 @@ option{
     background:rgba(52, 52, 52, 1);
     border-radius: 8px;
 }
-
-
 p.status-icon-text{
     font-family: gilroy;
     font-weight: 500;
     font-size: 15px;
     margin:0;
     color:white;
+}
+
+button.btn.btn-hollow.btn-gps{
+    width:44px;
+    height: 44px;
+    border-radius: 22px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.15);
+    background-color: #FFFFFF;
+    background-image: url("../svg/gps.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 18px;
+}
+button.btn.btn-hollow.btn-gps:active{
+    background-color: #DDDDDD;
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+button.btn.btn-hollow.btn-favourite{
+    width:32px;
+    height: 42px;
+    background-image: url("../svg/favourite.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 25px;
+}
+button.btn.btn-hollow.btn-favourite:active{
+    background-color: #DDDDDD;
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.25);
 }
