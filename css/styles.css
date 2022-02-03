@@ -341,3 +341,22 @@ h3.text-common{
     text-align: center;
     color:rgba(65, 65, 65, 1);
 }
+.danger-icon{
+    width:14px;
+    height:14px;
+    background: url("../svg/danger.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 15px;
+    margin-right: 5px;
+}
+.success-icon{
+    width:14px;
+    height:14px;
+    border-radius: 7px;
+    background: url("../svg/success.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 15px;
+    margin-right: 5px;
+}
