@@ -191,7 +191,7 @@ option{ /* я ебал */
     border-style: solid;
     font-family: gilroy, sans-serif;
     border-color: rgba(30, 30, 30, 1);
-    transition: 0.3s all ease-in-out;
+
 }
 .lang-icon{
     position: absolute;
@@ -203,6 +203,48 @@ option{ /* я ебал */
     height: 42px;
     width: 42px;
     z-index: 10;
+}
+
+/* Я попытался сделать красивый */
+.dropdown-icon {
+    position:absolute;
+    height: 42px;
+    width: 42px;
+    z-index: 10;
+    padding: 0.6rem;
+}
+.dropdown {
+    display:flex;
+    align-items: stretch;
+    justify-content: stretch;
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    background-color: white;
+}
+.form-select-updated{ 
+    height:100%;
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    text-align: right;
+    font-size: 14px;
+    z-index: 1;
+}
+.dropdown-title {
+    position: absolute;
+    align-self: center;
+    padding-left: 60px;
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 18px;
+}
+.dropdown option {
+    position:relative;
+    font-family: gilroy, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
 }
 
 /* иконки статуса */
