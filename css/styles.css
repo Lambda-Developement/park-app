@@ -191,6 +191,7 @@ option{ /* я ебал */
     border-style: solid;
     font-family: gilroy, sans-serif;
     border-color: rgba(30, 30, 30, 1);
+    transition: 0.3s all ease-in-out;
 }
 .lang-icon{
     position: absolute;

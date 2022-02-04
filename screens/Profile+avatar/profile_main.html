@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Profile+avatar</title>
+</head>
+<body>
+    <div class="screen-hat">
+        <button class="btn arrow-back">
+            <img src="../../svg/arrow_back.svg" alt="arrow-back">
+        </button>
+        <div class="mb-3">
+            <h3 class="text-header">
+                Профиль
+            </h3>
+        </div>
+    </div>
+
+    <div class="profile-screen">
+        <div class="avatar-area">
+            <img src="../../jpg/avatar.png" alt="roma.jpeg" class="avatar-area__image">
+            <h3 class="text-bold">
+                Роман
+            </h3>    
+            <div>
+                <a href="#" class="edit-link"><img src="../../svg/edit.svg" alt="edit__ico" class="edit-link__ico">Изменить</a>
+            </div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-item">
+                <img src="../../svg/notifications.svg" alt="notifications.svg" class="nav-item_icon">
+                <p class="title">Уведомления</p>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                </div>
+            </div>
+
+            <!-- И как это делать? В моем понимании можно реализовать как то через js + display: none а не вот так :(  -->
+            <div style="height: 42px" class="nav-item">
+                <div class="lang-icon"></div>
+                <select class="form-select">
+                    <option value="0">Язык</option>
+                    <option value="1" >Русский</option>
+                    <option value="2">Английский</option>
+                </select>
+            </div>
+
+            <div class="nav-item">
+                <img src="../../svg/map.svg" alt="map.svg" class="nav-item_icon">
+                <p class="title">Карта</p>
+                <img src="../../svg/arrow_gray_right.svg" alt="arrow_gray_right.svg" class="nav-item__arrow">
+
+            </div>
+
+            <div class="nav-item">
+                <img src="../../svg/chatbox.svg" alt="chatbox.svg" class="nav-item_icon">
+                <p class="title">Сообщить об ошибке</p>
+                <img src="../../svg/arrow_gray_right.svg" alt="arrow_gray_right.svg" class="nav-item__arrow">
+
+            </div>
+            <div class="nav-item">
+                <img src="../../svg/pin_menu.svg" alt="pin_menu.svg" class="nav-item_icon">
+                <p class="title">О приложении</p>
+                <img src="../../svg/arrow_gray_right.svg" alt="arrow_gray_right.svg" class="nav-item__arrow">
+            </div>
+            
+            <div class="button-area">
+                <button class="btn btn-hollow" id="btn-clean-history"><p class="btn-text">Очистить историю поиска</p></button>
+            </div>
+        </div>
+        
+        
+
+    </div>
+    
+
+</body>
+</html>
