@@ -189,6 +189,7 @@ option{ /* я ебал */
     background-color: rgb(255,255,255);
     border-bottom: 1px;
     border-style: solid;
+    font-family: gilroy, sans-serif;
     border-color: rgba(30, 30, 30, 1);
 }
 .lang-icon{
