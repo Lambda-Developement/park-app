@@ -94,3 +94,8 @@ h3.text-common{
     bottom: 37px;
     width: 100%;
 }
+.add-favourites-panel{
+    background: #FFFFFF;
+    box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 12px 12px 0px 0px;
+}
