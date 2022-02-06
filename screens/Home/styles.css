@@ -111,3 +111,94 @@ button.btn-hollow.btn-gps.btn-minus{
     background-image: url("../../svg/minus_sign.svg");
     border-radius: 8px;
 }
+.status-icon{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    background-color: white;
+    box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+}
+.status-icon-1{
+    width:28px;
+    height: 28px;
+}
+a {
+    text-decoration: none;
+}
+.parking-info{
+    height: 124px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.17);
+    border-radius: 12px;
+    width: 70%;
+}
+.parking-popup{
+    position: fixed;
+    width: 100%;
+    bottom: 120px;
+}
+.new{
+    width:fit-content;
+    background: rgba(240, 240, 240, 1);
+    height: 28px;
+    border-radius: 8px;
+    font-size: 10px;
+    padding: 5px;
+}
+.btn-hollow.new{
+    color:rgba(52, 134, 244, 1);
+}
+.btn-hollow2.new{
+    color:white;
+    width: 40px;
+    background: url("../../svg/arrow_right.svg");
+    background-color:rgba(52, 134, 244, 1);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:14px;
+}
+.download-icon{
+    width:15px;
+    height:13px;
+    background: url("../../svg/download.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:8px;
+}
+.bookmark2-icon{
+    width:15px;
+    height:13px;
+    background: url("../../svg/bookmark.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:8px;
+}
+.close-icon > div > a {
+    font-family: monospace;
+    color:white;
+    margin:0;
+}
+.close-icon{
+    width:15px;
+    height: 15px;
+    background: #E4E4E4;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.14);
+    border-radius: 8px;
+}
+.park-photo{
+    border-radius: 12px;
+    width: 80px;
+    height: 100%;
+    overflow: hidden ;
+}
+img{
+    width: auto;
+    height:100%;
+}
+#info{
+    display: none;
+}
