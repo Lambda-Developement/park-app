@@ -1,0 +1,431 @@
+@font-face {
+    font-family: 'gilroy';
+    src: url("../fonts/Gilroy-Regular.ttf");
+    font-style: normal;
+}
+
+/* отключение бутстраповской мешанины */
+input[type="checkbox"]:focus,input[type="radio"]:focus,select.form-select:focus, .btn:focus {
+    outline: 0 none ;
+    box-shadow: none ;
+}
+.btn{
+    width: 280px;
+    height: 48px;
+    border-radius: 12px;
+    border: 0;
+}
+
+
+/* cтили кнопок */
+.btn-hollow, .btn-hollow2{
+    background: linear-gradient(180deg, #FAFBFD 0%, #EDEDED 100%);
+}
+.btn-hollow:active, .btn-hollow2:active{
+    background: linear-gradient(180deg, #EBEDF1 0%, #DDDDDD 100%);
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+.btn-filled{
+    background: linear-gradient(122.6deg, #3486F4 2.97%, #264F87 105.31%);
+    box-shadow: 0px 0px 14px rgba(0, 117, 255, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.14);
+}
+.btn-filled:active{
+    background: linear-gradient(122.6deg, #226ACA 2.97%, #183965 105.31%);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.14), inset 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+.btn-text{
+    font-family: gilroy;
+    font-size: 18px;
+    font-weight: 500;
+    color:rgba(174,174,174,1);
+    margin: 0;
+}
+.btn-hollow2 > .btn-text{
+    color: rgba(43, 99, 174, 1);
+}
+.btn-filled > .btn-text{
+    color: rgba(255,255,255,1);
+}
+
+
+/* чек боксы и прочее */
+.checkbox-wrapper{
+    background: #FFFFFF;
+}
+.form-check-inline > input[type="checkbox"].form-check-input{
+    width: 16px;
+    height: 16px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.form-check-inline > input[type="checkbox"].form-check-input:checked{
+    border: 1px solid #4D99FE;
+    background-color: #3486F4;
+    background-image: url("../svg/white_check.svg");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position:  center center;
+}
+.form-check-inline > input[type="checkbox"].form-check-input:disabled{
+    border: 1px solid #DCDCDC;
+    background-color: #C4C4C4;
+    background-image: url("../svg/white_check_disabled.svg");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position:  center center;
+    border: 1px solid #DCDCDC;
+}
+.form-check-inline > input[type="radio"].form-check-input{
+    width: 16px;
+    height: 16px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 16px;
+}
+.form-check-inline > input[type="radio"].form-check-input:checked{
+    border: 1px solid #4D99FE;
+    background-color: #FFFFFF;
+    background-image: url("../svg/blue_circle.svg");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position:  center center;
+}
+.form-check-inline > input[type="radio"].form-check-input:disabled{
+    border: 1px solid #DCDCDC;
+    background-color: #FFFFFF;
+    background-image: url("../svg/white_circle.svg");
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position:  center center;
+    border: 1px solid #DCDCDC;
+}
+.form-switch .form-check-input {
+    height: 17px;
+    width: 32px;
+}
+.form-switch .form-check-input {
+    border-color: rgba(0, 0, 0, 0.25);
+    outline: 0;
+    background-color:rgba(196, 196, 196, 1);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255,1.0)'/></svg>");
+}
+.form-switch .form-check-input:focus{
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255,1.0)'/></svg>");
+}
+.form-switch .form-check-input:checked {
+    background-color: rgba(52, 134, 244, 1);
+    border-color: rgba(52, 134, 244, 1);
+    border: none;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba(255,255,255,1.0)'/></svg>");
+}
+label.form-check-label{
+    font-family: gilroy;
+    font-weight: 400;
+    font-size:14px;
+    color:rgba(128, 128, 128, 1); /* несостыковка */
+}
+
+/* лайн эдиты и прочее */
+input[type="email"].form-control,input[type="password"].form-control, input[type="text"].form-control, textarea{
+    background: #F0F0F0;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 18px;
+    padding-left: 43px;
+    border: 1.75px solid #F0F0F0;
+}
+input[type="email"].form-control.line-danger{
+    border-color: #DD3A3A;
+    box-shadow: none;
+}
+input[type="email"].form-control.line-success{
+    border-color: #74CA65;
+    box-shadow: none;
+}
+.form-label.line-success{
+    width:100%;
+    text-align: center;
+    color: #74CA65;
+    margin-bottom: 0;
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 14px;
+}
+.form-label.line-danger{
+    width:100%;
+    text-align: center;
+    color: #DD3A3A;
+    margin-bottom: 0;
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 14px;
+}
+input[type="email"].form-control:focus,input[type="password"].form-control:focus{
+    background: #CDDEEA;
+    border: 1.75px solid #2B63AE;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+input[type="password"].form-control{
+    -webkit-text-security: disc; /* поменяю в будущем */
+}
+
+/* дропдауны */
+select.form-select{
+    position: absolute;
+    border: 0;
+    border-radius: 0;
+    height: 42px;
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 18px;
+    padding-left: 60px;
+}
+option{ /* я ебал */
+    background-color: rgb(255,255,255);
+    border-bottom: 1px;
+    border-style: solid;
+    font-family: gilroy, sans-serif;
+    border-color: rgba(30, 30, 30, 1);
+
+}
+.lang-icon{
+    position: absolute;
+    background-color:white;
+    background-image: url("../svg/lang.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 24px;
+    height: 42px;
+    width: 42px;
+    z-index: 10;
+}
+
+/* Я попытался сделать красивый */
+.dropdown-icon {
+    position:absolute;
+    height: 42px;
+    width: 42px;
+    z-index: 10;
+    padding: 0.6rem;
+}
+.dropdown {
+    display:flex;
+    align-items: stretch;
+    justify-content: stretch;
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    background-color: white;
+}
+.form-select-updated{ 
+    height:100%;
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    text-align: right;
+    font-size: 14px;
+    z-index: 1;
+}
+.dropdown-title {
+    position: absolute;
+    align-self: center;
+    padding-left: 60px;
+    font-family: gilroy;
+    font-weight: 400;
+    font-size: 18px;
+}
+.dropdown option {
+    position:relative;
+    font-family: gilroy, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+/* иконки статуса */
+.status-icon-0{
+    width: 28px;
+    height: 28px;
+    background: #39C236;
+    border-radius: 8px;
+}
+.status-icon-1{
+    width: 28px;
+    height: 28px;
+    background: #63C236;
+    border-radius: 8px;
+}
+.status-icon-2{
+    width: 28px;
+    height: 28px;
+    background: #74C236;
+    border-radius: 8px;
+}
+.status-icon-3{
+    width: 28px;
+    height: 28px;
+    background: #96C236;
+    border-radius: 8px;
+}
+.status-icon-4{
+    width: 28px;
+    height: 28px;
+    background: #C2B436;
+    border-radius: 8px;
+}.status-icon-5{
+     width: 28px;
+     height: 28px;
+     background: #C28236;
+     border-radius: 8px;
+ }
+.status-icon-6{
+    width: 28px;
+    height: 28px;
+    background: #C27A36;
+    border-radius: 8px;
+}
+.status-icon-7{
+    width: 28px;
+    height: 28px;
+    background: #CB693F;
+    border-radius: 8px;
+}
+.status-icon-8{
+    width: 28px;
+    height: 28px;
+    background: #DD613A;
+    border-radius: 8px;
+}
+.status-icon-9{
+    width: 28px;
+    height: 28px;
+    background: #DD4E3A;
+    border-radius: 8px;
+}
+.status-icon-10{
+    width: 28px;
+    height: 28px;
+    background: #DD3A3A;
+    border-radius: 8px;
+}
+.status-icon-p{
+    width: 36px;
+    height: 36px;
+    background:rgba(52, 52, 52, 1);
+    border-radius: 8px;
+}
+p.status-icon-text{
+    font-family: gilroy;
+    font-weight: 500;
+    font-size: 15px;
+    margin:0;
+    color:white;
+}
+
+/* кнопки gps и закладок */
+button.btn.btn-hollow.btn-gps{
+    width:44px;
+    height: 44px;
+    border-radius: 22px;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.15);
+    background-color: #FFFFFF;
+    background-image: url("../svg/gps.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 18px;
+}
+button.btn.btn-hollow.btn-gps:active{
+    background-color: #DDDDDD;
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+button.btn.btn-hollow.btn-favourite{
+    width:32px;
+    height: 42px;
+    background-image: url("../svg/favourite.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 25px;
+}
+button.btn.btn-hollow.btn-favourite:active{
+    background-color: #DDDDDD;
+    box-shadow: inset 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* тексты */
+h3.text-attention{
+    font-family: gilroy;
+    font-weight: 400;
+    font-size:28px;
+    text-align: center;
+    color:rgba(65, 65, 65, 1);
+}
+h3.text-header{
+    font-family: gilroy;
+    font-weight: 500;
+    font-size:18px;
+    text-align: center;
+    color:rgba(65, 65, 65, 1);
+}
+h3.text-bold{
+    font-family: gilroy;
+    font-weight: 700;
+    font-size:24px;
+    text-align: center;
+    color:rgba(65, 65, 65, 1);
+}
+h3.text-common{
+    font-family: gilroy;
+    font-weight: 400;
+    font-size:18px;
+    text-align: center;
+    color:rgba(65, 65, 65, 1);
+}
+.danger-icon{
+    width:14px;
+    height:14px;
+    background: url("../svg/danger.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 15px;
+    margin-right: 5px;
+}
+.success-icon{
+    width:14px;
+    height:14px;
+    border-radius: 7px;
+    background: url("../svg/success.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 15px;
+    margin-right: 5px;
+}
+
+
+/* Шапка для экранов */
+
+.screen-hat .arrow-back {
+    position: absolute;
+    width: 50px;
+    margin: 1rem;
+}
+
+.screen-hat { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+}
+
+.screen-hat .mb-3 {
+    flex-grow: 1;
+    padding: 2rem 0;
+}
+
+.screen-hat .mb-3, .screen-hat h3 { 
+    margin-bottom: 0 !important; 
+}
