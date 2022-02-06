@@ -1,0 +1,34 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 3rem;
+}
+
+.login-container input {
+    outline: 2px solid lightgray;
+}
+
+.login-container__forget-password {
+    text-decoration: none;
+    color: #2C7CDA;
+    align-self: flex-end;
+    margin-bottom: 2rem;
+}
+
+.arrow-back {
+    width: 50px;
+    position: absolute;
+    margin: 1rem
+}
