@@ -1,0 +1,22 @@
+* { 
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F6F6F6;
+}
+
+.error-text-container {
+    flex-grow:0.3 ;
+}
+
+textarea.error-text {
+    height: 100%;
+    text-align:left;
+    width:fit-content;
+    padding:0.5rem;
+
+    
+    resize: none;
+    word-wrap: break-word;
+}   

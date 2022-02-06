@@ -128,7 +128,7 @@ label.form-check-label{
 }
 
 /* лайн эдиты и прочее */
-input[type="email"].form-control,input[type="password"].form-control{
+input[type="email"].form-control,input[type="password"].form-control, input[type="text"].form-control, textarea{
     background: #F0F0F0;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
