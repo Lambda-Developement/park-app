@@ -135,7 +135,7 @@ a {
     background: #FFFFFF;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.17);
     border-radius: 12px;
-    width: 70%;
+    width: 80%;
 }
 .parking-popup{
     position: fixed;
@@ -191,9 +191,13 @@ a {
     border-radius: 8px;
 }
 .park-photo{
-    border-radius: 12px;
-    width: 80px;
     height: 100%;
+    width: 100%;
+    background: url("../../jpg/carpark.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:200%;
+    border-radius: 12px;
     overflow: hidden ;
 }
 img{
