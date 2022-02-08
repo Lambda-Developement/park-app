@@ -1,6 +1,4 @@
 
-
-
 * {
     box-sizing: border-box;
 }
@@ -102,7 +100,9 @@ body {
     margin: 0;
     padding-left: 60px;
     flex-grow: 1;
+    color: black;
 }
+a { text-decoration: none;}
 
 .nav-item .nav-item__arrow {
     margin:1rem;

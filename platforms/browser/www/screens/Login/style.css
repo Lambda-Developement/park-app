@@ -3,6 +3,8 @@
 }
 
 body {
+    display:flex;
+    justify-content: center;
     height: 100vh;
 }
 
@@ -12,7 +14,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100%;
+    width: fit-content;
     padding: 3rem;
 }
 
@@ -29,6 +31,7 @@ body {
 
 .arrow-back {
     width: 50px;
+    left:0;
     position: absolute;
     margin: 1rem
 }

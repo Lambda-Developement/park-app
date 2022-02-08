@@ -30,6 +30,9 @@ function zoomin(){
 function zoomout(){
     map.zoomOut(1);
 }
+
+redraw()
+
 function redraw(){
     // console.log(map.getCenter());
     //console.log(map.getBounds());
