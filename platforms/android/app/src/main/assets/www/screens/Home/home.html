@@ -6,22 +6,27 @@
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../../css/leaflet.css" />
+    <script src="../../js/leaflet.js"></script>
     <title>Home</title>
 </head>
-<body>
-    <div class="map">
-        <!-- Виджет карт вставить сюда как нибудь -->
+<body style="z-index: -2;">
+    <div id="map" style="z-index: 0">
+    </div>
+    <div id="icons-here">
+        <!--
         <div class="status-icon">
             <a href="#" onclick="get_info()">
-                <div class="status-icon-1 d-flex justify-content-center align-items-center">
+                <div class="status-icon-inner status-icon-1 d-flex justify-content-center align-items-center">
                     <div>
                         <p class="status-icon-text">1</p>
                     </div>
                 </div>
             </a>
         </div>
+        -->
     </div>
-    <div class="navbar panel d-inline-flex justify-content-evenly">
+    <div class="navbar panel d-inline-flex justify-content-evenly" style="z-index: 2;">
         <div class="d-flex flex-column align-items-center">
             <div><a href="#"><div class="blue-search-icon"></div></a></div>
             <div><h3 class="text-description">Поиск</h3></div>
@@ -36,20 +41,20 @@
 
         </div>
     </div>
-    <div class="search-bar-wrapper">
+    <div class="search-bar-wrapper" style="z-index: 2;">
         <div class="search-bar d-inline-flex justify-content-between align-items-center container-fluid">
             <div class="grey-search-icon"></div>
             <div class="w-100"><input type="email" class="form-control" id="line-edit" placeholder="Поиск..."></div>
             <div><a href="#"><div class="menu-icon"></div></a></div>
         </div>
     </div>
-    <div class="buttons-bar h-100 d-flex flex-column align-items-center justify-content-center">
+    <div class="buttons-bar h-100 d-flex flex-column align-items-center justify-content-center" style="z-index: 2;">
         <div class="mb-2">
-            <button class="btn btn-hollow btn-gps btn-plus">
+            <button class="btn btn-hollow btn-gps btn-plus" onclick="zoomin()">
         </button>
         </div>
         <div class="mb-5">
-            <button class="btn btn-hollow btn-gps btn-minus">
+            <button class="btn btn-hollow btn-gps btn-minus" onclick="zoomout()">
         </button>
         </div>
         <div>
@@ -57,7 +62,7 @@
         </button>
         </div>
     </div>
-    <div id="info">
+    <div id="info" style="z-index: 2;">
         <div class="parking-popup d-flex justify-content-center align-items-center">
             <div class="parking-info d-inline-flex align-items-center">
                 <div class="park-photo"><img src="../../jpg/carpark.jpg"></div>
@@ -94,5 +99,6 @@
         document.getElementById("info").style.display = "none";
     }
 </script>
+    <script src="../../js/map.js"></script>
 </body>
 </html>
