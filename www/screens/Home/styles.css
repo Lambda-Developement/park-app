@@ -55,7 +55,7 @@ h3.text-description{
     font-size: 12px;
     color: rgba(189, 189, 189, 1);
     margin:0;
-    white-space: nowrap;
+    white-space: break-spaces;
 }
 .search-bar-wrapper{
     position: fixed;
@@ -131,7 +131,8 @@ a {
     text-decoration: none;
 }
 .parking-info{
-    height: 124px;
+    height: 150px;
+    /*padding: 10px;*/
     background: #FFFFFF;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.17);
     border-radius: 12px;
@@ -196,7 +197,7 @@ a {
     background: url("../../jpg/carpark.jpg");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size:200%;
+    background-size: 350%;
     border-radius: 12px;
     overflow: hidden ;
 }
