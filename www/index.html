@@ -2,9 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="screens/Loading/style.css">
+    <title>Loading</title>
 </head>
 <body>
-<a href="screens/Home/home.html">Погнали!</a>
+<div class="container">
+    <p>
+        Parking Map
+    </p>
+</div>
+<script>
+    setTimeout(()=>{
+        document.location.href = "screens/Home/home.html";
+    },3000);
+</script>
 </body>
 </html>
