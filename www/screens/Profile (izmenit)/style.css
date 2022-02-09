@@ -138,6 +138,7 @@ input[type='email'].form-control{
     background: #ffffff;
     box-shadow: none;
     border:0;
+    padding-left: 10px;
     border-bottom:2px solid rgba(196, 196, 196, 1);
     border-radius: 0;
 }
