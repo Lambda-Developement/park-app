@@ -3,6 +3,59 @@ var pos = [57.615398, 39.885228];
 var scale = 13;
 var locs = [[57.620188, 39.898177,1],
             [57.619867, 39.879848,2]];
+var permissions;
+
+var onSuccess = function(position) {
+    pos = [position.coords.latitude,position.coords.longitude];
+    console.log('Latitude: '          + position.coords.latitude          + '\n' +
+        'Longitude: '         + position.coords.longitude         + '\n' +
+        'Altitude: '          + position.coords.altitude          + '\n' +
+        'Accuracy: '          + position.coords.accuracy          + '\n' +
+        'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+        'Heading: '           + position.coords.heading           + '\n' +
+        'Speed: '             + position.coords.speed             + '\n' +
+        'Timestamp: '         + position.timestamp                + '\n');
+};
+
+// onError Callback receives a PositionError object
+//
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+        'message: ' + error.message + '\n');
+}
+
+setTimeout(()=>{
+    permissions = cordova.plugins.permissions;
+    var list = [
+        //permissions.CAMERA,
+        permissions.ACCESS_FINE_LOCATION
+    ];
+
+    permissions.checkPermission(list, success, null);
+
+    function error() {
+        console.warn('Camera or Accounts permission is not turned on');
+    }
+
+    function success( status ) {
+        if( !status.hasPermission ) {
+
+            permissions.requestPermissions(
+                list,
+                function(status) {
+                    if( !status.hasPermission ) error();
+                },
+                error);
+        }
+    }
+    // setTimeout(()=>{
+    //     navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    // },1000);
+},2000);
+
+function get_location(){
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+}
 
 document.getElementById("map").style.height = HEIGHT;
 
@@ -36,8 +89,13 @@ redraw()
 function redraw(){
     // console.log(map.getCenter());
     //console.log(map.getBounds());
-    pos = [map.getCenter().lat,map.getCenter().lng];
-    document.getElementById('icons-here').innerHTML = "";
+    //navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    let pos_x = map.latLngToContainerPoint(L.latLng(pos[0],pos[1])).x;
+    let pos_y = map.latLngToContainerPoint(L.latLng(pos[0],pos[1])).y;
+    document.getElementById('icons-here').innerHTML = "" +
+        "<div style=\"top: "+pos_y+"px;left: "+pos_x+"px\" class=\"my-position d-flex justify-content-center align-items-center\">\n" +
+        "            <div class=\"orange-circle\"></div>\n" +
+        "        </div>";
     locs.forEach((a)=>{
         console.log(map.latLngToContainerPoint(L.latLng(a[0],a[1])));
         let x = map.latLngToContainerPoint(L.latLng(a[0],a[1])).x;
@@ -54,5 +112,6 @@ function redraw(){
                 "        </a>\n" +
                 "    </div>"
         }
-    })
+    });
+
 }
