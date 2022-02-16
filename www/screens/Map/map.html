@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <title>Map</title>
 </head>
-<body>
+<body onload="get_settings()">
 
 
 <div class="screen-hat">
@@ -36,15 +36,15 @@
     </a>
     <div id="collapseExample">
         <div class="panel-fill select-item d-inline-flex justify-content-end align-items-center px-3">
-            <div class="choose-icon"></div>
+            <div class="choose-icon" id="scheme"></div>
             <div><h3 class="text-description"><a href="#" onclick="schema_clicked(this)">Схема</a></h3></div>
         </div>
         <div class="panel-fill select-item d-inline-flex justify-content-end align-items-center px-3">
-            <div class="empty-icon"></div>
+            <div class="empty-icon" id="sputnik"></div>
             <div><h3 class="text-description"><a href="#" onclick="schema_clicked(this)">Cпутник</a></h3></div>
         </div>
         <div class="panel-fill select-item d-inline-flex justify-content-end align-items-center px-3">
-            <div class="empty-icon"></div>
+            <div class="empty-icon" id="hybrid"></div>
             <div><h3 class="text-description"><a href="#" onclick="schema_clicked(this)">Гибрид</a></h3></div>
         </div>
     </div>
@@ -54,15 +54,7 @@
         <h3 class="text-common">Кнопки масштаба</h3>
     </div>
     <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-    </div>
-</div>
-<div class="panel-fill d-inline-flex align-items-center justify-content-between px-4">
-    <div>
-        <h3 class="text-common">Вращение карты пальцами</h3>
-    </div>
-    <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault2">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onclick="update_settings()">
     </div>
 </div>
 <script>
@@ -87,7 +79,6 @@
         }
     }
     function schema_clicked(e){
-        console.log(e.innerText);
         document.getElementById("MapType").innerText = e.innerText;
         let a = document.getElementsByClassName("choose-icon")[0];
         a.classList.remove("choose-icon");
@@ -96,6 +87,55 @@
         b.classList.remove('empty-icon');
         b.classList.add('choose-icon');
         collapse_close();
+        update_settings();
+    }
+    function update_settings(){
+        if(localStorage != undefined)
+        {
+            localStorage.setItem('mapType',document.getElementById("MapType").innerText);
+            localStorage.setItem('zoomControl',document.getElementById('flexSwitchCheckDefault').checked);
+        }
+        else
+        {
+            console.log("No support");
+        }
+    }
+    function get_settings(){
+        if(localStorage != undefined)
+        {
+            console.log(localStorage.getItem('mapType'));
+            document.getElementById('flexSwitchCheckDefault').checked = localStorage.getItem('zoomControl') == 'true';
+            document.getElementById("MapType").innerText = localStorage.getItem('mapType');
+            document.getElementById('sputnik').classList.remove('empty-icon');
+            document.getElementById('sputnik').classList.remove('choose-icon');
+            document.getElementById('hybrid').classList.remove('empty-icon');
+            document.getElementById('hybrid').classList.remove('choose-icon');
+            document.getElementById('scheme').classList.remove('empty-icon');
+            document.getElementById('scheme').classList.remove('choose-icon');
+            if(localStorage.getItem('mapType') == 'Схема'){
+                document.getElementById('sputnik').classList.add('empty-icon');
+                document.getElementById('scheme').classList.add('choose-icon');
+                document.getElementById('hybrid').classList.add('empty-icon');
+            }
+            else if(localStorage.getItem('mapType') == 'Спутник'){
+                document.getElementById('sputnik').classList.add('choose-icon');
+                document.getElementById('scheme').classList.add('empty-icon');
+                document.getElementById('hybrid').classList.add('empty-icon');
+            }
+            else if(localStorage.getItem('mapType') == 'Гибрид'){
+                document.getElementById('sputnik').classList.add('empty-icon');
+                document.getElementById('scheme').classList.add('empty-icon');
+                document.getElementById('hybrid').classList.add('choose-icon');
+            }else{
+                document.getElementById('sputnik').classList.add('empty-icon');
+                document.getElementById('scheme').classList.add('choose-icon');
+                document.getElementById('hybrid').classList.add('empty-icon');
+            }
+        }
+        else
+        {
+            console.log("No support");
+        }
     }
 
 </script>
