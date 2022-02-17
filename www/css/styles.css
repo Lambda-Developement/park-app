@@ -185,7 +185,7 @@ select.form-select{
     font-size: 18px;
     padding-left: 60px;
 }
-option{ /* я ебал */
+option{
     background-color: rgb(255,255,255);
     border-bottom: 1px;
     border-style: solid;
