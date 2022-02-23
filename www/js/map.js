@@ -147,3 +147,41 @@ function redraw(){
     });
 
 }
+
+let searchInArray=(searchQuery, array)=>{
+
+    return array.filter((d)=>{
+        let data = d[3] //Incase If It's Array Of Objects.
+        let dataWords= typeof data=="string" && data?.split(" ")?.map(b=>b&&b.toLowerCase().trim()).filter(b=>b)
+        let searchWords = typeof searchQuery=="string"&&searchQuery?.split(" ").map(b=>b&&b.toLowerCase().trim()).filter(b=>b)
+        let matchingWords = searchWords.filter(word=>dataWords.includes(word))
+        return matchingWords.length
+    })
+}
+function search(input_str){
+    results = searchInArray(input_str,locs);
+    document.getElementById("search-results1").innerHTML = "";
+    results.forEach((el)=>{
+        document.getElementById('search-results1').innerHTML += "" +
+            "<div><a onclick='search_clicked(this)'>\n" +
+            "                    <div class=\"bg-white w-100 d-inline-flex p-2\">\n" +
+            "                        <div class=\"time-icon me-3\"></div>\n" +
+            "                        <div><h3 class=\"text-common\">"+el[3]+"</h3></div>\n" +
+            "                    </div>\n" +
+            "                </a></div>";
+    });
+}
+function search_clicked(el){
+    console.log(el.children[0].children[1].children[0].innerHTML);
+    let s = el.children[0].children[1].children[0].innerHTML;
+    locs.forEach(d=>{
+        if(d[3] == s){
+            map.flyTo([d[0],d[1]],16);
+            console.log('asdasd')
+            return;
+        }
+    })
+}
+setInterval(()=>{
+    search(document.getElementById('line-edit').value);
+},1000);

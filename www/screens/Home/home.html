@@ -41,10 +41,10 @@
 
         </div>
     </div>
-    <div class="search-bar-wrapper" style="z-index: 2;">
+    <div class="search-bar-wrapper" style="z-index: 10;">
         <div class="search-bar d-inline-flex justify-content-between align-items-center container-fluid">
             <div class="grey-search-icon"></div>
-            <div class="w-100"><input type="email" class="form-control" id="line-edit" placeholder="Поиск..."></div>
+            <div class="w-100"><input onclick="search_history_open()" type="email" class="form-control" id="line-edit" placeholder="Поиск..."></div>
             <div><a href="#"><div class="menu-icon"></div></a></div>
         </div>
     </div>
@@ -60,8 +60,7 @@
             </div>
         </div>
         <div>
-            <button class="btn btn-hollow btn-gps" onclick="get_location()">
-        </button>
+            <button class="btn btn-hollow btn-gps" onclick="get_location()"></button>
         </div>
     </div>
     <div id="info" style="z-index: 2;">
@@ -97,7 +96,31 @@
             </div>
         </div>
     </div>
+    <div id="search-history" onclick="search_history_close()">
+        <div class="search-history">
+            <div class="d-flex flex-column px-2" id="search-results1">
+                <!--                <div><a href="#">-->
+                <!--                    <div class="bg-white w-100 d-inline-flex align-items-center p-2">-->
+                <!--                        <div class="time-icon me-3"></div>-->
+                <!--                        <div><h3 class="text-common">Свободы</h3></div>-->
+                <!--                    </div>-->
+                <!--                </a></div>-->
+                <!--                <div><a href="#">-->
+                <!--                    <div class="bg-white w-100 d-inline-flex p-2">-->
+                <!--                        <div class="time-icon me-3"></div>-->
+                <!--                        <div><h3 class="text-common">Миллениум</h3></div>-->
+                <!--                    </div>-->
+                <!--                </a></div>-->
+            </div>
+        </div>
+    </div>
 <script>
+    function search_history_open(){
+        document.getElementById('search-history').style.display = 'block';
+    }
+    function search_history_close(){
+        document.getElementById('search-history').style.display = 'none';
+    }
     function get_info(){
         document.getElementById("info").style.display = "block";
     }
