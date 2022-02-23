@@ -10,7 +10,7 @@
 
     <title>Profile+avatar</title>
 </head>
-<body>
+<body onload="check_credentials()">
     <div class="screen-hat">
         <button class="btn arrow-back">
             <a href="../Home/home.html">
@@ -27,7 +27,7 @@
     <div class="profile-screen">
         <div class="avatar-area">
             <img src="../../jpg/avatar.png" alt="roma.jpeg" class="avatar-area__image">
-            <h3 class="text-bold">
+            <h3 class="text-bold" id="header-name">
                 Роман
             </h3>    
             <div>
@@ -89,7 +89,16 @@
         
 
     </div>
-    
+    <script>
+        function check_credentials(){
+            if(localStorage != undefined){
+                if (localStorage.getItem('name') != null){
+                    document.getElementById('header-name').innerHTML = localStorage.getItem('name');
+                }
+            }
+        }
+
+    </script>
 
 </body>
 </html>

@@ -10,7 +10,7 @@
 
     <title>Profile+avatar</title>
 </head>
-<body>
+<body onload="check_credentials()">
     <div class="screen-hat">
         <button class="btn arrow-back">
             <a href="../Profile+avatar/profile_main.html">
@@ -27,11 +27,11 @@
     <div class="profile-screen">
         <div class="avatar-area">
             <img src="../../jpg/avatar.png" alt="roma.jpeg" class="avatar-area__image">
-            <h3 class="text-bold">
+            <h3 class="text-bold" id="header-name">
                 Роман
             </h3>    
             <div>
-                <a href="#" class="edit-link"><img src="../../svg/edit.svg" alt="edit__ico" class="edit-link__ico">Изменить</a>
+                <a onclick="apply_changes()" href="#" class="edit-link"><img src="../../svg/edit.svg" alt="edit__ico" class="edit-link__ico">Изменить</a>
             </div>
         </div>
         <div class="panel d-inline-flex align-items-center mt-5">
@@ -71,7 +71,31 @@
             </div>
         </div>
     </div>
-    
+    <script>
+        function check_credentials(){
+            if(localStorage != undefined){
+                ['name','sex','birth1','birth2','birth3','email','phone'].forEach(el=>{
+                    if (localStorage.getItem(el) != null && localStorage.getItem(el).length > 0){
+                        document.getElementById(el).value = localStorage.getItem(el);
+                    }else{
+                        document.getElementById(el).value = '';
+                    }
+                });
+                if (localStorage.getItem('name') != null && localStorage.getItem('name').length > 0){
+                    document.getElementById('header-name').innerHTML = localStorage.getItem('name');
+                }
+            }
+        }
+        function apply_changes(){
+            if(localStorage != undefined){
+                ['name','sex','birth1','birth2','birth3','email','phone'].forEach(el=>{
+                    console.log(document.getElementById(el))
+                    localStorage.setItem(el,document.getElementById(el).value);
+                });
+            }
+            check_credentials();
+        }
+    </script>
 
 </body>
 </html>
