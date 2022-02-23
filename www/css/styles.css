@@ -150,6 +150,10 @@ input[type="password"].form-control.line-success{
     border-color: #74CA65;
     box-shadow: none;
 }
+input[type="password"].form-control.line-danger{
+    border-color: #DD3A3A;
+    box-shadow: none;
+}
 .form-label.line-success{
     width:100%;
     text-align: center;
