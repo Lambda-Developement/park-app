@@ -77,7 +77,9 @@
                     <div class="apple-icon"></div>
                     <div><h3 class="text-bold">Apple pay</h3></div>
                 </div>
-                <div class="circle"></div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" onclick='radio_click(this)' id="option1" value="option1">
+                </div>
             </div>
         </div>
         <div id="cards-here">
@@ -388,6 +390,14 @@
         }
         check_cards();
     }
+    function radio_click(el){
+        ['option1','option2','option3'].forEach(b=>{
+            if(document.getElementById(b) != null){
+                document.getElementById(b).checked = false;
+            }
+        });
+        el.checked = true;
+    }
     function check_cards(){
         if(localStorage != undefined){
             document.getElementById('cards-here').innerHTML = "";
@@ -402,9 +412,12 @@
                     "                            <div><p class=\"text-common\" style=\"color: rgba(168, 168, 168, 1)\">"+localStorage.getItem('card1_month')+"</p></div>\n" +
                     "                        </div>\n" +
                     "                    </div>\n" +
-                    "                    <div class=\"circle\"></div>\n" +
+                    "                    <div class=\"form-check form-check-inline\">\n" +
+                    "                    <input class=\"form-check-input\" type=\"radio\" onclick='radio_click(this)' id='option2' value=\"option2\">\n" +
                     "                </div>\n" +
-                    "            </div>"
+                    "                </div>\n" +
+                    "            </div>" +
+                    ""
             }
             if(localStorage.getItem('card2_num') != null){
                 document.getElementById('cards-here').innerHTML += "" +
@@ -417,7 +430,9 @@
                     "                            <div><p class=\"text-common\" style=\"color: rgba(168, 168, 168, 1)\">"+localStorage.getItem('card2_month')+"</p></div>\n" +
                     "                        </div>\n" +
                     "                    </div>\n" +
-                    "                    <div class=\"circle\"></div>\n" +
+                    "                    <div class=\"form-check form-check-inline\">\n" +
+                    "                    <input class=\"form-check-input\" type=\"radio\" onclick='radio_click(this)' id='option3' value=\"option3\">\n" +
+                    "                </div>\n" +
                     "                </div>\n" +
                     "            </div>"
             }
