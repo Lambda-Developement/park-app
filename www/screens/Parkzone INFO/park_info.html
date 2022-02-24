@@ -40,27 +40,63 @@
         </div>
     </div>
     <div class="panel d-inline-flex justify-content-evenly align-items-center mb-1">
-        <div class="d-flex flex-column justify-content-center align-items-center" id="active">
-            <div><h3 class="text-link"><a href="#">Обзор</a></h3></div>
+        <div class="d-flex flex-column justify-content-center align-items-center active" id="geoinfo">
+            <div><h3 class="text-link"><a onclick="switch_geoinfo()">Обзор</a></h3></div>
             <div class="underliner"></div>
         </div>
-        <div class="d-flex flex-column justify-content-center" >
-            <div><h3 class="text-link"><a href="../Parkzone%20payment/park_pay.html">Забронировать</a></h3></div>
+        <div class="d-flex flex-column justify-content-center" id="payment">
+            <div><h3 class="text-link"><a onclick="switch_payment()">Забронировать</a></h3></div>
             <div class="underliner"></div>
         </div>
-        <div class="d-flex flex-column justify-content-center">
-            <div><h3 class="text-link"><a href="#">Отзывы</a></h3></div>
+        <div class="d-flex flex-column justify-content-center" id="review">
+            <div><h3 class="text-link"><a onclick="switch_review()">Отзывы</a></h3></div>
             <div class="underliner"></div>
         </div>
     </div>
-    <div class="panel panel-down mb-2">
+    <div class="panel geoinfo panel-down mb-2">
         <h3 class="text-description mb-1">Особенности</h3>
         <p class="text-common mb-1"><span class="text-description">Парковка:</span> охраняемая, надземная, платная</p>
         <p class="text-common mb-1"><span class="text-description">За первый час:</span> 60₽</p>
     </div>
+    <div class="payment">
+        <div class="panel">
+            <div class="d-inline-flex justify-content-between align-items-center container-fluid">
+                <div class="d-inline-flex align-items-center">
+                    <div><h3 class="text-description mx-2">От</h3></div>
+                    <div><input type="email" class="form-control" id="line-edit1" placeholder="10:00"></div>
+                </div>
+                <div class="d-inline-flex align-items-center">
+                    <div><h3 class="text-description mx-2">До</h3></div>
+                    <div><input type="email" class="form-control" id="line-edit2" placeholder="17:00"></div>
+                </div>
+            </div>
+        </div>
+        <div class="panel" style="margin: 1px 0px 1px 0px;">
+            <div class="container-fluid d-inline-flex align-items-center justify-content-between">
+                <div class="d-inline-flex align-items-center">
+                    <div class="apple-icon"></div>
+                    <div><h3 class="text-bold">Apple pay</h3></div>
+                </div>
+                <div class="circle"></div>
+            </div>
+        </div>
+        <div class="panel panel-down d-flex flex-column align-items-center">
+            <div class="container-fluid mb-3">
+                <a href="#" onclick="callpopup()">
+                    <div class="d-flex justify-content-between">
+                        <div><h3 class="text-bold">Add card</h3></div>
+                        <div class="add-card-icon"></div>
+                    </div>
+                </a>
+            </div>
+            <div>
+                <button class="btn btn-filled"><p class="btn-text">Забронировать</p></button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container" style="padding: 0">
-    <div class="panel">
+    <div class="panel geoinfo">
         <div class="panel-grey">
             <div class="d-inline-flex align-items-center">
                 <div style="margin-right: 10px;">
@@ -89,22 +125,222 @@
             </div>
         </div>
     </div>
+    <div class="panel review">
+        <div class="panel-grey">
+            <div class="d-inline-flex align-items-center">
+                <div style="margin-right: 10px;">
+                    <h3 class="text-attention">4,9</h3>
+                </div>
+                <div class="d-flex flex-column">
+                    <div class="d-inline-flex">
+                        <div class="rate-icon"></div>
+                        <div class="rate-icon"></div>
+                        <div class="rate-icon"></div>
+                        <div class="rate-icon"></div>
+                        <div class="rate-icon"></div>
+                    </div>
+                    <div>
+                        <p class="text-common">6 оценок</p>
+                    </div>
+                </div>
+            </div>
+            <h3 class="text-description mt-3 text-center">Оцените и напишите отзыв</h3>
+            <div class="d-inline-flex justify-content-center container" >
+                <div class="star-icon"></div>
+                <div class="star-icon"></div>
+                <div class="star-icon"></div>
+                <div class="star-icon"></div>
+                <div class="star-icon"></div>
+            </div>
+        </div>
+        <div class="w-100 review">
+            <h3 class="text-common my-3">2 отзыва</h3>
+            <div class="review d-flex flex-column mb-3">
+                <div class="d-inline-flex align-items-center mb-2">
+                    <div class="circle2 d-flex justify-content-center align-items-center me-3"><div><h3 class="text-attention in-circle">А</h3></div></div>
+                    <div><h3 class="text-common">Александр</h3></div>
+                </div>
+                <div class="d-inline-flex align-items-center mb-2">
+                    <div class="d-inline-flex justify-content-center align-items-center me-3">
+                        <div class="rate-icon small"></div>
+                        <div class="rate-icon small"></div>
+                        <div class="rate-icon small"></div>
+                        <div class="rate-icon small"></div>
+                        <div class="rate-icon small"></div>
+                    </div>
+                    <div><h3 class="text-description">12 января 2022 г.</h3></div>
+                </div>
+                <div>
+                    <p class="text-common">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna nulla convallis convallis porta. Sed eget scelerisque hac nec dignissim morbi eu faucibus. Eget aliquet magna nulla convallis convallis...
+                    </p>
+                </div>
+            </div>
+            <div class="review d-flex flex-column mb-3">
+                <div class="d-inline-flex align-items-center mb-2">
+                    <div class="circle2 d-flex justify-content-center align-items-center me-3"><div><h3 class="text-attention in-circle">В</h3></div></div>
+                    <div><h3 class="text-common">Владислав</h3></div>
+                </div>
+                <div class="d-inline-flex align-items-center mb-2">
+                    <div class="d-inline-flex justify-content-center align-items-center me-3">
+                        <div class="rate-icon small"></div>
+                        <div class="rate-icon small"></div>
+                        <div class="rate-icon small"></div>
+                        <div class="rate-icon small"></div>
+                        <div class="rate-icon small"></div>
+                    </div>
+                    <div><h3 class="text-description">11 января 2022 г.</h3></div>
+                </div>
+                <div>
+                    <p class="text-common">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna nulla convallis convallis porta. Sed eget scelerisque hac nec dignissim morbi eu faucibus. Eget aliquet magna nulla convallis convallis...
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="spacer"></div>
 </div>
 
 <div class="btn-panel">
     <div class="d-inline-flex justify-content-evenly container">
-        <div><button class="btn btn-hollow2">Маршрут</button> </div>
-        <div><button class="btn btn-hollow">Отсюда</button> </div>
-        <div><button class="btn btn-hollow"><div class="download-icon"></div></button> </div>
-        <div><button class="btn btn-hollow"><div class="bookmark-icon"></div></button> </div>
-        <div class="status-icon  status-icon-1 d-flex justify-content-center align-items-center">
-            <div>
-                <p class="status-icon-text">1</p>
+        <div class="geoinfo"><button class="btn btn-hollow2">Маршрут</button> </div>
+        <div class="geoinfo"><button class="btn btn-hollow">Отсюда</button> </div>
+        <div class="geoinfo"><button class="btn btn-hollow"><div class="download-icon"></div></button> </div>
+        <div class="geoinfo"><button class="btn btn-hollow"><div class="bookmark-icon"></div></button> </div>
+        <div class="geoinfo">
+            <div class="status-icon status-icon-1 d-flex justify-content-center align-items-center">
+                <div>
+                    <p class="status-icon-text">1</p>
+                </div>
+            </div>
+        </div>
+        <div class="payment"><button class="btn btn-hollow2">Маршрут</button> </div>
+        <div class="payment"><button class="btn btn-hollow">Отсюда</button> </div>
+        <div class="payment"><button class="btn btn-hollow"><div class="download-icon"></div></button> </div>
+        <div class="payment"><button class="btn btn-hollow"><div class="bookmark-icon"></div></button> </div>
+        <div class="payment">
+            <div class="status-icon status-icon-1 d-flex justify-content-center align-items-center">
+                <div>
+                    <p class="status-icon-text">1</p>
+                </div>
+            </div>
+        </div>
+        <div class="review"><button class="btn btn-filled"><p class="btn-text">Написать отзыв</p></button></div>
+    </div>
+</div>
+<!-- Ниже идет попуп -->
+<div class="popup" id="popup1">
+    <div class="popup-wrapper d-flex justify-content-center">
+        <div class="panel panel-up">
+            <div class="d-inline-flex" style="width: 100%;">
+                <div class="close-icon d-flex justify-content-center align-items-center"><div><a href="#" onclick="closepopup()">x</a></div></div>
+                <div style="width: 100%;"><h3 class="text-header">Новая карта</h3></div>
+            </div>
+            <div class="container">
+                <input type="email" class="form-control mb-2 mt-4" id="line-edit3" placeholder="Номер карты">
+                <div class="d-inline-flex justify-content-between">
+                    <div><input type="email" class="form-control" id="line-edit4" placeholder="Мес/Год"></div>
+                    <div style="width: 20px"></div>
+                    <div><input type="email" class="form-control" id="line-edit5" placeholder="CVV"></div>
+                </div>
+                <!--                <div class="container mt-3">-->
+                <!--                    <div class="row ">-->
+                <!--                        <div class="col"><h2 class="text-bold"><a href="#">1</a></h2></div>-->
+                <!--                        <div class="col"><h2 class="text-bold"><a href="#">2</a></h2></div>-->
+                <!--                        <div class="col"><h2 class="text-bold"><a href="#">3</a></h2></div>-->
+                <!--                    </div>-->
+                <!--                    <div class="row">-->
+                <!--                        <div class="col"><h2 class="text-bold"><a href="#">4</a></h2></div>-->
+                <!--                        <div class="col"><h2 class="text-bold"><a href="#">5</a></h2></div>-->
+                <!--                        <div class="col"><h2 class="text-bold"><a href="#">6</a></h2></div>-->
+                <!--                    </div>-->
+                <!--                    <div class="row">-->
+                <!--                        <div class="col"><h2 class="text-bold"><a href="#">7</a></h2></div>-->
+                <!--                        <div class="col"><h2 class="text-bold"><a href="#">8</a></h2></div>-->
+                <!--                        <div class="col"><h2 class="text-bold"><a href="#">9</a></h2></div>-->
+                <!--                    </div>-->
+                <!--                    <div class="row">-->
+                <!--                        <div class="col"></div>-->
+                <!--                        <div class="col"><h2 class="text-bold"><a href="#">0</a></h2></div>-->
+                <!--                        <div class="col"></div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="d-flex justify-content-center">-->
+                <!--                    <button class="btn btn-hollow btn-hollow-revert"><p class="btn-text">Добавить</p></button>-->
+                <!--                </div>-->
+                <!--            </div>-->
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    function switch_review(){
+        document.getElementById('geoinfo').classList.remove('active');
+        document.getElementById('review').classList.add('active');
+        document.getElementById('payment').classList.remove('active');
+        var temp = document.getElementsByClassName("geoinfo");
+        for(var i = 0; i < temp.length; i++)
+        {
+            temp[i].style.display = 'none';
+        }
+        temp = document.getElementsByClassName("review");
+        for(var i = 0; i < temp.length; i++)
+        {
+            temp[i].style.display = 'block';
+        }
+        temp = document.getElementsByClassName("payment");
+        for(var i = 0; i < temp.length; i++)
+        {
+            temp[i].style.display = 'none';
+        }
+    }
+    function switch_geoinfo(){
+        document.getElementById('review').classList.remove('active');
+        document.getElementById('geoinfo').classList.add('active');
+        document.getElementById('payment').classList.remove('active');
+        var temp = document.getElementsByClassName("geoinfo");
+        for(var i = 0; i < temp.length; i++)
+        {
+            temp[i].style.display = 'block';
+        }
+        temp = document.getElementsByClassName("review");
+        for(var i = 0; i < temp.length; i++)
+        {
+            temp[i].style.display = 'none';
+        }
+        temp = document.getElementsByClassName("payment");
+        for(var i = 0; i < temp.length; i++)
+        {
+            temp[i].style.display = 'none';
+        }
+    }
+    function switch_payment(){
+        document.getElementById('geoinfo').classList.remove('active');
+        document.getElementById('review').classList.remove('active');
+        document.getElementById('payment').classList.add('active');
+        var temp = document.getElementsByClassName("payment");
+        for(var i = 0; i < temp.length; i++)
+        {
+            temp[i].style.display = 'block';
+        }
+        temp = document.getElementsByClassName("review");
+        for(var i = 0; i < temp.length; i++)
+        {
+            temp[i].style.display = 'none';
+        }
+        temp = document.getElementsByClassName("geoinfo");
+        for(var i = 0; i < temp.length; i++)
+        {
+            temp[i].style.display = 'none';
+        }
+    }
+    function callpopup(){
+        document.getElementById("popup1").style.display='block';
+    }
+    function closepopup(){
+        document.getElementById("popup1").style.display='none';
+    }
+</script>
 </body>
 </html>
