@@ -67,12 +67,14 @@ const callbackFunction = function() {
             
             loginButton.classList.add("btn-highlight");
         }
-    } else {
+    } else if (emailField.value){
         emailField.classList.add("line-danger");
     };
 };
 emailField.onchange = callbackFunction;
 passwordField.onchange = callbackFunction;
+
+callbackFunction();
 </script>
     
     
