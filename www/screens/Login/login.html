@@ -25,21 +25,55 @@
         </div>
 
         <div class="mb-3">
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@gmail.com">
+            <input type="email" class="form-control" id="email_input" placeholder="name@gmail.com">
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" id="exampleFormControlInput2" placeholder="******">
+            <input type="password" class="form-control" id="password_field" placeholder="******">
         </div>
         <a href="../Forget%20password/forget_password.html" class="login-container__forget-password">Забыли пароль?</a>
 
-        <a href="../Profile+avatar/profile_main.html">
-            <button class="btn btn-hollow"><p class="btn-text">Войти</p></button>
+        <a class="mb-3" href="../Profile+avatar/profile_main.html" style="z-index: 99;">
+            <button class="btn btn-hollow btn-disabled" id="login_button" ><p class="btn-text">Войти</p></button>
         </a>
-        <a href="../Registration/registration.html">
-            <button class="btn btn-hollow2"><p class="btn-text">Зарегистрироваться</p></button>
+        <a href="../Registration/registration.html" style="z-index: 100;">
+            <button class="btn btn-hollow2" ><p class="btn-text">Зарегистрироваться</p></button>
         </a>
 
     </div>
+    <script>
+const validateEmail = (email) => {
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+};
+
+
+loginButton = document.getElementById("login_button");
+emailField = document.getElementById("email_input");
+passwordField = document.getElementById("password_field");
+const callbackFunction = function() {
+    emailField.classList.remove("line-success");
+    emailField.classList.remove("line-danger");
+    passwordField.classList.remove("line-success");
+    loginButton.classList.remove("btn-highlight");
+
+    console.log(emailField.value);
+    if (passwordField.value.length > 3){
+        passwordField.classList.add("line-success");
+    }
+    if (validateEmail(emailField.value)) {
+        emailField.classList.add("line-success");
+
+        if (passwordField.value.length>3){
+            
+            loginButton.classList.add("btn-highlight");
+        }
+    } else {
+        emailField.classList.add("line-danger");
+    };
+};
+emailField.onchange = callbackFunction;
+passwordField.onchange = callbackFunction;
+</script>
     
     
 </body>
