@@ -20,3 +20,7 @@ textarea.error-text {
     resize: none;
     word-wrap: break-word;
 }   
+
+#email_input {
+    padding-left:7%; width:100%;
+}
