@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <title>Park Info</title>
 </head>
-<body>
+<body onload="check_cards()">
 
 
 <div class="screen-hat">
@@ -80,11 +80,31 @@
                 <div class="circle"></div>
             </div>
         </div>
+        <div id="cards-here">
+<!--            <div class="panel" style="margin: 1px 0px 1px 0px;">-->
+<!--                <div class="container-fluid d-inline-flex align-items-center justify-content-between">-->
+<!--                    <div class="d-inline-flex align-items-center">-->
+<!--                        <div class="mastercard-icon"></div>-->
+<!--                        <div class="d-flex flex-column">-->
+<!--                            <div><h3 class="text-bold">MasterCard 4498</h3></div>-->
+<!--                            <div><p class="text-common" style="color: rgba(168, 168, 168, 1)">03/29</p></div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="circle"></div>-->
+<!--                </div>-->
+<!--            </div>-->
+        </div>
         <div class="panel panel-down d-flex flex-column align-items-center">
             <div class="container-fluid mb-3">
                 <a href="#" onclick="callpopup()">
                     <div class="d-flex justify-content-between">
                         <div><h3 class="text-bold">Add card</h3></div>
+                        <div class="add-card-icon"></div>
+                    </div>
+                </a>
+                <a href="#" onclick="clear_cards()">
+                    <div class="d-flex justify-content-between">
+                        <div><h3 class="text-bold">Clear cards</h3></div>
                         <div class="add-card-icon"></div>
                     </div>
                 </a>
@@ -244,6 +264,9 @@
                     <div style="width: 20px"></div>
                     <div><input type="email" class="form-control" id="line-edit5" placeholder="CVV"></div>
                 </div>
+                <div class="p-3">
+                    <button class="btn btn-hollow w-100 h-auto p-2" onclick="add_card()"><p class="btn-text">Добавить</p></button>
+                </div>
                 <!--                <div class="container mt-3">-->
                 <!--                    <div class="row ">-->
                 <!--                        <div class="col"><h2 class="text-bold"><a href="#">1</a></h2></div>-->
@@ -340,6 +363,65 @@
     }
     function closepopup(){
         document.getElementById("popup1").style.display='none';
+    }
+    function add_card(){
+        if(localStorage != undefined){
+            if(localStorage.getItem('card1_num') == null){
+                localStorage.setItem('card1_num',document.getElementById('line-edit3').value);
+                localStorage.setItem('card1_month',document.getElementById('line-edit4').value);
+                localStorage.setItem('card1_cvv',document.getElementById('line-edit5').value);
+            }
+            else if(localStorage.getItem('card2_num') == null){
+                localStorage.setItem('card2_num',document.getElementById('line-edit3').value);
+                localStorage.setItem('card2_month',document.getElementById('line-edit4').value);
+                localStorage.setItem('card2_cvv',document.getElementById('line-edit5').value);
+            }
+        }
+        check_cards();
+        closepopup();
+    }
+    function clear_cards(){
+        if(localStorage != undefined){
+            ['card1_num','card2_num','card1_cvv','card2_cvv','card1_month','card2_month'].forEach(b=>{
+                localStorage.removeItem(b);
+            })
+        }
+        check_cards();
+    }
+    function check_cards(){
+        if(localStorage != undefined){
+            document.getElementById('cards-here').innerHTML = "";
+            if(localStorage.getItem('card1_num') != null){
+                document.getElementById('cards-here').innerHTML += "" +
+                    "<div class=\"panel\" style=\"margin: 1px 0px 1px 0px;\">\n" +
+                    "                <div class=\"container-fluid d-inline-flex align-items-center justify-content-between\">\n" +
+                    "                    <div class=\"d-inline-flex align-items-center\">\n" +
+                    "                        <div class=\"mastercard-icon\"></div>\n" +
+                    "                        <div class=\"d-flex flex-column\">\n" +
+                    "                            <div><h3 class=\"text-bold\">MasterCard "+localStorage.getItem('card1_num').slice(-4)+"</h3></div>\n" +
+                    "                            <div><p class=\"text-common\" style=\"color: rgba(168, 168, 168, 1)\">"+localStorage.getItem('card1_month')+"</p></div>\n" +
+                    "                        </div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"circle\"></div>\n" +
+                    "                </div>\n" +
+                    "            </div>"
+            }
+            if(localStorage.getItem('card2_num') != null){
+                document.getElementById('cards-here').innerHTML += "" +
+                    "<div class=\"panel\" style=\"margin: 1px 0px 1px 0px;\">\n" +
+                    "                <div class=\"container-fluid d-inline-flex align-items-center justify-content-between\">\n" +
+                    "                    <div class=\"d-inline-flex align-items-center\">\n" +
+                    "                        <div class=\"mastercard-icon\"></div>\n" +
+                    "                        <div class=\"d-flex flex-column\">\n" +
+                    "                            <div><h3 class=\"text-bold\">MasterCard "+localStorage.getItem('card2_num').slice(-4)+"</h3></div>\n" +
+                    "                            <div><p class=\"text-common\" style=\"color: rgba(168, 168, 168, 1)\">"+localStorage.getItem('card2_month')+"</p></div>\n" +
+                    "                        </div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"circle\"></div>\n" +
+                    "                </div>\n" +
+                    "            </div>"
+            }
+        }
     }
 </script>
 </body>
