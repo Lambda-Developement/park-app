@@ -87,6 +87,7 @@ setTimeout(()=>{
 
 function get_location(){
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    map.flyTo(pos,18);
 }
 
 document.getElementById("map").style.height = HEIGHT;
