@@ -34,7 +34,7 @@ var locs = [
     [57.641939, 39.948377,8,"улица Папанина, 4"],
     [57.645132, 39.960549,9,"улица Энергетиков, 2"],
     [57.659440, 39.952563,6,"проспект Авиаторов, 159"]
-    ]
+];
 var permissions;
 
 var onSuccess = function(position) {
@@ -108,6 +108,34 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(map);
 map.on('move',redraw);
 map.on('scale',redraw);
+var markers = L.markerClusterGroup({
+    showCoverageOnHover: false,
+    // iconCreateFunction: function(cluster) {
+    //     return L.divIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });
+    // }
+});
+locs.forEach((el)=>{
+    var title = el[3];
+    icon = L.divIcon({
+        className: 'custom-div-icon',
+        html: "<div class=\"status-icon\">\n" +
+            "        <a href=\"#\" onclick=\"get_info()\">\n" +
+            "            <div class=\"status-icon-inner status-icon-" + el[2] + " d-flex justify-content-center align-items-center\">\n" +
+            "                <div>\n" +
+            "                    <p class=\"status-icon-text\">" + el[2] + "</p>\n" +
+            "                </div>\n" +
+            "            </div>\n" +
+            "        </a>\n" +
+            "    </div>",
+        iconSize: [30, 42],
+        iconAnchor: [15, 42]
+    });
+    var marker = L.marker(new L.LatLng(el[0], el[1]), { title: title ,icon: icon});
+    // marker.bindPopup(title);
+    markers.addLayer(marker);
+});
+map.addLayer(markers)
+
 
 
 function zoomin(){
@@ -120,9 +148,6 @@ function zoomout(){
 redraw()
 
 function redraw(){
-    // console.log(map.getCenter());
-    //console.log(map.getBounds());
-    //navigator.geolocation.getCurrentPosition(onSuccess, onError);
     let pos_x = map.latLngToContainerPoint(L.latLng(pos[0],pos[1])).x;
     let pos_y = map.latLngToContainerPoint(L.latLng(pos[0],pos[1])).y;
     document.getElementById('icons-here').innerHTML = "" +
@@ -130,20 +155,19 @@ function redraw(){
         "            <div class=\"orange-circle\"></div>\n" +
         "        </div>";
     locs.forEach((a)=>{
-        console.log(map.latLngToContainerPoint(L.latLng(a[0],a[1])));
         let x = map.latLngToContainerPoint(L.latLng(a[0],a[1])).x;
         let y = map.latLngToContainerPoint(L.latLng(a[0],a[1])).y;
         if(0 <= x && x <= window.innerWidth && 0 <= y && y <= window.innerHeight){
-            document.getElementById('icons-here').innerHTML +=
-                "<div class=\"status-icon\" style=\"top:"+y+"px; left:"+x+"px\">\n" +
-                "        <a href=\"#\" onclick=\"get_info()\">\n" +
-                "            <div class=\"status-icon-inner status-icon-" + a[2] + " d-flex justify-content-center align-items-center\">\n" +
-                "                <div>\n" +
-                "                    <p class=\"status-icon-text\">" + a[2] + "</p>\n" +
-                "                </div>\n" +
-                "            </div>\n" +
-                "        </a>\n" +
-                "    </div>"
+            document.getElementById('icons-here').innerHTML += ""
+                // "<div class=\"status-icon\" style=\"top:"+y+"px; left:"+x+"px\">\n" +
+                // "        <a href=\"#\" onclick=\"get_info()\">\n" +
+                // "            <div class=\"status-icon-inner status-icon-" + a[2] + " d-flex justify-content-center align-items-center\">\n" +
+                // "                <div>\n" +
+                // "                    <p class=\"status-icon-text\">" + a[2] + "</p>\n" +
+                // "                </div>\n" +
+                // "            </div>\n" +
+                // "        </a>\n" +
+                // "    </div>"
         }
     });
 
