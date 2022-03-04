@@ -10,133 +10,138 @@
     <script src="../../js/leaflet.js"></script>
     <title>Home</title>
 </head>
-<body onload="update_zoom()" style="z-index: -2;">
-    <div id="map" style="z-index: 0">
-    </div>
-    <div id="icons-here">
-        <!--
-        <div class="status-icon">
-            <a href="#" onclick="get_info()">
-                <div class="status-icon-inner status-icon-1 d-flex justify-content-center align-items-center">
-                    <div>
-                        <p class="status-icon-text">1</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        -->
-    </div>
-    <div class="navbar panel d-inline-flex justify-content-evenly" style="z-index: 2;">
-        <div class="d-flex flex-column align-items-center">
-            <div><a href="#"><div class="blue-search-icon"></div></a></div>
-            <div><h3 class="text-description">Поиск</h3></div>
-        </div>
-        <div class="d-flex flex-column align-items-center">
-            <div><a href="../Login/login.html"><div class="profile-icon"></div></a></div>
-            <div><h3 class="text-description">Профиль</h3></div>
-        </div>
-        <div class="d-flex flex-column align-items-center">
-            <div><a href="../Favourites/favourites.html"><div class="bookmark-icon"></div></a></div>
-            <div><h3 class="text-description">Избранное</h3></div>
-
+<body onload="update_zoom()" >
+    <div>
+        <div id="map" style="z-index: 0">
         </div>
     </div>
-    <div class="search-bar-wrapper" style="z-index: 10;">
-        <div class="search-bar d-inline-flex justify-content-between align-items-center container-fluid">
-            <div class="grey-search-icon"></div>
-            <div class="w-100"><input onclick="search_history_open()" type="email" class="form-control" id="line-edit" placeholder="Поиск..."></div>
-            <div><a href="#"><div class="menu-icon"></div></a></div>
-        </div>
-    </div>
-    <div class="buttons-bar h-100 d-flex flex-column align-items-center justify-content-center" style="z-index: 1.9;">
-        <div id="zoomControl">
-            <div class="mb-2">
-                <button class="btn btn-hollow btn-gps btn-plus" onclick="zoomin()">
-                </button>
-            </div>
-            <div class="mb-5">
-                <button class="btn btn-hollow btn-gps btn-minus" onclick="zoomout()">
-                </button>
-            </div>
-        </div>
-        <div>
-            <button class="btn btn-hollow btn-gps" onclick="get_location()"></button>
-        </div>
-    </div>
-    <div id="info" style="z-index: 2;">
-        <div class="parking-popup d-flex justify-content-center align-items-center">
-            <div class="parking-info d-flex align-items-center flex-row">
-                <div class="w-50 h-100">
-                    <a class="h-100 w-100 m-0 p-0" href="../Parkzone%20INFO/park_info.html">
-                        <div class="park-photo"></div>
-                    </a>
-                </div>
-                <div class="d-flex flex-column w-100 container">
-                    <div class="d-inline-flex justify-content-between">
-                        <div><h3 class="text-header">Парковка</h3></div>
-                        <div><div class="close-icon d-flex justify-content-center align-items-center"><div><a href="#" onclick="close_info()">x</a></div></div></div>
-                    </div>
-                    <div class="mb-3"><h3 class="text-description">Россия, Ярославль, улица Чайковского</h3></div>
-                    <div class="d-inline-flex justify-content-between mb-2">
-                        <div><h3 class="text-description">Круглосуточно</h3> </div>
-                        <div><h3 class="text-description">1,2 km</h3> </div>
-                    </div>
-                    <div class="d-inline-flex justify-content-evenly">
-                        <div><button class="btn btn-hollow new">Маршрут</button> </div>
-                        <div><button class="btn btn-hollow new"><div class="download-icon"></div></button> </div>
-                        <div><button class="btn btn-hollow new"><div class="bookmark2-icon"></div></button> </div>
-                        <div class="status-icon-1 d-flex justify-content-center align-items-center">
-                            <div>
-                                <p class="status-icon-text">1</p>
-                            </div>
+    <div style="position: fixed;top:0;left:0;">
+        <div id="icons-here">
+            <!--
+            <div class="status-icon">
+                <a href="#" onclick="get_info()">
+                    <div class="status-icon-inner status-icon-1 d-flex justify-content-center align-items-center">
+                        <div>
+                            <p class="status-icon-text">1</p>
                         </div>
-                        <div><button class="btn btn-hollow2 new"></button></div>
+                    </div>
+                </a>
+            </div>
+            -->
+        </div>
+        <div class="navbar panel d-inline-flex justify-content-evenly" style="z-index: 2;">
+            <div class="d-flex flex-column align-items-center">
+                <div><a href="#"><div class="blue-search-icon"></div></a></div>
+                <div><h3 class="text-description">Поиск</h3></div>
+            </div>
+            <div class="d-flex flex-column align-items-center">
+                <div><a href="../Login/login.html"><div class="profile-icon"></div></a></div>
+                <div><h3 class="text-description">Профиль</h3></div>
+            </div>
+            <div class="d-flex flex-column align-items-center">
+                <div><a href="../Favourites/favourites.html"><div class="bookmark-icon"></div></a></div>
+                <div><h3 class="text-description">Избранное</h3></div>
+
+            </div>
+        </div>
+        <div class="search-bar-wrapper" style="z-index: 10;">
+            <div class="search-bar d-inline-flex justify-content-between align-items-center container-fluid">
+                <div class="grey-search-icon"></div>
+                <div class="w-100"><input onclick="search_history_open()" type="email" class="form-control" id="line-edit" placeholder="Поиск..."></div>
+                <div><a href="#"><div class="menu-icon"></div></a></div>
+            </div>
+        </div>
+        <div class="buttons-bar h-100 d-flex flex-column align-items-center justify-content-center" style="z-index: 1.9;">
+            <div id="zoomControl">
+                <div class="mb-2">
+                    <button class="btn btn-hollow btn-gps btn-plus" onclick="zoomin()">
+                    </button>
+                </div>
+                <div class="mb-5">
+                    <button class="btn btn-hollow btn-gps btn-minus" onclick="zoomout()">
+                    </button>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-hollow btn-gps" onclick="get_location()"></button>
+            </div>
+        </div>
+        <div id="info" style="z-index: 2;">
+            <div class="parking-popup d-flex justify-content-center align-items-center">
+                <div class="parking-info d-flex align-items-center flex-row">
+                    <div class="w-50 h-100">
+                        <a class="h-100 w-100 m-0 p-0" href="../Parkzone%20INFO/park_info.html">
+                            <div class="park-photo"></div>
+                        </a>
+                    </div>
+                    <div class="d-flex flex-column w-100 container">
+                        <div class="d-inline-flex justify-content-between">
+                            <div><h3 class="text-header">Парковка</h3></div>
+                            <div><div class="close-icon d-flex justify-content-center align-items-center"><div><a href="#" onclick="close_info()">x</a></div></div></div>
+                        </div>
+                        <div class="mb-3"><h3 class="text-description">Россия, Ярославль, улица Чайковского</h3></div>
+                        <div class="d-inline-flex justify-content-between mb-2">
+                            <div><h3 class="text-description">Круглосуточно</h3> </div>
+                            <div><h3 class="text-description">1,2 km</h3> </div>
+                        </div>
+                        <div class="d-inline-flex justify-content-evenly">
+                            <div><button class="btn btn-hollow new">Маршрут</button> </div>
+                            <div><button class="btn btn-hollow new"><div class="download-icon"></div></button> </div>
+                            <div><button class="btn btn-hollow new"><div class="bookmark2-icon"></div></button> </div>
+                            <div class="status-icon-1 d-flex justify-content-center align-items-center">
+                                <div>
+                                    <p class="status-icon-text">1</p>
+                                </div>
+                            </div>
+                            <div><button class="btn btn-hollow2 new"></button></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="search-history" onclick="search_history_close()">
-        <div class="search-history">
-            <div class="d-flex flex-column px-2" id="search-results1">
-                <!--                <div><a href="#">-->
-                <!--                    <div class="bg-white w-100 d-inline-flex align-items-center p-2">-->
-                <!--                        <div class="time-icon me-3"></div>-->
-                <!--                        <div><h3 class="text-common">Свободы</h3></div>-->
-                <!--                    </div>-->
-                <!--                </a></div>-->
-                <!--                <div><a href="#">-->
-                <!--                    <div class="bg-white w-100 d-inline-flex p-2">-->
-                <!--                        <div class="time-icon me-3"></div>-->
-                <!--                        <div><h3 class="text-common">Миллениум</h3></div>-->
-                <!--                    </div>-->
-                <!--                </a></div>-->
+        <div id="search-history" onclick="search_history_close()">
+            <div class="search-history">
+                <div class="d-flex flex-column px-2" id="search-results1">
+                    <!--                <div><a href="#">-->
+                    <!--                    <div class="bg-white w-100 d-inline-flex align-items-center p-2">-->
+                    <!--                        <div class="time-icon me-3"></div>-->
+                    <!--                        <div><h3 class="text-common">Свободы</h3></div>-->
+                    <!--                    </div>-->
+                    <!--                </a></div>-->
+                    <!--                <div><a href="#">-->
+                    <!--                    <div class="bg-white w-100 d-inline-flex p-2">-->
+                    <!--                        <div class="time-icon me-3"></div>-->
+                    <!--                        <div><h3 class="text-common">Миллениум</h3></div>-->
+                    <!--                    </div>-->
+                    <!--                </a></div>-->
+                </div>
             </div>
         </div>
     </div>
-<script>
-    function search_history_open(){
-        document.getElementById('search-history').style.display = 'block';
-    }
-    function search_history_close(){
-        document.getElementById('search-history').style.display = 'none';
-    }
-    function get_info(){
-        document.getElementById("info").style.display = "block";
-    }
-    function close_info(){
-        document.getElementById("info").style.display = "none";
-    }
-    function update_zoom(){
-        if(localStorage != undefined){
-            if(localStorage.getItem('zoomControl') == 'true'){
-                document.getElementById('zoomControl').style.display = 'block';
-            }else{
-                document.getElementById('zoomControl').style.display = 'none';
+
+    <script>
+        function search_history_open(){
+            document.getElementById('search-history').style.display = 'block';
+        }
+        function search_history_close(){
+            document.getElementById('search-history').style.display = 'none';
+        }
+        function get_info(){
+            document.getElementById("info").style.display = "block";
+        }
+        function close_info(){
+            document.getElementById("info").style.display = "none";
+        }
+        function update_zoom(){
+            if(localStorage != undefined){
+                if(localStorage.getItem('zoomControl') == 'true'){
+                    document.getElementById('zoomControl').style.display = 'block';
+                }else{
+                    document.getElementById('zoomControl').style.display = 'none';
+                }
             }
         }
-    }
-</script>
+    </script>
     <script src="../../cordova.js"></script>
     <script type="text/javascript" src="../../js/map.js"></script>
 </body>
