@@ -49,7 +49,7 @@
         </div>
         <div class="search-bar-wrapper" style="z-index: 10;">
             <div class="search-bar d-inline-flex justify-content-between align-items-center container-fluid">
-                <div class="grey-search-icon"></div>
+                <div id="search-icon" class="grey-search-icon" onclick="search_history_close()"></div>
                 <div class="w-100"><input onclick="search_history_open()" type="email" class="form-control" id="line-edit" placeholder="Поиск..."></div>
                 <div><a href="#"><div class="menu-icon"></div></a></div>
             </div>
@@ -102,7 +102,7 @@
                 </div>
             </div>
         </div>
-        <div id="search-history" onclick="search_history_close()">
+        <div id="search-history">
             <div class="search-history">
                 <div class="d-flex flex-column px-2" id="search-results1">
                     <!--                <div><a href="#">-->
@@ -125,9 +125,13 @@
     <script>
         function search_history_open(){
             document.getElementById('search-history').style.display = 'block';
+            document.getElementById('search-icon').classList.add('grey-close-icon');
+            document.getElementById('search-icon').classList.remove('grey-search-icon');
         }
         function search_history_close(){
             document.getElementById('search-history').style.display = 'none';
+            document.getElementById('search-icon').classList.remove('grey-close-icon');
+            document.getElementById('search-icon').classList.add('grey-search-icon');
         }
         function get_info(){
             document.getElementById("info").style.display = "block";

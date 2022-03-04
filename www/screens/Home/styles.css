@@ -78,6 +78,15 @@ h3.text-description{
     background-position: center center;
     background-size:25px;
 }
+.grey-close-icon{
+    width: 34px;
+    height: 34px;
+    transform: rotate(180deg);
+    background: url("../../svg/arrow_gray_right.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:14px;
+}
 .menu-icon{
     width: 34px;
     height: 34px;
