@@ -110,6 +110,7 @@ map.on('move',redraw);
 map.on('scale',redraw);
 var markers = L.markerClusterGroup({
     showCoverageOnHover: false,
+    maxClusterRadius: 80
     // iconCreateFunction: function(cluster) {
     //     return L.divIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });
     // }
@@ -154,22 +155,7 @@ function redraw(){
         "<div style=\"top: "+pos_y+"px;left: "+pos_x+"px\" class=\"my-position d-flex justify-content-center align-items-center\">\n" +
         "            <div class=\"orange-circle\"></div>\n" +
         "        </div>";
-    locs.forEach((a)=>{
-        let x = map.latLngToContainerPoint(L.latLng(a[0],a[1])).x;
-        let y = map.latLngToContainerPoint(L.latLng(a[0],a[1])).y;
-        if(0 <= x && x <= window.innerWidth && 0 <= y && y <= window.innerHeight){
-            document.getElementById('icons-here').innerHTML += ""
-                // "<div class=\"status-icon\" style=\"top:"+y+"px; left:"+x+"px\">\n" +
-                // "        <a href=\"#\" onclick=\"get_info()\">\n" +
-                // "            <div class=\"status-icon-inner status-icon-" + a[2] + " d-flex justify-content-center align-items-center\">\n" +
-                // "                <div>\n" +
-                // "                    <p class=\"status-icon-text\">" + a[2] + "</p>\n" +
-                // "                </div>\n" +
-                // "            </div>\n" +
-                // "        </a>\n" +
-                // "    </div>"
-        }
-    });
+
 
 }
 
