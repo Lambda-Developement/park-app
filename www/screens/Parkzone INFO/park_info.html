@@ -259,7 +259,7 @@
     <div class="popup-wrapper d-flex justify-content-center">
         <div class="panel panel-up">
             <div class="d-inline-flex" style="width: 100%;">
-                <div class="close-icon d-flex justify-content-center align-items-center"><div><a onclick="closepopup()">x</a></div></div>
+                <div class="close-icon d-flex justify-content-center align-items-center"><div><a style="color:white" onclick="closepopup()">x</a></div></div>
                 <div style="width: 100%;"><h3 class="text-header">Новая карта</h3></div>
             </div>
             <div class="container">
@@ -383,6 +383,9 @@
     }
     function callpopup(){
         document.getElementById("popup1").style.display='block';
+        document.getElementById('line-edit3').value = "";
+        document.getElementById('line-edit4').value = "";
+        document.getElementById('line-edit5').value = "";
     }
     function callpopup2(){
         document.getElementById('popup2').style.display='block';
