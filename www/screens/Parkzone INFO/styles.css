@@ -260,16 +260,16 @@ h3.text-bold{
 }
 #line-edit1, #line-edit2{
     height: 32px;
-    width: 60px;
+    width: 72px;
     font-size:16px;
     background: #F3F3F3;
     border-radius: 8px;
     border:0;
     box-shadow: none;
-    padding-right:9px;
+    padding-right:0px;
     padding-left: 9px;
 }
-#line-edit3, #line-edit4, #line-edit5{
+#line-edit3, #line-edit4, #line-edit5, #expireYY, #expireMM{
     background: #F0F0F0;
     border: 1.5px solid rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
@@ -392,4 +392,17 @@ input[type='text'].form-control:focus{
 .round-down{
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
+}
+input.line-success {
+    outline: 2px solid lightgreen !important;
+}
+input.line-fail {
+    outline: 2px solid red !important;
+}
+#expireMM, #expireYY {
+    width: 50px;
+}
+#line-edit5 {
+    padding-left: 12px;
+    width: 62px;
 }
