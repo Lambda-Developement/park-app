@@ -13,6 +13,9 @@
     <script src="../../js/leaflet.js"></script>
     <script src="../../js/leaflet-routing-machine.js"></script>
     <script src="../../js/leaflet.markercluster.js"></script>
+    <script src="../../js/elasticlunr.js"></script>
+    <script src="../../js/lunr.stemmer.support.js"></script>
+    <script src="../../js/lunr.ru.js"></script>
     <title>Home</title>
 </head>
 <body onload="update_zoom()" >
@@ -106,7 +109,7 @@
         </div>
         <div id="search-history">
             <div class="search-history">
-                <div class="d-flex flex-column px-2" id="search-results1">
+                <div class="d-flex flex-column px-2 overflow-scroll h-100" id="search-results1">
                     <!--                <div><a href="#">-->
                     <!--                    <div class="bg-white w-100 d-inline-flex align-items-center p-2">-->
                     <!--                        <div class="time-icon me-3"></div>-->

@@ -241,14 +241,12 @@ img{
 #search-history{
     display: none;
 }
-#search-results1{
-    padding-top: 100px;
-}
 .search-history{
     position: fixed;
     bottom: 0;
     width: 100%;
     height:calc(100% - 10px);
+    padding-top:100px;
     z-index: 4;
     background-color: white;
     border-radius: 12px;
