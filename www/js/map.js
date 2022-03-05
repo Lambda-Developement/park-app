@@ -1,5 +1,5 @@
 var HEIGHT = window.innerHeight+'px';
-var pos = [57.615398, 39.885228];
+var pos = [57.625398, 39.885228];
 var scale = 13;
 var locs = [
     [57.622236, 39.884839,2,"Большая Октябрьская ул., 31"],
@@ -136,7 +136,7 @@ locs.forEach((el)=>{
     icon = L.divIcon({
         className: 'custom-div-icon',
         html: "<div class=\"status-icon\">\n" +
-            "        <a href=\"#\" onclick=\"get_info()\">\n" +
+            "        <a href=\"#\" onclick=\"get_info(["+el[0]+","+el[1]+"])\">\n" +
             "            <div class=\"status-icon-inner status-icon-" + el[2] + " d-flex justify-content-center align-items-center\">\n" +
             "                <div>\n" +
             "                    <p class=\"status-icon-text\">" + el[2] + "</p>\n" +

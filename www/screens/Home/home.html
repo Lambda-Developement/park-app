@@ -90,7 +90,7 @@
                             <div><h3 class="text-description">1,2 km</h3> </div>
                         </div>
                         <div class="d-inline-flex justify-content-evenly">
-                            <div><button class="btn btn-hollow new">Маршрут</button> </div>
+                            <div><button class="btn btn-hollow new" onclick="route_to_park()">Маршрут</button> </div>
                             <div><button class="btn btn-hollow new"><div class="download-icon"></div></button> </div>
                             <div><button class="btn btn-hollow new"><div class="bookmark2-icon"></div></button> </div>
                             <div class="status-icon-1 d-flex justify-content-center align-items-center">
@@ -125,6 +125,7 @@
     </div>
 
     <script>
+        var current_park = [57.615398, 39.885228];
         function search_history_open(){
             document.getElementById('search-history').style.display = 'block';
             document.getElementById('search-icon').classList.add('grey-close-icon');
@@ -135,8 +136,10 @@
             document.getElementById('search-icon').classList.remove('grey-close-icon');
             document.getElementById('search-icon').classList.add('grey-search-icon');
         }
-        function get_info(){
+        function get_info(coords){
             document.getElementById("info").style.display = "block";
+            current_park = coords;
+            console.log(coords);
         }
         function close_info(){
             document.getElementById("info").style.display = "none";
@@ -149,6 +152,9 @@
                     document.getElementById('zoomControl').style.display = 'none';
                 }
             }
+        }
+        function route_to_park(){
+            make_route(pos,current_park);
         }
     </script>
     <script src="../../cordova.js"></script>
