@@ -176,48 +176,51 @@
             </div>
         </div>
         <div class="w-100 review">
-            <h3 class="text-common my-3">2 отзыва</h3>
-            <div class="review d-flex flex-column mb-3">
-                <div class="d-inline-flex align-items-center mb-2">
-                    <div class="circle2 d-flex justify-content-center align-items-center me-3"><div><h3 class="text-attention in-circle">А</h3></div></div>
-                    <div><h3 class="text-common">Александр</h3></div>
-                </div>
-                <div class="d-inline-flex align-items-center mb-2">
-                    <div class="d-inline-flex justify-content-center align-items-center me-3">
-                        <div class="rate-icon small"></div>
-                        <div class="rate-icon small"></div>
-                        <div class="rate-icon small"></div>
-                        <div class="rate-icon small"></div>
-                        <div class="rate-icon small"></div>
+            <h3 class="text-common my-3" id="reviews-count">Отзывов: 2</h3>
+            <div id="reviews-here">
+                <div class="review d-flex flex-column mb-3">
+                    <div class="d-inline-flex align-items-center mb-2">
+                        <div class="circle2 d-flex justify-content-center align-items-center me-3"><div><h3 class="text-attention in-circle">А</h3></div></div>
+                        <div><h3 class="text-common">Александр</h3></div>
                     </div>
-                    <div><h3 class="text-description">12 января 2022 г.</h3></div>
-                </div>
-                <div>
-                    <p class="text-common">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna nulla convallis convallis porta. Sed eget scelerisque hac nec dignissim morbi eu faucibus. Eget aliquet magna nulla convallis convallis...
-                    </p>
-                </div>
-            </div>
-            <div class="review d-flex flex-column mb-3">
-                <div class="d-inline-flex align-items-center mb-2">
-                    <div class="circle2 d-flex justify-content-center align-items-center me-3"><div><h3 class="text-attention in-circle">В</h3></div></div>
-                    <div><h3 class="text-common">Владислав</h3></div>
-                </div>
-                <div class="d-inline-flex align-items-center mb-2">
-                    <div class="d-inline-flex justify-content-center align-items-center me-3">
-                        <div class="rate-icon small"></div>
-                        <div class="rate-icon small"></div>
-                        <div class="rate-icon small"></div>
-                        <div class="rate-icon small"></div>
-                        <div class="rate-icon small"></div>
+                    <div class="d-inline-flex align-items-center mb-2">
+                        <div class="d-inline-flex justify-content-center align-items-center me-3">
+                            <div class="rate-icon small"></div>
+                            <div class="rate-icon small"></div>
+                            <div class="rate-icon small"></div>
+                            <div class="rate-icon small"></div>
+                            <div class="rate-icon small"></div>
+                        </div>
+                        <div><h3 class="text-description">12 января 2022 г.</h3></div>
                     </div>
-                    <div><h3 class="text-description">11 января 2022 г.</h3></div>
+                    <div>
+                        <p class="text-common">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna nulla convallis convallis porta. Sed eget scelerisque hac nec dignissim morbi eu faucibus. Eget aliquet magna nulla convallis convallis...
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-common">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna nulla convallis convallis porta. Sed eget scelerisque hac nec dignissim morbi eu faucibus. Eget aliquet magna nulla convallis convallis...
-                    </p>
+                <div class="review d-flex flex-column mb-3">
+                    <div class="d-inline-flex align-items-center mb-2">
+                        <div class="circle2 d-flex justify-content-center align-items-center me-3"><div><h3 class="text-attention in-circle">В</h3></div></div>
+                        <div><h3 class="text-common">Владислав</h3></div>
+                    </div>
+                    <div class="d-inline-flex align-items-center mb-2">
+                        <div class="d-inline-flex justify-content-center align-items-center me-3">
+                            <div class="rate-icon small"></div>
+                            <div class="rate-icon small"></div>
+                            <div class="rate-icon small"></div>
+                            <div class="rate-icon small"></div>
+                            <div class="rate-icon small"></div>
+                        </div>
+                        <div><h3 class="text-description">11 января 2022 г.</h3></div>
+                    </div>
+                    <div>
+                        <p class="text-common">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna nulla convallis convallis porta. Sed eget scelerisque hac nec dignissim morbi eu faucibus. Eget aliquet magna nulla convallis convallis...
+                        </p>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -248,7 +251,7 @@
                 </div>
             </div>
         </div>
-        <div class="review"><button class="btn btn-filled"><p class="btn-text">Написать отзыв</p></button></div>
+        <div class="review"><button class="btn btn-filled" onclick="review_btn_click()"><p class="btn-text" id="review-text">Написать отзыв</p></button></div>
     </div>
 </div>
 <!-- Ниже идет попуп -->
@@ -300,6 +303,8 @@
     </div>
 </div>
 <script>
+    var review_btn_state = true;
+    var review_count = 0;
     function switch_review(){
         document.getElementById('geoinfo').classList.remove('active');
         document.getElementById('review').classList.add('active');
@@ -437,6 +442,63 @@
                     "            </div>"
             }
         }
+    }
+    function review_btn_click(){
+        let name = "Роман";
+        if(localStorage != undefined){
+            name = localStorage.getItem('name') != null ? localStorage.getItem('name') : 'Роман';
+        }
+        if(review_btn_state){
+            document.getElementById('reviews-here').innerHTML += "" +
+                "<div id='review-"+(review_count)+"' class=\"review d-flex flex-column mb-3\">\n" +
+                "                    <div class=\"d-inline-flex align-items-center mb-2\">\n" +
+                "                        <div class=\"circle2 d-flex justify-content-center align-items-center me-3\"><div><h3 class=\"text-attention in-circle\">"+name[0].toUpperCase()+"</h3></div></div>\n" +
+                "                        <div><h3 class=\"text-common\">"+name+"</h3></div>\n" +
+                "                    </div>\n" +
+                "                    <div class=\"d-inline-flex align-items-center mb-2\">\n" +
+                "                        <div class=\"d-inline-flex justify-content-center align-items-center me-3\">\n" +
+                "                            <div class=\"rate-icon small\"></div>\n" +
+                "                            <div class=\"rate-icon small\"></div>\n" +
+                "                            <div class=\"rate-icon small\"></div>\n" +
+                "                            <div class=\"rate-icon small\"></div>\n" +
+                "                            <div class=\"rate-icon small\"></div>\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "                    <div class=\"new-review-input\">\n" +
+                "                        <input type=\"text\" class=\"form-control\" id='review-input' placeholder=\"...\">\n" +
+                "                    </div>\n" +
+                "                </div>";
+            document.getElementById('review-text').innerHTML = 'Добавить';
+        }else{
+            let prev_review = document.getElementById('review-input').value;
+            document.getElementById('review-'+(review_count)).remove();
+            document.getElementById('reviews-here').innerHTML += "" +
+                "<div id='review-"+(review_count)+"' class=\"review d-flex flex-column mb-3\">\n" +
+                "                    <div class=\"d-inline-flex align-items-center mb-2\">\n" +
+                "                        <div class=\"circle2 d-flex justify-content-center align-items-center me-3\"><div><h3 class=\"text-attention in-circle\">"+name[0].toUpperCase()+"</h3></div></div>\n" +
+                "                        <div><h3 class=\"text-common\">"+name+"</h3></div>\n" +
+                "                    </div>\n" +
+                "                    <div class=\"d-inline-flex align-items-center mb-2\">\n" +
+                "                        <div class=\"d-inline-flex justify-content-center align-items-center me-3\">\n" +
+                "                            <div class=\"rate-icon small\"></div>\n" +
+                "                            <div class=\"rate-icon small\"></div>\n" +
+                "                            <div class=\"rate-icon small\"></div>\n" +
+                "                            <div class=\"rate-icon small\"></div>\n" +
+                "                            <div class=\"rate-icon small\"></div>\n" +
+                "                        </div>\n" +
+                "                        <div><h3 class=\"text-description\">Только что</h3></div>\n" +
+                "                    </div>\n" +
+                "                    <div>\n" +
+                "                        <p class=\"text-common\">\n" +
+                "                            "+prev_review+"\n" +
+                "                        </p>\n" +
+                "                    </div>\n" +
+                "                </div>";
+            document.getElementById('review-text').innerHTML = 'Написать отзыв';
+            review_count++;
+            document.getElementById('reviews-count').innerHTML = "Отзывов: " + (review_count+2) ;
+        }
+        review_btn_state = !review_btn_state;
     }
 </script>
 </body>
