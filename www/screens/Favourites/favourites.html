@@ -79,15 +79,19 @@
     var home=[57.625498, 39.884828];
     var other=[];
     var current = null;
-    function callpopup(el){
-        document.getElementById("popup1").style.display='block';
-        current = el.parentElement.parentElement.parentElement.parentElement;
-    }
-    function closepopup(){
-        document.getElementById("popup1").style.display='none';
-    }
     function add_new_place(){
-
+        document.getElementById('places-here').innerHTML += "" +
+            "<div class=\"panel-fill d-inline-flex align-items-center\">\n" +
+            "        <div class=\"other-icon\"></div>\n" +
+            "        <div class=\"flex-row\">\n" +
+            "            <div><h3 class=\"text-common text-common2\">Метка</h3></div>\n" +
+            "            <div style='display:none;'><h3 class=\"text-description\"></h3></div>\n" +
+            "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
+            "        </div>\n" +
+            "        <div style=\"width: 100%;\" class=\"d-flex align-items-center justify-content-end\">\n" +
+            "            <div><h3 class=\"text-link\"><a href=\"#\" onclick=\"callpopup(this)\">Добавить</a></h3></div>\n" +
+            "        </div>\n" +
+            "    </div>";
     }
     function make_route(){
         if(current.children[1].children[0].children[0].innerHTML == 'Дом'){
@@ -99,10 +103,33 @@
         }
     }
     function change_address(){
-
+        // <div style='display: none'><input type="text" class="form-control" id='review-input' placeholder="..."></div>
+        current.children[1].innerHTML += "<div><input onfocusout='save_new_address()' type=\"text\" class=\"form-control\" id='review-input' placeholder=\"...\"></div>";
+        current.children[1].children[1].style.display = "none";
+        closepopup()
     }
     function delete_address(){
-
+        if(current.children[1].children[0].children[0].innerHTML == 'Метка'){
+            current.remove();
+        }else {
+            current.children[1].children[1].style.display = "none";
+            current.children[2].children[0].children[0].children[0].innerHTML = "Добавить";
+        }
+        closepopup()
+    }
+    function callpopup(el){
+        document.getElementById("popup1").style.display='block';
+        current = el.parentElement.parentElement.parentElement.parentElement;
+    }
+    function closepopup(){
+        document.getElementById("popup1").style.display='none';
+    }
+    function save_new_address(){
+        let text = current.children[1].children[2].children[0].value;
+        current.children[1].children[2].remove();
+        current.children[1].children[1].style.display = "block";
+        current.children[1].children[1].children[0].innerHTML = text;
+        current.children[2].children[0].children[0].children[0].innerHTML = "Изменить";
     }
 </script>
 </body>
