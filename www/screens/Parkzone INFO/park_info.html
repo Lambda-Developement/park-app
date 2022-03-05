@@ -98,15 +98,15 @@
         </div>
         <div class="panel panel-down d-flex flex-column align-items-center">
             <div class="container-fluid mb-3">
-                <a href="#" onclick="callpopup()">
+                <a onclick="callpopup()">
                     <div class="d-flex justify-content-between">
-                        <div><h3 class="text-bold">Add card</h3></div>
+                        <div><h3 class="text-bold">Добавить карту</h3></div>
                         <div class="add-card-icon"></div>
                     </div>
                 </a>
-                <a href="#" onclick="clear_cards()">
+                <a onclick="callpopup2()">
                     <div class="d-flex justify-content-between">
-                        <div><h3 class="text-bold">Clear cards</h3></div>
+                        <div><h3 class="text-bold">Очистить карты</h3></div>
                         <div class="add-card-icon"></div>
                     </div>
                 </a>
@@ -259,7 +259,7 @@
     <div class="popup-wrapper d-flex justify-content-center">
         <div class="panel panel-up">
             <div class="d-inline-flex" style="width: 100%;">
-                <div class="close-icon d-flex justify-content-center align-items-center"><div><a href="#" onclick="closepopup()">x</a></div></div>
+                <div class="close-icon d-flex justify-content-center align-items-center"><div><a onclick="closepopup()">x</a></div></div>
                 <div style="width: 100%;"><h3 class="text-header">Новая карта</h3></div>
             </div>
             <div class="container">
@@ -298,6 +298,22 @@
                 <!--                    <button class="btn btn-hollow btn-hollow-revert"><p class="btn-text">Добавить</p></button>-->
                 <!--                </div>-->
                 <!--            </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="favourites-popup" id="popup2">
+    <div class="favourites-popup-wrapper d-flex justify-content-center">
+        <div>
+            <div class="mb-1" style="width: 335px">
+                <div class="panel round-up d-flex align-items-center justify-content-center">
+                    <h3 class="text-common"><a onclick="clear_cards()" style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
+                </div>
+            </div>
+            <div class="mb-3" style="width: 335px">
+                <div class="panel round-down round-down d-flex align-items-center justify-content-center">
+                    <h3 class="text-common"><a onclick="closepopup()" style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a></h3>
+                </div>
             </div>
         </div>
     </div>
@@ -368,8 +384,12 @@
     function callpopup(){
         document.getElementById("popup1").style.display='block';
     }
+    function callpopup2(){
+        document.getElementById('popup2').style.display='block';
+    }
     function closepopup(){
         document.getElementById("popup1").style.display='none';
+        document.getElementById('popup2').style.display='none';
     }
     function add_card(){
         if(localStorage != undefined){
@@ -394,6 +414,7 @@
             })
         }
         check_cards();
+        closepopup();
     }
     function radio_click(el){
         ['option1','option2','option3'].forEach(b=>{
