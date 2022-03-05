@@ -115,6 +115,22 @@ var markers = L.markerClusterGroup({
     //     return L.divIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });
     // }
 });
+var routing_control = L.Routing.control({
+    waypoints: [
+        null
+    ],
+    createMarker: function() { return null; },
+    show: false,
+    showAlternatives: false,
+    addWaypoints:false,
+    draggableWaypoints: false,
+    lineOptions : {
+        addWaypoints:false,
+        draggableWaypoints: false,
+    },
+    router: L.Routing.mapbox('pk.eyJ1IjoiaHVzY2tlciIsImEiOiJja3pkMTZ0cmUwNGYzMm9tcW5pa200dDJkIn0.-NLqcskaelmtyL5zpaBLzQ')
+});
+routing_control.addTo(map);
 locs.forEach((el)=>{
     var title = el[3];
     icon = L.divIcon({
@@ -136,9 +152,34 @@ locs.forEach((el)=>{
     markers.addLayer(marker);
 });
 map.addLayer(markers)
+if(localStorage != undefined){
+    if(localStorage.getItem('d_lat') != null){
+        make_route(pos,L.latLng(localStorage.getItem('d_lat'),localStorage.getItem('d_lon')));
+        localStorage.removeItem('d_lat');
+        localStorage.removeItem('d_lon');
+    }
+}
 
-
-
+function make_route(start, end){
+    map.removeControl(routing_control);
+    routing_control = L.Routing.control({
+        waypoints: [
+            start,
+            end
+        ],
+        createMarker: function() { return null; },
+        show: false,
+        showAlternatives: false,
+        addWaypoints:false,
+        draggableWaypoints: false,
+        lineOptions : {
+            addWaypoints:false,
+            draggableWaypoints: false,
+        },
+        router: L.Routing.mapbox('pk.eyJ1IjoiaHVzY2tlciIsImEiOiJja3pkMTZ0cmUwNGYzMm9tcW5pa200dDJkIn0.-NLqcskaelmtyL5zpaBLzQ')
+    });
+    routing_control.addTo(map);
+}
 function zoomin(){
     map.zoomIn(1);
 }

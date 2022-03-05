@@ -24,30 +24,32 @@
     </div>
 </div>
 <div class="spacer"></div>
-<div class="panel-fill d-inline-flex align-items-center">
-    <div class="home-icon"></div>
-    <div class="flex-row">
-        <div><h3 class="text-common text-common2">Дом</h3></div>
-        <div><h3 class="text-description">улица Городской Вал, 31</h3></div>
+<div id="places-here">
+    <div class="panel-fill d-inline-flex align-items-center">
+        <div class="home-icon"></div>
+        <div class="flex-row">
+            <div><h3 class="text-common text-common2">Дом</h3></div>
+            <div><h3 class="text-description">улица Городской Вал, 31</h3></div>
+        </div>
+        <div style="width: 100%;" class="d-flex align-items-center justify-content-end">
+            <!-- Ниже отсебятина -->
+            <div><h3 class="text-link"><a href="#" onclick="callpopup(this)">Изменить</a> </h3></div>
+        </div>
     </div>
-    <div style="width: 100%;" class="d-flex align-items-center justify-content-end">
-        <!-- Ниже отсебятина -->
-        <div><h3 class="text-link"><a href="#" onclick="callpopup()">Изменить</a> </h3></div>
-    </div>
-</div>
-<div class="panel-fill d-inline-flex align-items-center">
-    <div class="work-icon"></div>
-    <div class="flex-row">
-        <div><h3 class="text-common text-common2">Дом</h3></div>
-        <div style="display: none"><h3 class="text-description">улица Городской Вал, 31</h3></div>
-        <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->
-    </div>
-    <div style="width: 100%;" class="d-flex align-items-center justify-content-end">
-        <div><h3 class="text-link"><a href="#" onclick="callpopup()">Добавить</a></h3></div>
+    <div class="panel-fill d-inline-flex align-items-center">
+        <div class="work-icon"></div>
+        <div class="flex-row">
+            <div><h3 class="text-common text-common2">Работа</h3></div>
+            <div style="display: none"><h3 class="text-description">улица Городской Вал, 31</h3></div>
+            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->
+        </div>
+        <div style="width: 100%;" class="d-flex align-items-center justify-content-end">
+            <div><h3 class="text-link"><a href="#" onclick="callpopup(this)">Добавить</a></h3></div>
+        </div>
     </div>
 </div>
 <div class="panel-fill d-inline-flex align-items-center justify-content-center">
-    <div><h3 class="text-link"><a href="#" >Новое место</a></h3></div>
+    <div><h3 class="text-link"><a href="#" onclick="add_new_place()" >Новое место</a></h3></div>
 </div>
 
 <!-- Ниже идет попуп -->
@@ -56,13 +58,13 @@
         <div>
             <div class="mb-3" style="width: 335px">
                 <div class="panel round-up d-flex align-items-center justify-content-center">
-                    <div><h3 class="text-common"><a href="#" style="color:rgba(65,65,65,1);">Построить маршрут</a></h3></div>
+                    <div><h3 class="text-common"><a href="#" onclick="make_route()" style="color:rgba(65,65,65,1);">Построить маршрут</a></h3></div>
                 </div>
                 <div class="panel d-flex align-items-center justify-content-center">
-                    <h3 class="text-common"><a href="#" style="color:rgba(65,65,65,1);">Указать другой адрес</a></h3>
+                    <h3 class="text-common"><a href="#" onclick="change_address()" style="color:rgba(65,65,65,1);">Указать другой адрес</a></h3>
                 </div>
                 <div class="panel round-down d-flex align-items-center justify-content-center">
-                    <h3 class="text-common"><a href="#" style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
+                    <h3 class="text-common"><a href="#" onclick="delete_address()" style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
                 </div>
             </div>
             <div class="mb-3" style="width: 335px">
@@ -74,11 +76,33 @@
     </div>
 </div>
 <script>
-    function callpopup(){
+    var home=[57.625498, 39.884828];
+    var other=[];
+    var current = null;
+    function callpopup(el){
         document.getElementById("popup1").style.display='block';
+        current = el.parentElement.parentElement.parentElement.parentElement;
     }
     function closepopup(){
         document.getElementById("popup1").style.display='none';
+    }
+    function add_new_place(){
+
+    }
+    function make_route(){
+        if(current.children[1].children[0].children[0].innerHTML == 'Дом'){
+            if(localStorage != undefined){
+                localStorage.setItem('d_lat',home[0]);
+                localStorage.setItem('d_lon',home[1]);
+                document.location.href='../../screens/Home/home.html';
+            }
+        }
+    }
+    function change_address(){
+
+    }
+    function delete_address(){
+
     }
 </script>
 </body>
