@@ -49,8 +49,6 @@ var onSuccess = function(position) {
         'Timestamp: '         + position.timestamp                + '\n');
 };
 
-// onError Callback receives a PositionError object
-//
 function onError(error) {
     alert('code: '    + error.code    + '\n' +
         'message: ' + error.message + '\n');
@@ -59,7 +57,6 @@ function onError(error) {
 setTimeout(()=>{
     permissions = cordova.plugins.permissions;
     var list = [
-        //permissions.CAMERA,
         permissions.ACCESS_FINE_LOCATION
     ];
 
@@ -80,14 +77,12 @@ setTimeout(()=>{
                 error);
         }
     }
-    // setTimeout(()=>{
-    //     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    // },1000);
 },2000);
 
 function get_location(){
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
     map.flyTo(pos,18);
+    update_markers();
 }
 
 document.getElementById("map").style.height = HEIGHT;
@@ -96,6 +91,7 @@ var map = L.map('map', {
     center: pos,
     zoom:scale,
     zoomControl: false,
+    maxZoom: 18
 })
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -111,10 +107,8 @@ map.on('scale',redraw);
 var markers = L.markerClusterGroup({
     showCoverageOnHover: false,
     maxClusterRadius: 80
-    // iconCreateFunction: function(cluster) {
-    //     return L.divIcon({ html: '<b>' + cluster.getChildCount() + '</b>' });
-    // }
 });
+update_markers();
 var routing_control = L.Routing.control({
     waypoints: [
         null
@@ -131,27 +125,7 @@ var routing_control = L.Routing.control({
     router: L.Routing.mapbox('pk.eyJ1IjoiaHVzY2tlciIsImEiOiJja3pkMTZ0cmUwNGYzMm9tcW5pa200dDJkIn0.-NLqcskaelmtyL5zpaBLzQ')
 });
 routing_control.addTo(map);
-locs.forEach((el)=>{
-    var title = el[3];
-    icon = L.divIcon({
-        className: 'custom-div-icon',
-        html: "<div class=\"status-icon\">\n" +
-            "        <a href=\"#\" onclick=\"get_info(["+el[0]+","+el[1]+"])\">\n" +
-            "            <div class=\"status-icon-inner status-icon-" + el[2] + " d-flex justify-content-center align-items-center\">\n" +
-            "                <div>\n" +
-            "                    <p class=\"status-icon-text\">" + el[2] + "</p>\n" +
-            "                </div>\n" +
-            "            </div>\n" +
-            "        </a>\n" +
-            "    </div>",
-        iconSize: [30, 42],
-        iconAnchor: [15, 42]
-    });
-    var marker = L.marker(new L.LatLng(el[0], el[1]), { title: title ,icon: icon});
-    // marker.bindPopup(title);
-    markers.addLayer(marker);
-});
-map.addLayer(markers)
+
 if(localStorage != undefined){
     if(localStorage.getItem('d_lat') != null){
         make_route(pos,L.latLng(localStorage.getItem('d_lat'),localStorage.getItem('d_lon')));
@@ -159,7 +133,46 @@ if(localStorage != undefined){
         localStorage.removeItem('d_lon');
     }
 }
+function update_markers(){
+    map.removeLayer(markers);
+    markers = L.markerClusterGroup({
+        showCoverageOnHover: false,
+        maxClusterRadius: 80
+    });
+    locs.forEach((el)=>{
+        icon = L.divIcon({
+            className: 'custom-div-icon',
+            html: "<div class=\"status-icon\">\n" +
+                "        <a href=\"#\" onclick=\"get_info(["+el[0]+","+el[1]+"])\">\n" +
+                "            <div class=\"status-icon-inner status-icon-" + el[2] + " d-flex justify-content-center align-items-center\">\n" +
+                "                <div>\n" +
+                "                    <p class=\"status-icon-text\">" + el[2] + "</p>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "        </a>\n" +
+                "    </div>",
+            iconSize: [30, 42],
+            iconAnchor: [15, 42]
+        });
+        let marker = L.marker(new L.LatLng(el[0], el[1]), { icon: icon});
+        // marker.bindPopup(title);
+        markers.addLayer(marker);
+    });
+    icon = L.divIcon({
+        className: 'custom-div-icon',
+        html: "<div class=\"my-position d-flex justify-content-center align-items-center\">\n" +
+            "            <div class=\"orange-circle\"></div>\n" +
+            "        </div>",
+        iconSize: [30, 42],
+        iconAnchor: [15, 42]
+    });
 
+    let marker = L.marker(new L.LatLng(pos[0], pos[1]), { icon: icon});
+    map.addLayer(markers);
+    map.addLayer(marker);
+}
+
+update_markers();
 function make_route(start, end){
     map.removeControl(routing_control);
     routing_control = L.Routing.control({
@@ -190,12 +203,7 @@ function zoomout(){
 redraw()
 
 function redraw(){
-    let pos_x = map.latLngToContainerPoint(L.latLng(pos[0],pos[1])).x;
-    let pos_y = map.latLngToContainerPoint(L.latLng(pos[0],pos[1])).y;
-    document.getElementById('icons-here').innerHTML = "" +
-        "<div style=\"top: "+pos_y+"px;left: "+pos_x+"px\" class=\"my-position d-flex justify-content-center align-items-center\">\n" +
-        "            <div class=\"orange-circle\"></div>\n" +
-        "        </div>";
+
 
 
 }

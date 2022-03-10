@@ -264,3 +264,6 @@ img{
 h3.text-common{
     margin:0;
 }
+.leaflet-routing-container-hide{
+    display:none;
+}
