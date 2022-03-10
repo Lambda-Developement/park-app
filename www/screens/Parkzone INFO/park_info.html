@@ -2,27 +2,23 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/bootstrap.css">
-    <link rel="stylesheet" href="../../css/styles.css">
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/bootstrap.css" />
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
     <title>Park Info</title>
 </head>
 
 <body onload="check_cards()">
-
-
     <div class="screen-hat">
         <button class="btn arrow-back">
             <a href="../Home/home.html">
-                <img src="../../svg/arrow_back.svg" alt="arrow-back">
+                <img src="../../svg/arrow_back.svg" alt="arrow-back" />
             </a>
         </button>
         <div class="mb-3">
-            <h3 class="text-header">
-                Автомобильная парковка
-            </h3>
+            <h3 class="text-header">Автомобильная парковка</h3>
         </div>
     </div>
 
@@ -38,12 +34,16 @@
         <div class="panel panel-up">
             <h3 class="text-bold">Парковка</h3>
             <h3 class="text-description">Россия, Ярославль, улица Чайковского</h3>
-            <div class="d-inline-flex justify-content-between align-items-center " style="width: 100%">
+            <div class="d-inline-flex justify-content-between align-items-center" style="width: 100%">
                 <div>
-                    <h3 class="text-description" style="color: rgba(168, 168, 168, 1)">Круглосуточно</h3>
+                    <h3 class="text-description" style="color: rgba(168, 168, 168, 1)">
+                        Круглосуточно
+                    </h3>
                 </div>
                 <div>
-                    <h3 class="text-description" style="color: rgba(168, 168, 168, 1)">1.2 km</h3>
+                    <h3 class="text-description" style="color: rgba(168, 168, 168, 1)">
+                        1.2 km
+                    </h3>
                 </div>
             </div>
         </div>
@@ -56,7 +56,9 @@
             </div>
             <div class="d-flex flex-column justify-content-center" id="payment">
                 <div>
-                    <h3 class="text-link"><a onclick="switch_payment()">Забронировать</a></h3>
+                    <h3 class="text-link">
+                        <a onclick="switch_payment()">Забронировать</a>
+                    </h3>
                 </div>
                 <div class="underliner"></div>
             </div>
@@ -69,9 +71,13 @@
         </div>
         <div class="panel geoinfo panel-down mb-2">
             <h3 class="text-description mb-1">Особенности</h3>
-            <p class="text-common mb-1"><span class="text-description">Парковка:</span> охраняемая, надземная, платная
+            <p class="text-common mb-1">
+                <span class="text-description">Парковка:</span> охраняемая, надземная,
+                платная
             </p>
-            <p class="text-common mb-1"><span class="text-description">За первый час:</span> 60₽</p>
+            <p class="text-common mb-1">
+                <span class="text-description">За первый час:</span> 60₽
+            </p>
         </div>
         <div class="payment">
             <div class="panel">
@@ -80,19 +86,28 @@
                         <div>
                             <h3 class="text-description mx-2">От</h3>
                         </div>
-                        <div><input type="time" class="form-control" id="line-edit1" placeholder="10:00" min="0:00"
-                                max="23:59" required></div>
+                        <div>
+                            <input type="time" class="form-control" id="line-edit1" value="11:00" min="0:00" max="23:59"
+                                required />
+                        </div>
                     </div>
                     <div class="d-inline-flex align-items-center">
                         <div>
                             <h3 class="text-description mx-2">До</h3>
                         </div>
-                        <div><input type="time" class="form-control" id="line-edit2" placeholder="17:00" min="0:00"
-                                max="23:59" required></div>
+                        <div>
+                            <input type="time" class="form-control" id="line-edit2" value="12:00" min="0:00" max="23:59"
+                                required />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="panel" style="margin: 1px 0px 1px 0px;">
+            <div class="panel" style="
+            margin: 1px 0px 1px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          ">
                 <div class="container-fluid d-inline-flex align-items-center justify-content-between">
                     <div class="d-inline-flex align-items-center">
                         <div class="gpay-icon"></div>
@@ -101,8 +116,8 @@
                         </div>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" onclick='radio_click(this)' id="option1"
-                            value="option1">
+                        <input class="form-check-input" type="radio" onclick="radio_click(this)" id="option1"
+                            value="option1" />
                     </div>
                 </div>
             </div>
@@ -151,7 +166,7 @@
         <div class="panel geoinfo">
             <div class="panel-grey">
                 <div class="d-inline-flex align-items-center">
-                    <div style="margin-right: 10px;">
+                    <div style="margin-right: 10px">
                         <h3 class="text-attention">4,9</h3>
                     </div>
                     <div class="d-flex flex-column">
@@ -167,7 +182,9 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="text-description mt-3 text-center">Оцените и напишите отзыв</h3>
+                <h3 class="text-description mt-3 text-center">
+                    Оцените и напишите отзыв
+                </h3>
                 <div class="d-inline-flex justify-content-center container">
                     <div class="star-icon"></div>
                     <div class="star-icon"></div>
@@ -180,7 +197,7 @@
         <div class="panel review">
             <div class="panel-grey">
                 <div class="d-inline-flex align-items-center">
-                    <div style="margin-right: 10px;">
+                    <div style="margin-right: 10px">
                         <h3 class="text-attention">4,9</h3>
                     </div>
                     <div class="d-flex flex-column">
@@ -196,7 +213,9 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="text-description mt-3 text-center">Оцените и напишите отзыв</h3>
+                <h3 class="text-description mt-3 text-center">
+                    Оцените и напишите отзыв
+                </h3>
                 <div class="d-inline-flex justify-content-center container">
                     <div class="star-icon"></div>
                     <div class="star-icon"></div>
@@ -233,9 +252,10 @@
                         </div>
                         <div>
                             <p class="text-common">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna nulla convallis convallis
-                                porta. Sed eget scelerisque hac nec dignissim morbi eu faucibus. Eget aliquet magna
-                                nulla convallis convallis...
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
+                                nulla convallis convallis porta. Sed eget scelerisque hac nec
+                                dignissim morbi eu faucibus. Eget aliquet magna nulla
+                                convallis convallis...
                             </p>
                         </div>
                     </div>
@@ -264,29 +284,37 @@
                         </div>
                         <div>
                             <p class="text-common">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna nulla convallis convallis
-                                porta. Sed eget scelerisque hac nec dignissim morbi eu faucibus. Eget aliquet magna
-                                nulla convallis convallis...
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna
+                                nulla convallis convallis porta. Sed eget scelerisque hac nec
+                                dignissim morbi eu faucibus. Eget aliquet magna nulla
+                                convallis convallis...
                             </p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
         <div class="spacer"></div>
     </div>
 
-    <div class="btn-panel" style="display:flex;">
+    <div class="btn-panel" style="display: flex">
         <div class="d-inline-flex justify-content-evenly container">
-            <div class="geoinfo"><button class="btn btn-hollow2">Маршрут</button> </div>
-            <div class="geoinfo"><button class="btn btn-hollow">Отсюда</button> </div>
-            <div class="geoinfo"><button class="btn btn-hollow">
+            <div class="geoinfo">
+                <button class="btn btn-hollow2">Маршрут</button>
+            </div>
+            <div class="geoinfo">
+                <button class="btn btn-hollow">Отсюда</button>
+            </div>
+            <div class="geoinfo">
+                <button class="btn btn-hollow">
                     <div class="download-icon"></div>
-                </button> </div>
-            <div class="geoinfo"><button class="btn btn-hollow">
+                </button>
+            </div>
+            <div class="geoinfo">
+                <button class="btn btn-hollow">
                     <div class="bookmark-icon"></div>
-                </button> </div>
+                </button>
+            </div>
             <div class="geoinfo">
                 <div class="status-icon status-icon-1 d-flex justify-content-center align-items-center">
                     <div>
@@ -294,14 +322,22 @@
                     </div>
                 </div>
             </div>
-            <div class="payment"><button class="btn btn-hollow2">Маршрут</button> </div>
-            <div class="payment"><button class="btn btn-hollow">Отсюда</button> </div>
-            <div class="payment"><button class="btn btn-hollow">
+            <div class="payment">
+                <button class="btn btn-hollow2">Маршрут</button>
+            </div>
+            <div class="payment">
+                <button class="btn btn-hollow">Отсюда</button>
+            </div>
+            <div class="payment">
+                <button class="btn btn-hollow">
                     <div class="download-icon"></div>
-                </button> </div>
-            <div class="payment"><button class="btn btn-hollow">
+                </button>
+            </div>
+            <div class="payment">
+                <button class="btn btn-hollow">
                     <div class="bookmark-icon"></div>
-                </button> </div>
+                </button>
+            </div>
             <div class="payment">
                 <div class="status-icon status-icon-1 d-flex justify-content-center align-items-center">
                     <div>
@@ -309,60 +345,67 @@
                     </div>
                 </div>
             </div>
-            <div class="review"><button class="btn btn-filled" onclick="review_btn_click()">
+            <div class="review">
+                <button class="btn btn-filled" onclick="review_btn_click()">
                     <p class="btn-text" id="review-text">Написать отзыв</p>
-                </button></div>
+                </button>
+            </div>
         </div>
     </div>
     <!-- Ниже идет попуп -->
     <div class="popup" id="popup1">
         <div class="popup-wrapper d-flex justify-content-center">
             <div class="panel panel-up">
-                <div class="d-inline-flex" style="width: 100%;">
+                <div class="d-inline-flex" style="width: 100%">
                     <div class="close-icon d-flex justify-content-center align-items-center">
-                        <div><a style="color:white" onclick="closepopup()">x</a></div>
+                        <div><a style="color: white" onclick="closepopup()">x</a></div>
                     </div>
-                    <div style="width: 100%;">
+                    <div style="width: 100%">
                         <h3 class="text-header">Новая карта</h3>
                     </div>
                 </div>
                 <div class="container">
-                    <input  type="tel" class="form-control mb-2 mt-4" id="line-edit3" pattern="\d*" maxlength="19" placeholder="Номер карты">
+                    <input type="tel" class="form-control mb-2 mt-4" id="line-edit3" pattern="\d*" maxlength="19"
+                        placeholder="Номер карты" />
                     <div class="d-inline-flex justify-content-between">
-                        <div style="display:flex;flex-direction:row;">
-                            <select name='expireMM' id='expireMM' class="form-control">
-                                <option value=''>ММ</option>
-                                <option value='01'>01</option>
-                                <option value='02'>02</option>
-                                <option value='03'>03</option>
-                                <option value='04'>04</option>
-                                <option value='05'>05</option>
-                                <option value='06'>06</option>
-                                <option value='07'>07</option>
-                                <option value='08'>08</option>
-                                <option value='09'>09</option>
-                                <option value='10'>10</option>
-                                <option value='11'>11</option>
-                                <option value='12'>12</option>
+                        <div style="display: flex; flex-direction: row">
+                            <select name="expireMM" id="expireMM" class="form-control">
+                                <option value="">ММ</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
                             </select>
-                            <select name='expireYY' id='expireYY' class="form-control" style="margin-left:0.5rem;">
-                                <option value=''>ГГ</option>
-                                <option value='22'>22</option>
-                                <option value='23'>23</option>
-                                <option value='24'>24</option>
-                                <option value='25'>25</option>
-                                <option value='26'>26</option>
-                                <option value='27'>27</option>
-                                <option value='28'>28</option>
-                                <option value='29'>29</option>
-                                <option value='30'>30</option>
-                                <option value='31'>31</option>
-                                <option value='32'>32</option>
+                            <select name="expireYY" id="expireYY" class="form-control" style="margin-left: 0.5rem">
+                                <option value="">ГГ</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
                             </select>
                         </div>
-                        <div><input class="inputCard" type="hidden" name="expiry" id="line-edit4" maxlength="4"></div>
+                        <div>
+                            <input class="inputCard" type="hidden" name="expiry" id="line-edit4" maxlength="4" />
+                        </div>
                         <div style="width: 20px"></div>
-                        <div><input type="tel" class="form-control" id="line-edit5" placeholder="CVV" maxlength="4"></div>
+                        <div>
+                            <input type="tel" class="form-control" id="line-edit5" placeholder="CVV" maxlength="4" />
+                        </div>
                     </div>
                     <div class="p-3">
                         <button class="btn btn-hollow w-100 h-auto p-2" onclick="add_card()">
@@ -404,14 +447,16 @@
             <div>
                 <div class="mb-1" style="width: 335px">
                     <div class="panel round-up d-flex align-items-center justify-content-center">
-                        <h3 class="text-common"><a onclick="clear_cards()"
-                                style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
+                        <h3 class="text-common">
+                            <a onclick="clear_cards()" style="color: rgba(221, 58, 58, 1)">Удалить</a>
+                        </h3>
                     </div>
                 </div>
                 <div class="mb-3" style="width: 335px">
                     <div class="panel round-down round-down d-flex align-items-center justify-content-center">
-                        <h3 class="text-common"><a onclick="closepopup()"
-                                style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a></h3>
+                        <h3 class="text-common">
+                            <a onclick="closepopup()" style="font-weight: 600; color: rgba(65, 65, 65, 1)">Отменить</a>
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -422,96 +467,131 @@
         var review_count = 0;
         var rate = 5;
         function switch_review() {
-            document.getElementById('geoinfo').classList.remove('active');
-            document.getElementById('review').classList.add('active');
-            document.getElementById('payment').classList.remove('active');
+            document.getElementById("geoinfo").classList.remove("active");
+            document.getElementById("review").classList.add("active");
+            document.getElementById("payment").classList.remove("active");
             var temp = document.getElementsByClassName("geoinfo");
             for (var i = 0; i < temp.length; i++) {
-                temp[i].style.display = 'none';
+                temp[i].style.display = "none";
             }
             temp = document.getElementsByClassName("review");
             for (var i = 0; i < temp.length; i++) {
-                temp[i].style.display = 'block';
+                temp[i].style.display = "block";
             }
             temp = document.getElementsByClassName("payment");
             for (var i = 0; i < temp.length; i++) {
-                temp[i].style.display = 'none';
+                temp[i].style.display = "none";
             }
         }
         function switch_geoinfo() {
-            document.getElementById('review').classList.remove('active');
-            document.getElementById('geoinfo').classList.add('active');
-            document.getElementById('payment').classList.remove('active');
+            document.getElementById("review").classList.remove("active");
+            document.getElementById("geoinfo").classList.add("active");
+            document.getElementById("payment").classList.remove("active");
             var temp = document.getElementsByClassName("geoinfo");
             for (var i = 0; i < temp.length; i++) {
-                temp[i].style.display = 'block';
+                temp[i].style.display = "block";
             }
             temp = document.getElementsByClassName("review");
             for (var i = 0; i < temp.length; i++) {
-                temp[i].style.display = 'none';
+                temp[i].style.display = "none";
             }
             temp = document.getElementsByClassName("payment");
             for (var i = 0; i < temp.length; i++) {
-                temp[i].style.display = 'none';
+                temp[i].style.display = "none";
             }
         }
         function switch_payment() {
-            document.getElementById('geoinfo').classList.remove('active');
-            document.getElementById('review').classList.remove('active');
-            document.getElementById('payment').classList.add('active');
+            document.getElementById("geoinfo").classList.remove("active");
+            document.getElementById("review").classList.remove("active");
+            document.getElementById("payment").classList.add("active");
             var temp = document.getElementsByClassName("payment");
             for (var i = 0; i < temp.length; i++) {
-                temp[i].style.display = 'block';
+                temp[i].style.display = "block";
             }
             temp = document.getElementsByClassName("review");
             for (var i = 0; i < temp.length; i++) {
-                temp[i].style.display = 'none';
+                temp[i].style.display = "none";
             }
             temp = document.getElementsByClassName("geoinfo");
             for (var i = 0; i < temp.length; i++) {
-                temp[i].style.display = 'none';
+                temp[i].style.display = "none";
             }
         }
         function callpopup() {
-            document.getElementById("popup1").style.display = 'block';
-            document.getElementById('line-edit3').value = "";
-            document.getElementById('line-edit4').value = "";
-            document.getElementById('line-edit5').value = "";
+            document.getElementById("popup1").style.display = "block";
+            document.getElementById("line-edit3").value = "";
+            document.getElementById("line-edit4").value = "";
+            document.getElementById("line-edit5").value = "";
         }
         function callpopup2() {
-            document.getElementById('popup2').style.display = 'block';
+            document.getElementById("popup2").style.display = "block";
         }
         function closepopup() {
-            document.getElementById("popup1").style.display = 'none';
-            document.getElementById('popup2').style.display = 'none';
+            document.getElementById("popup1").style.display = "none";
+            document.getElementById("popup2").style.display = "none";
         }
         function add_card() {
             if (localStorage != undefined) {
-                if (localStorage.getItem('card1_num') == null) {
-                    localStorage.setItem('card1_num', document.getElementById('line-edit3').value);
-                    localStorage.setItem('card1_month', document.getElementById('line-edit4').value);
-                    localStorage.setItem('card1_cvv', document.getElementById('line-edit5').value);
-                }
-                else if (localStorage.getItem('card2_num') == null) {
-                    localStorage.setItem('card2_num', document.getElementById('line-edit3').value);
-                    localStorage.setItem('card2_month', document.getElementById('line-edit4').value);
-                    localStorage.setItem('card2_cvv', document.getElementById('line-edit5').value);
+                if (localStorage.getItem("card1_num") == null) {
+                    localStorage.setItem(
+                        "card1_num",
+                        document.getElementById("line-edit3").value
+                    );
+                    localStorage.setItem(
+                        "card1_month",
+                        document.getElementById("line-edit4").value
+                    );
+                    localStorage.setItem(
+                        "card1_cvv",
+                        document.getElementById("line-edit5").value
+                    );
+                } else if (localStorage.getItem("card2_num") == null) {
+                    localStorage.setItem(
+                        "card2_num",
+                        document.getElementById("line-edit3").value
+                    );
+                    localStorage.setItem(
+                        "card2_month",
+                        document.getElementById("line-edit4").value
+                    );
+                    localStorage.setItem(
+                        "card2_cvv",
+                        document.getElementById("line-edit5").value
+                    );
                 }
             }
             check_cards();
             closepopup();
+            clear_card_highlight();
+            clear_card_dates();
         }
+        function clear_card_highlight() {
+            Array.prototype.forEach.call(document.getElementsByClassName("line-success"), function (a) { a.classList.remove("line-success") });
+            Array.prototype.forEach.call(document.getElementsByClassName("line-fail"), function (a) { a.classList.remove("line-fail") });
+        }
+        function clear_card_dates() {
+            document.getElementById("expireYY").value = "";
+            document.getElementById("expireMM").value = "";
+        }
+
         function clear_cards() {
             if (localStorage != undefined) {
-                ['card1_num', 'card2_num', 'card1_cvv', 'card2_cvv', 'card1_month', 'card2_month'].forEach(b => {
+                [
+                    "card1_num",
+                    "card2_num",
+                    "card1_cvv",
+                    "card2_cvv",
+                    "card1_month",
+                    "card2_month",
+                ].forEach((b) => {
                     localStorage.removeItem(b);
-                })
+                });
             }
             check_cards();
             closepopup();
         }
         function radio_click(el) {
-            ['option1', 'option2', 'option3'].forEach(b => {
+            ["option1", "option2", "option3"].forEach((b) => {
                 if (document.getElementById(b) != null) {
                     document.getElementById(b).checked = false;
                 }
@@ -520,58 +600,78 @@
         }
         function check_cards() {
             if (localStorage != undefined) {
-                document.getElementById('cards-here').innerHTML = "";
-                if (localStorage.getItem('card1_num') != null) {
-                    document.getElementById('cards-here').innerHTML += "" +
-                        "<div class=\"panel\" style=\"margin: 1px 0px 1px 0px;\">\n" +
-                        "                <div class=\"container-fluid d-inline-flex align-items-center justify-content-between\">\n" +
-                        "                    <div class=\"d-inline-flex align-items-center\">\n" +
-                        "                        <div class=\"mastercard-icon\"></div>\n" +
-                        "                        <div class=\"d-flex flex-column\">\n" +
-                        "                            <div><h3 class=\"text-bold\">MasterCard " + localStorage.getItem('card1_num').slice(-4) + "</h3></div>\n" +
-                        "                            <div><p class=\"text-common\" style=\"color: rgba(168, 168, 168, 1)\">" + localStorage.getItem('card1_month') + "</p></div>\n" +
+                document.getElementById("cards-here").innerHTML = "";
+                if (localStorage.getItem("card1_num") != null) {
+                    document.getElementById("cards-here").innerHTML +=
+                        "" +
+                        '<div class="panel" style="margin: 1px 0px 1px 0px;">\n' +
+                        '                <div class="container-fluid d-inline-flex align-items-center justify-content-between">\n' +
+                        '                    <div class="d-inline-flex align-items-center">\n' +
+                        '                        <div class="mastercard-icon"></div>\n' +
+                        '                        <div class="d-flex flex-column">\n' +
+                        '                            <div><h3 class="text-bold">MasterCard ' +
+                        localStorage.getItem("card1_num").slice(-4) +
+                        "</h3></div>\n" +
+                        '                            <div><p class="text-common" style="color: rgba(168, 168, 168, 1)">' +
+                        localStorage.getItem("card1_month") +
+                        "</p></div>\n" +
                         "                        </div>\n" +
                         "                    </div>\n" +
-                        "                    <div class=\"form-check form-check-inline\">\n" +
-                        "                    <input class=\"form-check-input\" type=\"radio\" onclick='radio_click(this)' id='option2' value=\"option2\">\n" +
+                        '                    <div class="form-check form-check-inline">\n' +
+                        '                    <input class="form-check-input" type="radio" onclick=\'radio_click(this)\' id=\'option2\' value="option2">\n' +
                         "                </div>\n" +
                         "                </div>\n" +
                         "            </div>" +
-                        ""
+                        "";
                 }
-                if (localStorage.getItem('card2_num') != null) {
-                    document.getElementById('cards-here').innerHTML += "" +
-                        "<div class=\"panel\" style=\"margin: 1px 0px 1px 0px;\">\n" +
-                        "                <div class=\"container-fluid d-inline-flex align-items-center justify-content-between\">\n" +
-                        "                    <div class=\"d-inline-flex align-items-center\">\n" +
-                        "                        <div class=\"mastercard-icon\"></div>\n" +
-                        "                        <div class=\"d-flex flex-column\">\n" +
-                        "                            <div><h3 class=\"text-bold\">MasterCard " + localStorage.getItem('card2_num').slice(-4) + "</h3></div>\n" +
-                        "                            <div><p class=\"text-common\" style=\"color: rgba(168, 168, 168, 1)\">" + localStorage.getItem('card2_month') + "</p></div>\n" +
+                if (localStorage.getItem("card2_num") != null) {
+                    document.getElementById("cards-here").innerHTML +=
+                        "" +
+                        '<div class="panel" style="margin: 1px 0px 1px 0px;">\n' +
+                        '                <div class="container-fluid d-inline-flex align-items-center justify-content-between">\n' +
+                        '                    <div class="d-inline-flex align-items-center">\n' +
+                        '                        <div class="mastercard-icon"></div>\n' +
+                        '                        <div class="d-flex flex-column">\n' +
+                        '                            <div><h3 class="text-bold">MasterCard ' +
+                        localStorage.getItem("card2_num").slice(-4) +
+                        "</h3></div>\n" +
+                        '                            <div><p class="text-common" style="color: rgba(168, 168, 168, 1)">' +
+                        localStorage.getItem("card2_month") +
+                        "</p></div>\n" +
                         "                        </div>\n" +
                         "                    </div>\n" +
-                        "                    <div class=\"form-check form-check-inline\">\n" +
-                        "                    <input class=\"form-check-input\" type=\"radio\" onclick='radio_click(this)' id='option3' value=\"option3\">\n" +
+                        '                    <div class="form-check form-check-inline">\n' +
+                        '                    <input class="form-check-input" type="radio" onclick=\'radio_click(this)\' id=\'option3\' value="option3">\n' +
                         "                </div>\n" +
                         "                </div>\n" +
-                        "            </div>"
+                        "            </div>";
                 }
             }
         }
         function review_btn_click() {
             let name = "Роман";
             if (localStorage != undefined) {
-                name = localStorage.getItem('name') != null ? localStorage.getItem('name') : 'Роман';
+                name =
+                    localStorage.getItem("name") != null
+                        ? localStorage.getItem("name")
+                        : "Роман";
             }
             if (review_btn_state) {
-                document.getElementById('reviews-here').innerHTML += "" +
-                    "<div id='review-" + (review_count) + "' class=\"review d-flex flex-column mb-3\">\n" +
-                    "                    <div class=\"d-inline-flex align-items-center mb-2\">\n" +
-                    "                        <div class=\"circle2 d-flex justify-content-center align-items-center me-3\"><div><h3 class=\"text-attention in-circle\">" + name[0].toUpperCase() + "</h3></div></div>\n" +
-                    "                        <div><h3 class=\"text-common\">" + name + "</h3></div>\n" +
+                document.getElementById("reviews-here").innerHTML +=
+                    "" +
+                    "<div id='review-" +
+                    review_count +
+                    '\' class="review d-flex flex-column mb-3">\n' +
+                    '                    <div class="d-inline-flex align-items-center mb-2">\n' +
+                    '                        <div class="circle2 d-flex justify-content-center align-items-center me-3"><div><h3 class="text-attention in-circle">' +
+                    name[0].toUpperCase() +
+                    "</h3></div></div>\n" +
+                    '                        <div><h3 class="text-common">' +
+                    name +
+                    "</h3></div>\n" +
                     "                    </div>\n" +
-                    "                    <div class=\"d-inline-flex align-items-center mb-2\">\n" +
-                    "                        <div class=\"d-inline-flex justify-content-center align-items-center me-3\">\n" +
+                    '                    <div class="d-inline-flex align-items-center mb-2">\n' +
+                    '                        <div class="d-inline-flex justify-content-center align-items-center me-3">\n' +
                     "                            <div class=\"rate-icon small\" id='rate-1' onclick='rate_clicked(this)'></div>\n" +
                     "                            <div class=\"rate-icon small\" id='rate-2' onclick='rate_clicked(this)'></div>\n" +
                     "                            <div class=\"rate-icon small\" id='rate-3' onclick='rate_clicked(this)'></div>\n" +
@@ -579,39 +679,59 @@
                     "                            <div class=\"rate-icon small\" id='rate-5' onclick='rate_clicked(this)'></div>\n" +
                     "                        </div>\n" +
                     "                    </div>\n" +
-                    "                    <div class=\"new-review-input\">\n" +
-                    "                        <input type=\"text\" class=\"form-control\" id='review-input' placeholder=\"...\">\n" +
+                    '                    <div class="new-review-input">\n' +
+                    '                        <input type="text" class="form-control" id=\'review-input\' placeholder="...">\n' +
                     "                    </div>\n" +
                     "                </div>";
-                document.getElementById('review-text').innerHTML = 'Добавить';
+                document.getElementById("review-text").innerHTML = "Добавить";
             } else {
-                let prev_review = document.getElementById('review-input').value;
-                document.getElementById('review-' + (review_count)).remove();
-                document.getElementById('reviews-here').innerHTML += "" +
-                    "<div id='review-" + (review_count) + "' class=\"review d-flex flex-column mb-3\">\n" +
-                    "                    <div class=\"d-inline-flex align-items-center mb-2\">\n" +
-                    "                        <div class=\"circle2 d-flex justify-content-center align-items-center me-3\"><div><h3 class=\"text-attention in-circle\">" + name[0].toUpperCase() + "</h3></div></div>\n" +
-                    "                        <div><h3 class=\"text-common\">" + name + "</h3></div>\n" +
+                let prev_review = document.getElementById("review-input").value;
+                document.getElementById("review-" + review_count).remove();
+                document.getElementById("reviews-here").innerHTML +=
+                    "" +
+                    "<div id='review-" +
+                    review_count +
+                    '\' class="review d-flex flex-column mb-3">\n' +
+                    '                    <div class="d-inline-flex align-items-center mb-2">\n' +
+                    '                        <div class="circle2 d-flex justify-content-center align-items-center me-3"><div><h3 class="text-attention in-circle">' +
+                    name[0].toUpperCase() +
+                    "</h3></div></div>\n" +
+                    '                        <div><h3 class="text-common">' +
+                    name +
+                    "</h3></div>\n" +
                     "                    </div>\n" +
-                    "                    <div class=\"d-inline-flex align-items-center mb-2\">\n" +
-                    "                        <div class=\"d-inline-flex justify-content-center align-items-center me-3\">\n" +
-                    "                            <div class=\""+(rate >= 1 ? "rate-icon" : "star-icon-rate")+" small\"></div>\n" +
-                    "                            <div class=\""+(rate >= 2 ? "rate-icon" : "star-icon-rate")+" small\"></div>\n" +
-                    "                            <div class=\""+(rate >= 3 ? "rate-icon" : "star-icon-rate")+" small\"></div>\n" +
-                    "                            <div class=\""+(rate >= 4 ? "rate-icon" : "star-icon-rate")+" small\"></div>\n" +
-                    "                            <div class=\""+(rate >= 5 ? "rate-icon" : "star-icon-rate")+" small\"></div>\n" +
+                    '                    <div class="d-inline-flex align-items-center mb-2">\n' +
+                    '                        <div class="d-inline-flex justify-content-center align-items-center me-3">\n' +
+                    '                            <div class="' +
+                    (rate >= 1 ? "rate-icon" : "star-icon-rate") +
+                    ' small"></div>\n' +
+                    '                            <div class="' +
+                    (rate >= 2 ? "rate-icon" : "star-icon-rate") +
+                    ' small"></div>\n' +
+                    '                            <div class="' +
+                    (rate >= 3 ? "rate-icon" : "star-icon-rate") +
+                    ' small"></div>\n' +
+                    '                            <div class="' +
+                    (rate >= 4 ? "rate-icon" : "star-icon-rate") +
+                    ' small"></div>\n' +
+                    '                            <div class="' +
+                    (rate >= 5 ? "rate-icon" : "star-icon-rate") +
+                    ' small"></div>\n' +
                     "                        </div>\n" +
-                    "                        <div><h3 class=\"text-description\">Только что</h3></div>\n" +
+                    '                        <div><h3 class="text-description">Только что</h3></div>\n' +
                     "                    </div>\n" +
                     "                    <div>\n" +
-                    "                        <p class=\"text-common\">\n" +
-                    "                            " + prev_review + "\n" +
+                    '                        <p class="text-common">\n' +
+                    "                            " +
+                    prev_review +
+                    "\n" +
                     "                        </p>\n" +
                     "                    </div>\n" +
                     "                </div>";
-                document.getElementById('review-text').innerHTML = 'Написать отзыв';
+                document.getElementById("review-text").innerHTML = "Написать отзыв";
                 review_count++;
-                document.getElementById('reviews-count').innerHTML = "Отзывов: " + (review_count + 2);
+                document.getElementById("reviews-count").innerHTML =
+                    "Отзывов: " + (review_count + 2);
             }
             review_btn_state = !review_btn_state;
         }
@@ -623,64 +743,66 @@
                 var digit = +cardNo[i];
                 if (doubleDigit) {
                     digit *= 2;
-                    if (digit > 9)
-                        digit -= 9;
+                    if (digit > 9) digit -= 9;
                 }
                 s += digit;
                 doubleDigit = !doubleDigit;
             }
             return s % 10 == 0;
-        }
+        };
 
         cardField = document.getElementById("line-edit3");
         cardExpiryFictField = document.getElementById("line-edit4");
         cardExpiryMM = document.getElementById("expireMM");
         cardExpiryYY = document.getElementById("expireYY");
         cvvField = document.getElementById("line-edit5");
-        const callback = function() {
+        const callback = function () {
             cardField.classList.remove("line-fail");
             cardField.classList.remove("line-success");
             cvvField.classList.remove("line-fail");
             cvvField.classList.remove("line-success");
 
-            if (cardField.value.length > 0 && checkLuhn(cardField.value)){
+            if (cardField.value.length > 0 && checkLuhn(cardField.value)) {
                 cardField.classList.add("line-success");
-            } else if (cardField.value.length > 0){
+            } else if (cardField.value.length > 0) {
                 cardField.classList.add("line-fail");
             }
 
             if (cvvField.value.length == 3 || cvvField.value.length == 4) {
                 cvvField.classList.add("line-success");
-            } else if (cardField.value.length > 0){
+            } else if (cvvField.value.length > 0) {
                 cvvField.classList.add("line-fail");
             }
         };
-        const concat_data = function() {
-            cardExpiryFictField.value = cardExpiryMM.value + "/" + cardExpiryYY.value;
-        }
+        const concat_data = function () {
+            cardExpiryFictField.value =
+                cardExpiryMM.value + "/" + cardExpiryYY.value;
+        };
         cardField.onchange = callback;
         cvvField.onchange = callback;
         cardExpiryMM.onchange = concat_data;
         cardExpiryYY.onchange = concat_data;
 
-        function rate_clicked(el){
-            ['1','2','3','4','5'].forEach(b=>{
-                if(el.id == 'rate-'+b){
+        function rate_clicked(el) {
+            ["1", "2", "3", "4", "5"].forEach((b) => {
+                if (el.id == "rate-" + b) {
                     rate = parseInt(b);
                 }
-            })
-            for(i = 1;i<=5;i++){
-                if(i <= rate){
-                    document.getElementById('rate-'+i).classList.remove('star-icon-rate');
-                    document.getElementById('rate-'+i).classList.add('rate-icon')
-                }else{
-                    document.getElementById('rate-'+i).classList.remove('rate-icon');
-                    document.getElementById('rate-'+i).classList.add('star-icon-rate');
+            });
+            for (i = 1; i <= 5; i++) {
+                if (i <= rate) {
+                    document
+                        .getElementById("rate-" + i)
+                        .classList.remove("star-icon-rate");
+                    document.getElementById("rate-" + i).classList.add("rate-icon");
+                } else {
+                    document.getElementById("rate-" + i).classList.remove("rate-icon");
+                    document
+                        .getElementById("rate-" + i)
+                        .classList.add("star-icon-rate");
                 }
             }
         }
-
-
     </script>
 </body>
 
