@@ -119,6 +119,14 @@ span.text-description{
     margin-left: 5px;
     margin-right:5px;
 }
+.star-icon-rate{
+    width: 18px;
+    height: 20px;
+    background: url("../../svg/grey_star.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:15px;
+}
 .spacer{
     height:100px;
 }
