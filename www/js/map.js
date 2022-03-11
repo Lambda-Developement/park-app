@@ -108,6 +108,7 @@ var markers = L.markerClusterGroup({
     showCoverageOnHover: false,
     maxClusterRadius: 80
 });
+var pos_marker = L.marker(new L.LatLng(pos[0], pos[1]), { icon: icon});
 update_markers();
 var routing_control = L.Routing.control({
     waypoints: [
@@ -166,10 +167,12 @@ function update_markers(){
         iconSize: [30, 42],
         iconAnchor: [15, 42]
     });
-
-    let marker = L.marker(new L.LatLng(pos[0], pos[1]), { icon: icon});
+    if (map.hasLayer(pos_marker)){
+        map.removeLayer(pos_marker);
+    }
+    pos_marker = L.marker(new L.LatLng(pos[0], pos[1]), { icon: icon});
     map.addLayer(markers);
-    map.addLayer(marker);
+    map.addLayer(pos_marker);
 }
 
 update_markers();
