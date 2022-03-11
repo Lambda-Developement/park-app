@@ -306,12 +306,12 @@
                 <button class="btn btn-hollow">Отсюда</button>
             </div>
             <div class="geoinfo">
-                <button class="btn btn-hollow">
+                <button class="btn btn-hollow" id="export-btn" onclick="export_parking()">
                     <div class="download-icon"></div>
                 </button>
             </div>
             <div class="geoinfo">
-                <button class="btn btn-hollow">
+                <button class="btn btn-hollow" id="favourite-btn" onclick="add_favourite_parking()">
                     <div class="bookmark-icon"></div>
                 </button>
             </div>
@@ -803,6 +803,42 @@
                 }
             }
         }
+    </script>
+    <script>
+        function export_parking() {
+            // Потом джейсон можно заполнить данными из шаблонизатора
+            var parking = {
+                "id": 123123123,
+                //То что ниже лучше запросами или хотя бы частично (архитектуру не знаю не могу скзаать)
+                "title": "Парковка",
+                "address": "Россия, Ярославль, улица Чайковского",
+                "rating": 4.9,
+            }
+            localStorage.setItem("exported_parking", JSON.stringify(parking))
+            console.log(JSON.parse(localStorage.getItem("exported_parking")))
+        }
+
+        function add_favourite_parking() {
+            // Потом джейсон можно заполнить данными из шаблонизатора
+            var parking = {
+                "id": 69,
+                //То что ниже лучше запросами или хотя бы частично (архитектуру не знаю не могу скзаать)
+                "title": "Парковка",
+                "address": "Россия, Ярославль, улица Чайковского",
+                "rating": 4.9,
+            }
+
+            localStorage.setItem("favourite_parking", JSON.stringify(parking))
+            console.log(JSON.parse(localStorage.getItem("favourite_parking")))
+
+            // Не смог сделать массив в локал стораже
+            // Но вот идея 
+            // // Favs - массив айдишников избранных парковок
+            // именно айдишников тк скорее всего будет локальная база какая-нибудь
+            // откуда можно будет подгружать данные о парковках
+        }
+
+
     </script>
 </body>
 

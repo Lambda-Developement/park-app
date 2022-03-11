@@ -362,7 +362,7 @@ h3.text-attention.in-circle {
 h3.text-common {
   text-align: left;
   font-size: 14px;
-  font-width: 500;
+  font-weight: 500;
 }
 .new-review-input {
   /*display: none;*/
