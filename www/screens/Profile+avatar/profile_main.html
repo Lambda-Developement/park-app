@@ -109,7 +109,7 @@
     <script>
         function check_credentials(){
             if(localStorage != undefined){
-                if (localStorage.getItem('name') != null){
+                if (localStorage.getItem('name') != null && localStorage.getItem('name').length > 0){
                     document.getElementById('header-name').innerHTML = localStorage.getItem('name');
                 }
             }
