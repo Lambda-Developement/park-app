@@ -64,6 +64,7 @@ setTimeout(()=>{
 
     function error() {
         console.warn('Camera or Accounts permission is not turned on');
+        document.location.href = "../../screens/AccessError/accessError.html";
     }
 
     function success( status ) {
