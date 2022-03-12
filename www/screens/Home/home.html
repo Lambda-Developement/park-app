@@ -162,5 +162,13 @@
     </script>
     <script src="../../cordova.js"></script>
     <script type="text/javascript" src="../../js/map.js"></script>
+    <script src="../../js/bcrypt.js"></script>
+    <script>
+        var bcrypt = dcodeIO.bcrypt;
+        let s = 'asdasd';
+        let salt = bcrypt.genSaltSync();
+        let hashed = bcrypt.hashSync(s,salt);
+        let result = bcrypt.compareSync(s,hashed);
+    </script>
 </body>
 </html>
