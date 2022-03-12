@@ -109,7 +109,7 @@ var markers = L.markerClusterGroup({
     showCoverageOnHover: false,
     maxClusterRadius: 80
 });
-var pos_marker = L.marker(new L.LatLng(pos[0], pos[1]), { icon: icon});
+var pos_marker = L.marker(new L.LatLng(pos[0], pos[1]), );
 update_markers();
 var routing_control = L.Routing.control({
     waypoints: [
