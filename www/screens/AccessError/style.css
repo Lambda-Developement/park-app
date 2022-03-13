@@ -48,3 +48,7 @@ body {
 .card{
     margin-bottom: 30px;
 }
+button.btn.btn-filled{
+    min-width: 335px;
+    max-height: 551px;
+}

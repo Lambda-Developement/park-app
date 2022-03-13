@@ -11,25 +11,23 @@
 </head>
 <body style="background: #F0F0F0">
     <div class="screen-hat">
-        <button class="btn arrow-back">
-            <a href="../../screens/Home/home.html">
-                <img src="../../svg/arrow_back.svg" alt="arrow-back">
-            </a>
-        </button>
         <div class="mb-3">
             <h3 class="text-header">
                 Ошибка
             </h3>
         </div>
     </div>
-<div class="d-flex justify-content-center align-items-center">
+<div class="d-flex flex-column justify-content-center align-items-center">
     <div class="d-flex flex-column">
-    <div class="card">
-        <img src="app_icon.png">
-        <p>
-            Пожалуйста, предоставьте доступ для корректной работы приложения.
-        </p>
-    </div> 
+        <div class="card">
+            <img src="app_icon.png">
+            <p>
+                Пожалуйста, предоставьте доступ для корректной работы приложения.
+            </p>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-filled" onclick="document.location.href = '../../screens/Home/home.html'"><p class="btn-text">Назад</p></button>
     </div>
 </div>
     <script src="../../cordova.js"></script>
