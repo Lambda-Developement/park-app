@@ -129,10 +129,10 @@ var routing_control = L.Routing.control({
 routing_control.addTo(map);
 
 if(localStorage != undefined){
-    if(localStorage.getItem('d_lat') != null){
-        make_route(pos,L.latLng(localStorage.getItem('d_lat'),localStorage.getItem('d_lon')));
-        localStorage.removeItem('d_lat');
-        localStorage.removeItem('d_lon');
+    if(localStorage.getItem('prev_place') != null){
+        idx = localStorage.getItem('prev_place');
+        map.flyTo([locs[idx][0],locs[idx][1]],18);
+        collapse_toggle(parseInt(idx));
     }
 }
 function update_markers(){
@@ -141,11 +141,12 @@ function update_markers(){
         showCoverageOnHover: false,
         maxClusterRadius: 80
     });
+    let idx = 0;
     locs.forEach((el)=>{
         icon = L.divIcon({
             className: 'custom-div-icon',
             html: "<div class=\"status-icon\">\n" +
-                "        <a href=\"#\" onclick=\"get_info(["+el[0]+","+el[1]+"])\">\n" +
+                "        <a href=\"#\" onclick=\"get_info(["+idx+"])\">\n" +
                 "            <div class=\"status-icon-inner status-icon-" + el[2] + " d-flex justify-content-center align-items-center\">\n" +
                 "                <div>\n" +
                 "                    <p class=\"status-icon-text\">" + el[2] + "</p>\n" +
@@ -159,6 +160,7 @@ function update_markers(){
         let marker = L.marker(new L.LatLng(el[0], el[1]), { icon: icon});
         // marker.bindPopup(title);
         markers.addLayer(marker);
+        idx++;
     });
     icon = L.divIcon({
         className: 'custom-div-icon',

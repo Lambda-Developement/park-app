@@ -87,7 +87,7 @@
                             <div><h3 class="text-header">Парковка</h3></div>
                             <div><div class="close-icon d-flex justify-content-center align-items-center"><div><a href="#" onclick="close_info()">x</a></div></div></div>
                         </div>
-                        <div class="mb-3"><h3 class="text-description">Россия, Ярославль, улица Чайковского</h3></div>
+                        <div class="mb-3"><h3 class="text-description" id="text-description">Россия, Ярославль, улица Чайковского</h3></div>
                         <div class="d-inline-flex justify-content-between mb-2">
                             <div><h3 class="text-description">Круглосуточно</h3> </div>
                             <div><h3 class="text-description">1,2 km</h3> </div>
@@ -129,6 +129,7 @@
 
     <script>
         var current_park = [57.615398, 39.885228];
+        var park_id = 0;
         function search_history_open(){
             document.getElementById('search-history').style.display = 'block';
             document.getElementById('search-icon').classList.add('grey-close-icon');
@@ -139,10 +140,15 @@
             document.getElementById('search-icon').classList.remove('grey-close-icon');
             document.getElementById('search-icon').classList.add('grey-search-icon');
         }
-        function get_info(coords){
+        function get_info(park){
+            coords = [locs[park][0],locs[park][1]];
             document.getElementById("info").style.display = "block";
             current_park = coords;
-            console.log(coords);
+            park_id = park;
+            if(localStorage != undefined){
+                localStorage.setItem('prev_place',park_id);
+            }
+            document.getElementById('text-description').innerHTML = locs[park][3];
         }
         function close_info(){
             document.getElementById("info").style.display = "none";
