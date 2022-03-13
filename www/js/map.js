@@ -132,7 +132,7 @@ if(localStorage != undefined){
     if(localStorage.getItem('prev_place') != null){
         idx = localStorage.getItem('prev_place');
         map.flyTo([locs[idx][0],locs[idx][1]],18);
-        collapse_toggle(parseInt(idx));
+        get_info(parseInt(idx));
     }
 }
 function update_markers(){
