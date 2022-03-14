@@ -58,8 +58,8 @@
 
         const validateEmail = (email) => {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            // return re.test(email);
-            return true;
+            return re.test(email);
+            // return true;
         };
 
         loginButton = document.getElementById("login_button");
@@ -73,13 +73,13 @@
             loginButton.disabled = true;
 
             // console.log(emailField.value);
-            if (passwordField.value.length >= 1) {
+            if (passwordField.value.length >= 3) {
                 passwordField.classList.add("line-success");
             }
             if (validateEmail(emailField.value)) {
                 emailField.classList.add("line-success");
 
-                if (passwordField.value.length >= 1) {
+                if (passwordField.value.length >= 3) {
                     // Activate the button
                     loginButton.classList.add("btn-highlight");
                     loginButton.disabled = false;
