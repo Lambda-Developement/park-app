@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,13 +11,14 @@
 
     <title>Login</title>
 </head>
+
 <body>
     <button class="btn arrow-back">
         <a href="../Home/home.html">
+            <!-- Существование  этой кнопки здесь нелогично, поэтому display:none -->
             <img src="../../svg/arrow_back.svg" alt="arrow-back">
         </a>
     </button>
-
     <div class="login-container">
         <div class="mb-3">
             <h3 class="text-bold">
@@ -32,51 +34,109 @@
         </div>
         <a href="../Forget%20password/forget_password.html" class="login-container__forget-password">Забыли пароль?</a>
 
-        <a class="mb-3" href="../Profile+avatar/profile_main.html" style="z-index: 99;">
-            <button class="btn btn-hollow btn-disabled" id="login_button" ><p class="btn-text">Войти</p></button>
+        <!-- <a class="mb-3" href="../Profile+avatar/profile_main.html" style="z-index: 99;"> -->
+        <a class="mb-3" href="#" style="z-index: 99;">
+            <button class="btn btn-hollow btn-disabled" id="login_button" onclick="login()" disabled>
+                <p class="btn-text">Войти</p>
+            </button>
         </a>
         <a href="../Registration/registration.html" style="z-index: 100;">
-            <button class="btn btn-hollow2" ><p class="btn-text">Зарегистрироваться</p></button>
+            <button class="btn btn-hollow2">
+                <p class="btn-text">Зарегистрироваться</p>
+            </button>
         </a>
 
     </div>
+    <script src="../../cordova.js"></script>
     <script>
-const validateEmail = (email) => {
-            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-};
+        // TODO: Пофиксить, когда будет нормальный тестовый аккаунт
+        const validateEmail = (email) => {
+            // var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            // return re.test(email);
+            return true;
+        };
 
+        loginButton = document.getElementById("login_button");
+        emailField = document.getElementById("email_input");
+        passwordField = document.getElementById("password_field");
+        const callbackFunction = function () {
+            emailField.classList.remove("line-success");
+            emailField.classList.remove("line-danger");
+            passwordField.classList.remove("line-success");
+            loginButton.classList.remove("btn-highlight");
+            loginButton.disabled = true;
 
-loginButton = document.getElementById("login_button");
-emailField = document.getElementById("email_input");
-passwordField = document.getElementById("password_field");
-const callbackFunction = function() {
-    emailField.classList.remove("line-success");
-    emailField.classList.remove("line-danger");
-    passwordField.classList.remove("line-success");
-    loginButton.classList.remove("btn-highlight");
+            // console.log(emailField.value);
+            if (passwordField.value.length >= 1) {
+                passwordField.classList.add("line-success");
+            }
+            if (validateEmail(emailField.value)) {
+                emailField.classList.add("line-success");
 
-    console.log(emailField.value);
-    if (passwordField.value.length > 3){
-        passwordField.classList.add("line-success");
-    }
-    if (validateEmail(emailField.value)) {
-        emailField.classList.add("line-success");
+                if (passwordField.value.length >= 1) {
+                    // Activate the button
+                    loginButton.classList.add("btn-highlight");
+                    loginButton.disabled = false;
 
-        if (passwordField.value.length>3){
-            
-            loginButton.classList.add("btn-highlight");
+                }
+            } else if (emailField.value) {
+                emailField.classList.add("line-danger");
+            };
+        };
+        emailField.onchange = callbackFunction;
+        passwordField.onchange = callbackFunction;
+
+        callbackFunction();
+
+        function login(email, password) {
+            if (!email) email = emailField.value;
+            if (!password) password = passwordField.value;
+            api_authorize(email, password);
         }
-    } else if (emailField.value){
-        emailField.classList.add("line-danger");
-    };
-};
-emailField.onchange = callbackFunction;
-passwordField.onchange = callbackFunction;
 
-callbackFunction();
-</script>
-    
-    
+
+        function api_authorize(email, password) {
+            // Recieves email and password in plain.
+
+            cordovaHTTP.post("https://park.backend.xredday.ru/",
+                {
+                    'request':
+                    {
+                        "action": "login",
+                        "data": { "login": email, "pass": password }
+                    }
+                },
+                {},
+                function (response) {
+                    // prints 200
+                    console.log(response.status);
+
+                    try {
+                        console.log(response.data);
+                        localStorage.setItem("auth_key", response.data);
+                        if (response.data) {
+                            window.location.href = "../Profile+avatar/profile_main.html";
+                        }
+
+
+
+                    } catch (e) {
+                        console.error("JSON parsing error");
+                    }
+                },
+                function (response) {
+                    // prints 403
+                    console.log(response.status);
+
+                    //prints Permission denied
+                    console.log(response.data);
+
+                }
+            );
+
+        }
+    </script>
+
 </body>
+
 </html>
