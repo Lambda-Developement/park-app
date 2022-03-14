@@ -25,7 +25,10 @@
                 Parking Map
             </h3>
         </div>
-
+        <div class="d-inline-flex align-items-center" id="error-msg">
+            <div class="danger-icon"></div>
+            <div id="error-msg-text">Неправильный логин или пароль</div>
+        </div>
         <div class="mb-3">
             <input type="email" class="form-control" id="email_input" placeholder="name@gmail.com">
         </div>
@@ -49,9 +52,12 @@
     </div>
     <script src="../../cordova.js"></script>
     <script>
-        // TODO: Пофиксить, когда будет нормальный тестовый аккаунт
+
+        errorMessage = document.getElementById("error-msg");
+        errorMessage.style.visibility = "hidden";
+
         const validateEmail = (email) => {
-            // var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             // return re.test(email);
             return true;
         };
@@ -89,6 +95,8 @@
         callbackFunction();
 
         function login(email, password) {
+            errorMessage.style.visibility = "hidden";
+
             if (!email) email = emailField.value;
             if (!password) password = passwordField.value;
             api_authorize(email, password);
@@ -127,6 +135,8 @@
                 function (response) {
                     // prints 403
                     console.log(response.status);
+                    errorMessage.style.visibility = "visible";
+
 
                     //prints Permission denied
                     console.log(response.data);
