@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
 
     <title>Profile+avatar</title>
 </head>
+
 <body onload="check_credentials()">
     <div class="screen-hat">
         <button class="btn arrow-back">
@@ -28,23 +30,29 @@
         <div class="avatar-area">
             <img src="../../jpg/avatar.png" alt="roma.jpeg" class="avatar-area__image">
             <h3 class="text-bold" id="header-name">
-                Роман
+                Пользователь
             </h3>
         </div>
         <div class="panel d-inline-flex align-items-center mt-3">
-            <div class="me-3"><h3 class="text-common">Имя</h3></div>
+            <div class="me-3">
+                <h3 class="text-common">Имя</h3>
+            </div>
             <div class="w-100">
                 <input type="email" class="form-control" id="name" placeholder="">
             </div>
         </div>
         <div class="panel d-inline-flex align-items-center">
-            <div class="me-3"><h3 class="text-common">Пол</h3></div>
+            <div class="me-3">
+                <h3 class="text-common">Пол</h3>
+            </div>
             <div class="w-100">
                 <input type="email" class="form-control" id="sex" placeholder="">
             </div>
         </div>
         <div class="panel d-inline-flex align-items-center">
-            <div class="me-3"><h3 class="text-common">Дата рождения</h3></div>
+            <div class="me-3">
+                <h3 class="text-common">Дата рождения</h3>
+            </div>
             <div class="me-3">
                 <input type="email" class="form-control" id="birth1" placeholder="">
             </div>
@@ -56,41 +64,47 @@
             </div>
         </div>
         <div class="panel d-inline-flex align-items-center">
-            <div class="me-3"><h3 class="text-common">E-mail</h3></div>
+            <div class="me-3">
+                <h3 class="text-common">E-mail</h3>
+            </div>
             <div class="w-100">
                 <input type="email" class="form-control" id="email" placeholder="">
             </div>
         </div>
         <div class="panel d-inline-flex align-items-center">
-            <div class="me-3"><h3 class="text-common">Телефон</h3></div>
+            <div class="me-3">
+                <h3 class="text-common">Телефон</h3>
+            </div>
             <div class="w-100">
                 <input type="email" class="form-control" id="phone" placeholder="">
             </div>
         </div>
         <div class="mt-3 d-flex justify-content-center align-items-center w-100">
-            <div><button class="btn btn-filled" onclick="apply_changes()"><p class="btn-text">Сохранить</p></button></div>
+            <div><button class="btn btn-filled" onclick="apply_changes()">
+                    <p class="btn-text">Сохранить</p>
+                </button></div>
         </div>
     </div>
     <script>
-        function check_credentials(){
-            if(localStorage != undefined){
-                ['name','sex','birth1','birth2','birth3','email','phone'].forEach(el=>{
-                    if (localStorage.getItem(el) != null && localStorage.getItem(el).length > 0){
+        function check_credentials() {
+            if (localStorage != undefined) {
+                ['name', 'sex', 'birth1', 'birth2', 'birth3', 'email', 'phone'].forEach(el => {
+                    if (localStorage.getItem(el) != null && localStorage.getItem(el).length > 0) {
                         document.getElementById(el).value = localStorage.getItem(el);
-                    }else{
+                    } else {
                         document.getElementById(el).value = '';
                     }
                 });
-                if (localStorage.getItem('name') != null && localStorage.getItem('name').length > 0){
+                if (localStorage.getItem('name') != null && localStorage.getItem('name').length > 0) {
                     document.getElementById('header-name').innerHTML = localStorage.getItem('name');
                 }
             }
         }
-        function apply_changes(){
-            if(localStorage != undefined){
-                ['name','sex','birth1','birth2','birth3','email','phone'].forEach(el=>{
+        function apply_changes() {
+            if (localStorage != undefined) {
+                ['name', 'sex', 'birth1', 'birth2', 'birth3', 'email', 'phone'].forEach(el => {
                     console.log(document.getElementById(el))
-                    localStorage.setItem(el,document.getElementById(el).value);
+                    localStorage.setItem(el, document.getElementById(el).value);
                 });
             }
             check_credentials();
@@ -98,4 +112,5 @@
     </script>
 
 </body>
+
 </html>
