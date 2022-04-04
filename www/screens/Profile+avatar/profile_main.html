@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
 
     <title>Profile+avatar</title>
 </head>
+
 <body onload="check_credentials()">
     <div class="screen-hat">
         <button class="btn arrow-back">
@@ -28,10 +30,11 @@
         <div class="avatar-area">
             <img src="../../jpg/avatar.png" alt="roma.jpeg" class="avatar-area__image">
             <h3 class="text-bold" id="header-name">
-                Роман
-            </h3>    
+                Пользователь
+            </h3>
             <div>
-                <a href="../Profile%20(izmenit)/profile_main.html" class="edit-link"><img src="../../svg/edit.svg" alt="edit__ico" class="edit-link__ico">Изменить</a>
+                <a href="../Profile%20(izmenit)/profile_main.html" class="edit-link"><img src="../../svg/edit.svg"
+                        alt="edit__ico" class="edit-link__ico">Изменить</a>
             </div>
         </div>
         <div class="nav-section">
@@ -43,14 +46,14 @@
                 </div>
             </div>
 
-           
+
             <div class="nav-item dropdown" style="height: 42px">
                 <img src="../../svg/language_icon.svg" alt="icon.svg" class="dropdown-icon">
                 <header class="dropdown-title">Язык</header>
                 <select class="form-select-updated">
-                    <option value="1" >Русский</option>
+                    <option value="1">Русский</option>
                     <option value="2">Английский</option>
-                </select>     
+                </select>
             </div>
             <div>
                 <a href="../Map/map.html">
@@ -82,7 +85,9 @@
             </div>
 
             <div class="button-area">
-                <button class="btn btn-hollow" id="btn-clean-history"><p class="btn-text">Очистить историю поиска</p></button>
+                <button class="btn btn-hollow" id="btn-clean-history">
+                    <p class="btn-text">Очистить историю поиска</p>
+                </button>
             </div>
         </div>
         <div class="favourites-popup" id="popup2">
@@ -91,25 +96,25 @@
                     <div class="mb-1" style="width: 335px">
                         <div class="panel round-up d-flex align-items-center justify-content-center">
                             <h3 class="text-common"><a onclick="delete_history()"
-                                                       style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
+                                    style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
                         </div>
                     </div>
                     <div class="mb-3" style="width: 335px">
                         <div class="panel round-down round-down d-flex align-items-center justify-content-center">
                             <h3 class="text-common"><a onclick="closepopup()"
-                                                       style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a></h3>
+                                    style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a></h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
+
 
     </div>
     <script>
-        function check_credentials(){
-            if(localStorage != undefined){
-                if (localStorage.getItem('name') != null && localStorage.getItem('name').length > 0){
+        function check_credentials() {
+            if (localStorage != undefined) {
+                if (localStorage.getItem('name') != null && localStorage.getItem('name').length > 0) {
                     document.getElementById('header-name').innerHTML = localStorage.getItem('name');
                 }
             }
@@ -120,10 +125,11 @@
         function closepopup() {
             document.getElementById('popup2').style.display = 'none';
         }
-        function delete_history(){
+        function delete_history() {
             closepopup();
         }
     </script>
 
 </body>
+
 </html>
