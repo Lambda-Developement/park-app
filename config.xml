@@ -9,4 +9,12 @@
     <content src="index.html" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+
+    <universal-links>
+        <host name="io.cordova.parkapp" scheme="http">
+            <path url="/password/*" />
+            <path url="/mail/*" />
+        </host>
+    </universal-links>
+    <preference name="AndroidLaunchMode" value="singleInstance" />
 </widget>
