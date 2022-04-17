@@ -159,7 +159,7 @@ h3.text-common{
 h3.text-common > a{
     text-align: left;
     font-size: 14px;
-    font-width: 500;
+    font-weight: 500;
     margin:0;
     text-decoration: none;
 }

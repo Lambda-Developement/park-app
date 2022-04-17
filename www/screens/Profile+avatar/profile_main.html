@@ -88,9 +88,12 @@
                 <button class="btn btn-hollow" id="btn-clean-history">
                     <p class="btn-text">Очистить историю поиска</p>
                 </button>
+                <button class="btn btn-hollow" id="btn-exit-account" onclick="callpopup_exit_account()">
+                    <p class="btn-text">Выйти из аккаунта</p>
+                </button>
             </div>
         </div>
-        <div class="favourites-popup" id="popup2">
+        <div class="favourites-popup mb-3" id="popup2">
             <div class="favourites-popup-wrapper d-flex justify-content-center">
                 <div>
                     <div class="mb-1" style="width: 335px">
@@ -103,6 +106,24 @@
                         <div class="panel round-down round-down d-flex align-items-center justify-content-center">
                             <h3 class="text-common"><a onclick="closepopup()"
                                     style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="favourites-popup" id="popup3">
+            <div class="favourites-popup-wrapper d-flex justify-content-center">
+                <div>
+                    <div class="mb-1" style="width: 335px">
+                        <div class="panel round-up d-flex align-items-center justify-content-center" onclick="logout()">
+                            <h3 class="text-common"><a style="color:rgba(221, 58, 58, 1);">Выйти</a></h3>
+                        </div>
+                    </div>
+                    <div class="mb-3" style="width: 335px">
+                        <div class="panel round-down round-down d-flex align-items-center justify-content-center"
+                            onclick="closepopup_exit_account()">
+                            <h3 class="text-common"><a style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a>
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -127,6 +148,18 @@
         }
         function delete_history() {
             closepopup();
+        }
+
+
+        function callpopup_exit_account() {
+            document.getElementById('popup3').style.display = 'block';
+        }
+        function closepopup_exit_account() {
+            document.getElementById('popup3').style.display = 'none';
+        }
+        function logout() {
+            localStorage.removeItem('auth_key');
+            document.location.href = '../Login/login.html';
         }
     </script>
 

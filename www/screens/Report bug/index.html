@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,82 +23,114 @@
             </h3>
         </div>
     </div>
-<main style="display:flex; flex-direction: column; align-items: center;">
-    <div class="d-flex flex-column align-items-center" style="height:calc(80%); align-items: center; justify-content: flex-start; margin-top: 3rem; max-width: 280px;">
-        <div class="mb-3" style="width:100%;">
-            <input type="email" class="form-control" id="email_input" placeholder="name@example.com">
-        </div>
-        <div class="mb-3 error-text-container">
-            <textarea cols="23" rows="10"  class="error-text" required="required" wrap="soft" placeholder="Опишите ошибку, с которой вы столкнулись" id="textarea_bug"></textarea>
-        </div>
-        <label for="exampleFormControlInput4" class="form-label line-success" id="email_success" style="display:none;">
-            <div class="d-inline-flex align-items-center">
-                <div class="success-icon"></div>
-                <div>Отправлено!</div>
+    <main style="display:flex; flex-direction: column; align-items: center;">
+        <div class="d-flex flex-column align-items-center"
+            style="height:calc(80%); align-items: center; justify-content: flex-start; margin-top: 3rem; max-width: 280px;">
+            <div class="mb-3" style="width:100%;">
+                <input type="email" class="form-control" id="email_input" placeholder="name@example.com">
             </div>
-        </label>
-        <div class="mb-3"  style="margin-top:3rem;">
-            <button class="btn btn-filled" id="send_bug_button"><p class="btn-text">Отправить</p></button>
+            <div class="mb-3 error-text-container">
+                <textarea cols="23" rows="10" class="error-text" required="required" wrap="soft"
+                    placeholder="Опишите ошибку, с которой вы столкнулись" id="textarea_bug"></textarea>
+            </div>
+            <label for="exampleFormControlInput4" class="form-label line-success" id="email_success"
+                style="display:none;">
+                <div class="d-inline-flex align-items-center">
+                    <div class="success-icon"></div>
+                    <div>Отправлено!</div>
+                </div>
+            </label>
+            <div class="mb-3" style="margin-top:3rem;">
+                <button class="btn btn-filled" id="send_bug_button">
+                    <p class="btn-text">Отправить</p>
+                </button>
+            </div>
+
+            <div>
+                <a href="../Profile+avatar/profile_main.html">
+                    <button class="btn btn-hollow" id="return_button">
+                        <p class="btn-text">Назад</p>
+                    </button>
+                </a>
+            </div>
         </div>
 
-        <div>
-            <a href="../Profile+avatar/profile_main.html">
-                <button class="btn btn-hollow" id="return_button"><p class="btn-text">Назад</p></button>
-            </a>
-        </div>
-    </div>
-
-</main>
+    </main>
 
 
 </body>
+<script src="../../cordova.js"></script>
+<script>
+    var error_message = document.getElementById("textarea_bug").value
+    function send_bug() {
+        cordovaHTTP.post("https://park.backend.xredday.ru/",
+            {
+                'request':
+                {
+                    "action": "emsg",
+                    "data": error_message,
+                }
+            },
+            {},
+            function (response) {
+                // prints 200
+                console.log(response.status);
+            },
+            function (response) {
+                // prints 403
+                console.log(response.status);
+            }
+        );
+    }
+</script>
 <script>
     const validateEmail = (email) => {
-            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-};
-emailSuccessLabel = document.getElementById("email_success");
-returnButton = document.getElementById("return_button");
-sendBugButton = document.getElementById("send_bug_button");
-emailField = document.getElementById("email_input");
-bugText = document.getElementById("textarea_bug");
-const callbackFunction = function() {
-    emailField.classList.remove("line-success");
-    emailField.classList.remove("line-danger");
-    sendBugButton.classList.add("btn-hollow");
-    sendBugButton.classList.remove("btn-filled");
-    sendBugButton.disabled = true;
-    returnButton.classList.remove("btn-hollow");
-    returnButton.classList.add("btn-hollow2");
-
-    if (validateEmail(emailField.value)) {
-        emailField.classList.add("line-success");
-        
-        if (bugText.value.length > 0){
-            sendBugButton.disabled = false;
-            sendBugButton.classList.add("btn-filled");
-            sendBugButton.classList.remove("btn-hollow");
-        }
-    } else if (emailField.value){
-        emailField.classList.add("line-danger");
+        var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
     };
-};
-emailField.onchange = callbackFunction;
-bugText.onchange = callbackFunction;
-callbackFunction()
+    emailSuccessLabel = document.getElementById("email_success");
+    returnButton = document.getElementById("return_button");
+    sendBugButton = document.getElementById("send_bug_button");
+    emailField = document.getElementById("email_input");
+    bugText = document.getElementById("textarea_bug");
+    const callbackFunction = function () {
+        emailField.classList.remove("line-success");
+        emailField.classList.remove("line-danger");
+        sendBugButton.classList.add("btn-hollow");
+        sendBugButton.classList.remove("btn-filled");
+        sendBugButton.disabled = true;
+        returnButton.classList.remove("btn-hollow");
+        returnButton.classList.add("btn-hollow2");
 
-sendBugButton.onclick = function() {
-            sendBugButton.setAttribute("style", "display:none;");
-            emailField.setAttribute("disabled", "true");
-            emailField.setAttribute("style", "color:gray");
-            bugText.disabled = true;
-            returnButton.classList.add("btn-hollow2");
-            returnButton.classList.add("btn-highlight");
-            returnButton.classList.remove("btn-hollow");       
-            emailField.remove();
-            bugText.remove();
-            emailSuccessLabel.setAttribute("style","display:default;");
-}
+        if (validateEmail(emailField.value)) {
+            emailField.classList.add("line-success");
+
+            if (bugText.value.length > 0) {
+                sendBugButton.disabled = false;
+                sendBugButton.classList.add("btn-filled");
+                sendBugButton.classList.remove("btn-hollow");
+            }
+        } else if (emailField.value) {
+            emailField.classList.add("line-danger");
+        };
+    };
+    emailField.onchange = callbackFunction;
+    bugText.onchange = callbackFunction;
+    callbackFunction()
+
+    sendBugButton.onclick = function () {
+        sendBugButton.setAttribute("style", "display:none;");
+        emailField.setAttribute("disabled", "true");
+        emailField.setAttribute("style", "color:gray");
+        bugText.disabled = true;
+        returnButton.classList.add("btn-hollow2");
+        returnButton.classList.add("btn-highlight");
+        returnButton.classList.remove("btn-hollow");
+        emailField.remove();
+        bugText.remove();
+        emailSuccessLabel.setAttribute("style", "display:default;");
+        send_bug();
+    }
 </script>
 
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,9 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="../../css/leaflet.css" />
-    <link rel="stylesheet" href="../../css/leaflet-routing-machine.css"/>
-    <link rel="stylesheet" href="../../css/MarkerCluster.css"/>
-    <link rel="stylesheet" href="../../css/MarkerCluster.Default.css"/>
+    <link rel="stylesheet" href="../../css/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="../../css/MarkerCluster.css" />
+    <link rel="stylesheet" href="../../css/MarkerCluster.Default.css" />
     <script src="../../js/leaflet.js"></script>
     <script src="../../js/leaflet-routing-machine.js"></script>
     <script src="../../js/leaflet.markercluster.js"></script>
@@ -18,7 +19,8 @@
     <script src="../../js/lunr.ru.js"></script>
     <title>Home</title>
 </head>
-<body onload="update_zoom()" >
+
+<body onload="update_zoom()">
     <div>
         <div id="map" style="z-index: 0">
         </div>
@@ -39,27 +41,43 @@
         </div>
         <div class="navbar panel d-inline-flex justify-content-evenly" style="z-index: 2;">
             <div class="d-flex flex-column align-items-center">
-                <div><a href="#"><div class="blue-search-icon"></div></a></div>
-                <div><h3 class="text-description">Поиск</h3></div>
+                <div><a href="#">
+                        <div class="blue-search-icon"></div>
+                    </a></div>
+                <div>
+                    <h3 class="text-description">Поиск</h3>
+                </div>
             </div>
             <div class="d-flex flex-column align-items-center">
-                <div><a href="../Login/login.html"><div class="profile-icon"></div></a></div>
-                <div><h3 class="text-description">Профиль</h3></div>
+                <div><a href="../Profile+avatar/profile_main.html">
+                        <div class="profile-icon"></div>
+                    </a></div>
+                <div>
+                    <h3 class="text-description">Профиль</h3>
+                </div>
             </div>
             <div class="d-flex flex-column align-items-center">
-                <div><a href="../Favourites/favourites.html"><div class="bookmark-icon"></div></a></div>
-                <div><h3 class="text-description">Избранное</h3></div>
+                <div><a href="../Favourites/favourites.html">
+                        <div class="bookmark-icon"></div>
+                    </a></div>
+                <div>
+                    <h3 class="text-description">Избранное</h3>
+                </div>
 
             </div>
         </div>
         <div class="search-bar-wrapper" style="z-index: 10;">
             <div class="search-bar d-inline-flex justify-content-between align-items-center container-fluid">
                 <div id="search-icon" class="grey-search-icon" onclick="search_history_close()"></div>
-                <div class="w-100"><input onclick="search_history_open()" type="email" class="form-control" id="line-edit" placeholder="Поиск..."></div>
-                <div><a href="#"><div class="menu-icon"></div></a></div>
+                <div class="w-100"><input onclick="search_history_open()" type="email" class="form-control"
+                        id="line-edit" placeholder="Поиск..."></div>
+                <div><a href="#">
+                        <div class="menu-icon"></div>
+                    </a></div>
             </div>
         </div>
-        <div class="buttons-bar h-100 d-flex flex-column align-items-center justify-content-center" style="z-index: 1.9;">
+        <div class="buttons-bar h-100 d-flex flex-column align-items-center justify-content-center"
+            style="z-index: 1.9;">
             <div id="zoomControl">
                 <div class="mb-2">
                     <button class="btn btn-hollow btn-gps btn-plus" onclick="zoomin()">
@@ -84,24 +102,41 @@
                     </div>
                     <div class="d-flex flex-column w-100 container">
                         <div class="d-inline-flex justify-content-between">
-                            <div><h3 class="text-header">Парковка</h3></div>
-                            <div><div class="close-icon d-flex justify-content-center align-items-center"><div><a href="#" onclick="close_info()">x</a></div></div></div>
+                            <div>
+                                <h3 class="text-header">Парковка</h3>
+                            </div>
+                            <div>
+                                <div class="close-icon d-flex justify-content-center align-items-center">
+                                    <div><a href="#" onclick="close_info()">x</a></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3"><h3 class="text-description" id="text-description">Россия, Ярославль, улица Чайковского</h3></div>
+                        <div class="mb-3">
+                            <h3 class="text-description" id="text-description">Россия, Ярославль, улица Чайковского</h3>
+                        </div>
                         <div class="d-inline-flex justify-content-between mb-2">
-                            <div><h3 class="text-description">Круглосуточно</h3> </div>
-                            <div><h3 class="text-description">1,2 km</h3> </div>
+                            <div>
+                                <h3 class="text-description">Круглосуточно</h3>
+                            </div>
+                            <div>
+                                <h3 class="text-description">1,2 km</h3>
+                            </div>
                         </div>
                         <div class="d-inline-flex justify-content-evenly">
                             <div><button class="btn btn-hollow new" onclick="route_to_park()">Маршрут</button> </div>
-                            <div><button class="btn btn-hollow new"><div class="download-icon"></div></button> </div>
-                            <div><button class="btn btn-hollow new"><div class="bookmark2-icon"></div></button> </div>
+                            <div><button class="btn btn-hollow new">
+                                    <div class="download-icon"></div>
+                                </button> </div>
+                            <div><button class="btn btn-hollow new">
+                                    <div class="bookmark2-icon"></div>
+                                </button> </div>
                             <div class="status-icon-1 d-flex justify-content-center align-items-center">
                                 <div>
                                     <p class="status-icon-text">1</p>
                                 </div>
                             </div>
-                            <div><button class="btn btn-hollow2 new" onclick="document.location.href='../Parkzone%20INFO/park_info.html'"></button></div>
+                            <div><button class="btn btn-hollow2 new"
+                                    onclick="document.location.href='../Parkzone%20INFO/park_info.html'"></button></div>
                         </div>
                     </div>
                 </div>
@@ -130,40 +165,40 @@
     <script>
         var current_park = [57.615398, 39.885228];
         var park_id = 0;
-        function search_history_open(){
+        function search_history_open() {
             document.getElementById('search-history').style.display = 'block';
             document.getElementById('search-icon').classList.add('grey-close-icon');
             document.getElementById('search-icon').classList.remove('grey-search-icon');
         }
-        function search_history_close(){
+        function search_history_close() {
             document.getElementById('search-history').style.display = 'none';
             document.getElementById('search-icon').classList.remove('grey-close-icon');
             document.getElementById('search-icon').classList.add('grey-search-icon');
         }
-        function get_info(park){
-            coords = [locs[park][0],locs[park][1]];
+        function get_info(park) {
+            coords = [locs[park][0], locs[park][1]];
             document.getElementById("info").style.display = "block";
             current_park = coords;
             park_id = park;
-            if(localStorage != undefined){
-                localStorage.setItem('prev_place',park_id);
+            if (localStorage != undefined) {
+                localStorage.setItem('prev_place', park_id);
             }
             document.getElementById('text-description').innerHTML = locs[park][3];
         }
-        function close_info(){
+        function close_info() {
             document.getElementById("info").style.display = "none";
         }
-        function update_zoom(){
-            if(localStorage != undefined){
-                if(localStorage.getItem('zoomControl') == 'true'){
+        function update_zoom() {
+            if (localStorage != undefined) {
+                if (localStorage.getItem('zoomControl') == 'true') {
                     document.getElementById('zoomControl').style.display = 'block';
-                }else{
+                } else {
                     document.getElementById('zoomControl').style.display = 'none';
                 }
             }
         }
-        function route_to_park(){
-            make_route(pos,current_park);
+        function route_to_park() {
+            make_route(pos, current_park);
         }
     </script>
     <script src="../../cordova.js"></script>
@@ -173,8 +208,9 @@
         var bcrypt = dcodeIO.bcrypt;
         let s = 'asdasd';
         let salt = bcrypt.genSaltSync();
-        let hashed = bcrypt.hashSync(s,salt);
-        let result = bcrypt.compareSync(s,hashed);
+        let hashed = bcrypt.hashSync(s, salt);
+        let result = bcrypt.compareSync(s, hashed);
     </script>
 </body>
+
 </html>

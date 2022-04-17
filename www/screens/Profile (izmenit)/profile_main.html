@@ -100,6 +100,7 @@
                 }
             }
         }
+
         function update_user(field, value, auth_key = localStorage.getItem("auth_key")) {
             if (!value || !field) {
                 return false;
@@ -110,13 +111,13 @@
             cordovaHTTP.post("https://park.backend.xredday.ru/",
                 {
                     'request':
-                        {
-                            "action": "pupd",
-                            "data": {
-                                field: value,
-                            },
-                            "user_key": auth_key,
-                        }
+                    {
+                        "action": "pupd",
+                        "data": {
+                            field: value,
+                        },
+                        "user_key": auth_key,
+                    }
                 },
                 {},
                 function (response) {
@@ -137,14 +138,14 @@
             let value;
             if (localStorage != undefined) {
                 ['name', 'gender', 'dob', 'phone'].forEach(el => {
-                    if (el == 'dob'){
+                    if (el == 'dob') {
                         time = new Date(
                             document.getElementById('birth1').value,
                             document.getElementById('birth2').value,
                             document.getElementById('birth3').value,
                         )
                         value = time.getTime();
-                    }else{
+                    } else {
                         value = document.getElementById(el).value;
                     }
                     console.log(document.getElementById(el))
