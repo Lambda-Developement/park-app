@@ -8,11 +8,15 @@
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="style.css">
+    <title>profileEdit</title>
 
+<<<<<<< Updated upstream:www/screens/ProfileEdit/profile_main.html
     <title>Profile+avatar</title>
     <script src="../../js/redirects.js"></script>
     <script src="../../js/deeplinks.js"></script>
 
+=======
+>>>>>>> Stashed changes:www/screens/Profile (izmenit)/profile_main.html
 </head>
 
 <body onload="check_credentials()">
@@ -28,137 +32,187 @@
             </h3>
         </div>
     </div>
+    <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
-    <div class="profile-screen">
-        <div class="avatar-area">
-            <img src="../../jpg/avatar.png" alt="roma.jpeg" class="avatar-area__image">
-            <h3 class="text-bold" id="header-name">
-                Пользователь
-            </h3>
+    <form action="https://trip.backend.xredday.ru/" method="post" enctype="multipart/form-data" target="dummyframe">
+        <div class="avatar-area" style="display:flex;flex-direction:column;justify-content: center;">
+            <label for="image" style="cursor:pointer;">
+
+                <input type="text" name="request" style="display:none;" id="hidden_input">
+                <script>
+                    document.getElementById("hidden_input").value = `{"action":"picupd","user_key":"${localStorage.auth_key}"}`;
+                </script>
+                <input type='file' name="new_avatar_img" style="display: none;" id="image"
+                    accept="image/jpeg, image/png">
+                <div style="display:flex; justify-content:center;align-items:center;">
+                    <img id="avatar" src="../../jpg/avatar.png" alt="avatar" class="avatar-area__image">
+                    <img src="../../jpg/pencil.svg" alt=""
+                        style="position: absolute; height:64px; background-color: #FFFFFFAA; border-radius: 50% 0 50% 0; visibility: 0.5;">
+                </div>
+                <script>
+                    image.onchange = evt => {
+                        const [file] = image.files
+                        if (file) {
+                            avatar.src = URL.createObjectURL(file)
+                        }
+                        document.getElementById("image").form.submit()
+                    }
+                </script>
+                <h3 class="text-bold" id="header-name" style="margin-top: 2rem;">
+                    Григорий
+                </h3>
+            </label>
+            <!-- <button type="submit"
+                style="all:unset; color:black; text-decoration:underline; text-align: center; font-size: 0.8rem;"
+                onsubmit="">Сменить<br>изображение</button> -->
         </div>
-        <div class="panel d-inline-flex align-items-center mt-3">
-            <div class="me-3">
-                <h3 class="text-common">Имя</h3>
+
+    </form>
+    <form action="#" method="post" enctype="multipart/form-data">
+
+        <div class="profile-screen">
+
+            <div class="panel d-inline-flex align-items-center mt-3">
+                <div class="me-3">
+                    <h3 class="text-common">Имя</h3>
+                </div>
+                <div class="w-100">
+                    <input type="text" class="form-control" id="name" placeholder="">
+                </div>
             </div>
-            <div class="w-100">
-                <input type="email" class="form-control" id="name" placeholder="">
+            <div class="panel d-inline-flex align-items-center">
+                <div class="me-3">
+                    <h3 class="text-common">Пол</h3>
+                </div>
+                <div class="w-100 d-flex flex-row">
+                    <select class="form-select-updated" id="gender" style="max-width: 120px;">
+                        <option value="1">Мужской</option>
+                        <option value="2">Женский</option>
+                    </select>
+                </div>
             </div>
+            <div class="panel d-inline-flex align-items-center">
+                <div class="me-3">
+                    <h3 class="text-common">Дата рождения</h3>
+                </div>
+                <div class="w-100 me-3">
+                    <input type="number" class="form-control" id="birth1" placeholder="Год">
+                </div>
+                <div class="me-3">
+                    <input type="number" class="form-control" id="birth2" placeholder="Месяц">
+                </div>
+                <div class="me-3">
+                    <input type="number" class="form-control" id="birth3" placeholder="День">
+                </div>
+            </div>
+            <div class="panel d-inline-flex align-items-center">
+                <div class="me-3">
+                    <h3 class="text-common">E-mail</h3>
+                </div>
+                <div class="w-100">
+                    <input type="email" class="form-control" id="login" placeholder="">
+                </div>
+            </div>
+            <div class="panel d-inline-flex align-items-center">
+                <div class="me-3">
+                    <h3 class="text-common">Телефон</h3>
+                </div>
+                <div class="w-100">
+                    <input type="tel" class="form-control" id="phone" placeholder="">
+                </div>
+            </div>
+            <a href="../ResetPassword/changePassword.html">
+                <div class="mt-3 d-flex justify-content-center align-items-center w-100">
+                    <div><button type="button" class="btn btn-filled2" onclick="apply_changes()">
+                            <p class="btn-text">Сменить пароль</p>
+                        </button></div>
+                </div>
+            </a>
+            <div class="mt-3 d-flex justify-content-center align-items-center w-100">
+                <div><button type="submit" class="btn btn-filled" onclick="apply_changes()">
+                        <p class="btn-text">Сохранить</p>
+                    </button></div>
+            </div>
+
         </div>
-        <div class="panel d-inline-flex align-items-center">
-            <div class="me-3">
-                <h3 class="text-common">Пол</h3>
-            </div>
-            <div class="w-100">
-                <input type="email" class="form-control" id="gender" placeholder="">
-            </div>
-        </div>
-        <div class="panel d-inline-flex align-items-center">
-            <div class="me-3">
-                <h3 class="text-common">Дата рождения</h3>
-            </div>
-            <div class="me-3">
-                <input type="email" class="form-control" id="birth1" placeholder="">
-            </div>
-            <div class="me-3">
-                <input type="email" class="form-control" id="birth2" placeholder="">
-            </div>
-            <div class="w-100">
-                <input type="email" class="form-control" id="birth3" placeholder="">
-            </div>
-        </div>
-        <div class="panel d-inline-flex align-items-center">
-            <div class="me-3">
-                <h3 class="text-common">E-mail</h3>
-            </div>
-            <div class="w-100">
-                <input type="email" class="form-control" id="login" placeholder="">
-            </div>
-        </div>
-        <div class="panel d-inline-flex align-items-center">
-            <div class="me-3">
-                <h3 class="text-common">Телефон</h3>
-            </div>
-            <div class="w-100">
-                <input type="email" class="form-control" id="phone" placeholder="">
-            </div>
-        </div>
-        <div class="mt-3 d-flex justify-content-center align-items-center w-100">
-            <div><button class="btn btn-filled" onclick="apply_changes()">
-                    <p class="btn-text">Сохранить</p>
-                </button></div>
-        </div>
-    </div>
+    </form>
+    <script src="../../cordova.js"></script>
+    <script src="../../js/api.js"></script>
+    <!-- <script src="../../ui-kit/js/redirects.js"></script> -->
+    <!-- <script src="../../ui-kit/js/deeplinks.js"></script> -->
+
     <script>
+        const url = 'https://trip.backend.xredday.ru';
         function check_credentials() {
+
+            api_userdata(localStorage.auth_key).then((res) => localStorage.name = res[2]);
+            document.getElementById('header-name').innerHTML = localStorage.name;
+
             if (localStorage != undefined) {
-                ['name', 'sex', 'birth1', 'birth2', 'birth3', 'email', 'phone'].forEach(el => {
-                    if (localStorage.getItem(el) != null && localStorage.getItem(el).length > 0) {
+                ['name', 'gender', 'login', 'phone', 'birth1', 'birth2', 'birth3'].forEach(el => {
+                    if (localStorage.getItem(el) != 'null' && localStorage.getItem(el) != null && localStorage.getItem(el).length > 0) {
                         document.getElementById(el).value = localStorage.getItem(el);
                     } else {
                         document.getElementById(el).value = '';
                     }
+
                 });
-                if (localStorage.getItem('name') != null && localStorage.getItem('name').length > 0) {
-                    document.getElementById('header-name').innerHTML = localStorage.getItem('name');
-                }
+
             }
         }
 
-        function update_user(field, value, auth_key = localStorage.getItem("auth_key")) {
-            if (!value || !field) {
-                return false;
-            }
-            console.log(`update_user(${field}, ${value}, ${auth_key})\n`);
-
-            //TODO: CALL TO PUPD
-            cordovaHTTP.post("https://park.backend.xredday.ru/",
-                {
-                    'request':
-                    {
-                        "action": "pupd",
-                        "data": {
-                            field: value,
-                        },
-                        "user_key": auth_key,
-                    }
-                },
-                {},
-                function (response) {
-                    // prints 200
-                    localStorage.setItem(field, value);
-                    console.log(response.status);
-                    console.log(response.data);
-                },
-                function (response) {
-                    // prints 403
-                    console.log(response.status);
-                    console.log(response.data);
-                }
-            );
-            return true;
-        }
         function apply_changes() {
-            let value;
             if (localStorage != undefined) {
+                //['name','sex','birth1','birth2','birth3','email','phone'].forEach(el=>{
+                let values = {};
+                let value;
                 ['name', 'gender', 'dob', 'phone'].forEach(el => {
                     if (el == 'dob') {
                         time = new Date(
-                            document.getElementById('birth1').value,
-                            document.getElementById('birth2').value,
-                            document.getElementById('birth3').value,
+                            document.getElementById('birth1').value,  // year
+                            document.getElementById('birth2').value, // month
+                            document.getElementById('birth3').value, // daY
                         )
                         value = time.getTime();
                     } else {
                         value = document.getElementById(el).value;
                     }
                     console.log(document.getElementById(el))
-                    localStorage.setItem(el, document.getElementById(el).value);
+                    values[el] = value;
+                    localStorage.setItem(el, value);
                 });
+                console.log(values);
+                api_pupd(localStorage.auth_key, values).then((a) => {
+                    console.log('userdata updated');
+                });
+                el = document.getElementById('new-prof-pic');
+                if (el.value) {
+
+                }
             }
             check_credentials();
+            redirect_profile();
         }
+        document.addEventListener('deviceready', () => {
+            api_userdata(localStorage.auth_key).then((userdata) => {
+                localStorage.setItem('name', userdata[2]);
+                localStorage.setItem('gender', userdata[3]);
+                localStorage.setItem('login', userdata[5]);
+                localStorage.setItem('phone', userdata[6]);
+                let dob = new Date(userdata[4]);
+                localStorage.setItem('birth1', dob.getFullYear());
+                localStorage.setItem('birth2', dob.getMonth());
+                localStorage.setItem('birth3', dob.getDate());
+                if (userdata[1] != null) {
+                    document.getElementById('avatar').src = `${url}/${userdata[1]}`;
+                }
+                setTimeout(() => {
+                    document.getElementById('gender').value = localStorage.getItem('gender');
+                }, 1000);
+                check_credentials();
+            });
+        });
     </script>
-
 </body>
 
 </html>

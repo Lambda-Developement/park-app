@@ -165,7 +165,11 @@
             document.location.href = '../Login/login.html';
         }
     </script>
-
+    <script src="../../cordova.js"></script>
+    <script src="../../js/api.js"></script>
+    <script>
+        document.addEventListener('deviceready', api_kval(localStorage.auth_key).then(() => { }, () => document.location.href = '../Login/login.html'))
+    </script>
 </body>
 
 </html>
