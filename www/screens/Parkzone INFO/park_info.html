@@ -27,7 +27,7 @@
             <div class="ontop d-inline-flex align-items-center">
                 <div class="photos-icon"></div>
                 <div>
-                    <p class="text-attention">3</p>
+                    <p class="text-attention">1</p>
                 </div>
             </div>
         </div>
@@ -163,7 +163,7 @@
         </div>
     </div>
     <div class="container" style="padding: 0">
-        <div class="panel geoinfo"  onclick="switch_review()">
+        <div class="panel geoinfo" onclick="switch_review()">
             <div class="panel-grey">
                 <div class="d-inline-flex align-items-center">
                     <div style="margin-right: 10px">
@@ -185,7 +185,7 @@
                 <h3 class="text-description mt-3 text-center">
                     Оцените и напишите отзыв
                 </h3>
-                <div class="d-inline-flex justify-content-center container" >
+                <div class="d-inline-flex justify-content-center container">
                     <div class="star-icon"></div>
                     <div class="star-icon"></div>
                     <div class="star-icon"></div>
@@ -791,34 +791,34 @@
             });
             update_icons();
         }
-        function star_rate_clicked(el){
-            ['1','2','3','4','5'].forEach(b=>{
-                if(el.id == 'star-rate-'+b){
+        function star_rate_clicked(el) {
+            ['1', '2', '3', '4', '5'].forEach(b => {
+                if (el.id == 'star-rate-' + b) {
                     rate = parseInt(b);
-                    if(review_btn_state)
+                    if (review_btn_state)
                         review_btn_click();
                 }
             })
             update_icons();
 
         }
-        function update_icons(){
-            for(i = 1;i<=5;i++){
-                if(i <= rate){
-                    document.getElementById('star-rate-'+i).classList.remove('star-icon');
-                    document.getElementById('star-rate-'+i).classList.add('rate-icon-big')
-                }else{
-                    document.getElementById('star-rate-'+i).classList.remove('rate-icon-big');
-                    document.getElementById('star-rate-'+i).classList.add('star-icon');
+        function update_icons() {
+            for (i = 1; i <= 5; i++) {
+                if (i <= rate) {
+                    document.getElementById('star-rate-' + i).classList.remove('star-icon');
+                    document.getElementById('star-rate-' + i).classList.add('rate-icon-big')
+                } else {
+                    document.getElementById('star-rate-' + i).classList.remove('rate-icon-big');
+                    document.getElementById('star-rate-' + i).classList.add('star-icon');
                 }
             }
-            for(i = 1;i<=5;i++){
-                if(i <= rate){
-                    document.getElementById('rate-'+i).classList.remove('star-icon-rate');
-                    document.getElementById('rate-'+i).classList.add('rate-icon')
-                }else{
-                    document.getElementById('rate-'+i).classList.remove('rate-icon');
-                    document.getElementById('rate-'+i).classList.add('star-icon-rate');
+            for (i = 1; i <= 5; i++) {
+                if (i <= rate) {
+                    document.getElementById('rate-' + i).classList.remove('star-icon-rate');
+                    document.getElementById('rate-' + i).classList.add('rate-icon')
+                } else {
+                    document.getElementById('rate-' + i).classList.remove('rate-icon');
+                    document.getElementById('rate-' + i).classList.add('star-icon-rate');
                 }
             }
         }

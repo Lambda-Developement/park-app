@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,129 +9,155 @@
     <link rel="stylesheet" href="styles.css">
     <title>Favourites</title>
 </head>
+
 <body>
 
 
-<div class="screen-hat">
-    <button class="btn arrow-back">
-        <a href="../Profile+avatar/profile_main.html">
-            <img src="../../svg/arrow_back.svg" alt="arrow-back">
-        </a>
-    </button>
-    <div class="mb-3">
-        <h3 class="text-header">
-            Избранные места
-        </h3>
-    </div>
-</div>
-<div class="spacer"></div>
-<div id="places-here">
-    <div class="panel-fill d-inline-flex align-items-center">
-        <div class="home-icon"></div>
-        <div class="flex-row">
-            <div><h3 class="text-common text-common2">Дом</h3></div>
-            <div><h3 class="text-description">улица Городской Вал, 31</h3></div>
-        </div>
-        <div style="width: 100%;" class="d-flex align-items-center justify-content-end">
-            <!-- Ниже отсебятина -->
-            <div><h3 class="text-link"><a href="#" onclick="callpopup(this)">Изменить</a> </h3></div>
+    <div class="screen-hat">
+        <button class="btn arrow-back">
+            <a href="../Profile+avatar/profile_main.html">
+                <img src="../../svg/arrow_back.svg" alt="arrow-back">
+            </a>
+        </button>
+        <div class="mb-3">
+            <h3 class="text-header">
+                Избранные места
+            </h3>
         </div>
     </div>
-    <div class="panel-fill d-inline-flex align-items-center">
-        <div class="work-icon"></div>
-        <div class="flex-row">
-            <div><h3 class="text-common text-common2">Работа</h3></div>
-            <div style="display: none"><h3 class="text-description">улица Городской Вал, 31</h3></div>
-            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->
+    <div class="spacer"></div>
+    <div id="places-here">
+        <div class="panel-fill d-inline-flex align-items-center">
+            <div class="home-icon"></div>
+            <div class="flex-row">
+                <div>
+                    <h3 class="text-common text-common2">Дом</h3>
+                </div>
+                <div>
+                    <h3 class="text-description">улица Городской Вал, 31</h3>
+                </div>
+            </div>
+            <div style="width: 100%;" class="d-flex align-items-center justify-content-end">
+                <!-- Ниже отсебятина -->
+                <div>
+                    <h3 class="text-link"><a href="#" onclick="callpopup(this)">Изменить</a> </h3>
+                </div>
+            </div>
         </div>
-        <div style="width: 100%;" class="d-flex align-items-center justify-content-end">
-            <div><h3 class="text-link"><a href="#" onclick="callpopup(this)">Добавить</a></h3></div>
+        <div class="panel-fill d-inline-flex align-items-center">
+            <div class="work-icon"></div>
+            <div class="flex-row">
+                <div>
+                    <h3 class="text-common text-common2">Работа</h3>
+                </div>
+                <div style="display: none">
+                    <h3 class="text-description">улица Городской Вал, 31</h3>
+                </div>
+                <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->
+            </div>
+            <div style="width: 100%; " class="d-flex align-items-center justify-content-end">
+                <div>
+                    <h3 class="text-link"><a href="#" onclick="callpopup(this)">Добавить</a></h3>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="panel-fill d-inline-flex align-items-center justify-content-center">
-    <div><h3 class="text-link"><a href="#" onclick="add_new_place()" >Новое место</a></h3></div>
-</div>
-
-<!-- Ниже идет попуп -->
-<div class="favourites-popup" id="popup1">
-    <div class="favourites-popup-wrapper d-flex justify-content-center">
+    <div class="panel-fill d-inline-flex align-items-center justify-content-center" onclick="add_new_place()"
+        style="cursor:pointer;">
         <div>
-            <div class="mb-3" style="width: 335px">
-                <div class="panel round-up d-flex align-items-center justify-content-center">
-                    <div><h3 class="text-common"><a href="#" onclick="make_route()" style="color:rgba(65,65,65,1);">Построить маршрут</a></h3></div>
+            <h3 class="text-link"><a href="#">Новое место</a></h3>
+        </div>
+    </div>
+
+    <!-- Ниже идет попуп -->
+    <div class="favourites-popup" id="popup1">
+        <div class="favourites-popup-wrapper d-flex justify-content-center">
+            <div>
+                <div class="mb-3" style="width: 335px">
+                    <div class="panel round-up d-flex align-items-center justify-content-center" onclick="make_route()"
+                        style="cursor:pointer;">
+                        <div>
+                            <h3 class="text-common"><a href="#" style="color:rgba(65,65,65,1);">Построить маршрут</a>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="panel d-flex align-items-center justify-content-center" onclick="change_address()"
+                        style="cursor:pointer;">
+                        <h3 class="text-common"><a href="#" style="color:rgba(65,65,65,1);">Указать другой адрес</a>
+                        </h3>
+                    </div>
+                    <div class="panel round-down d-flex align-items-center justify-content-center"
+                        onclick="delete_address()" style="cursor:pointer;">
+                        <h3 class="text-common"><a href="#" style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
+                    </div>
                 </div>
-                <div class="panel d-flex align-items-center justify-content-center">
-                    <h3 class="text-common"><a href="#" onclick="change_address()" style="color:rgba(65,65,65,1);">Указать другой адрес</a></h3>
-                </div>
-                <div class="panel round-down d-flex align-items-center justify-content-center">
-                    <h3 class="text-common"><a href="#" onclick="delete_address()" style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
-                </div>
-            </div>
-            <div class="mb-3" style="width: 335px">
-                <div class="panel round-up round-down d-flex align-items-center justify-content-center">
-                    <h3 class="text-common"><a href="#" onclick="closepopup()" style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a></h3>
+                <div class="mb-3" style="width: 335px">
+                    <div class="panel round-up round-down d-flex align-items-center justify-content-center"
+                        onclick="closepopup()" style="cursor:pointer;">
+                        <h3 class="text-common"><a href="#"
+                                style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a></h3>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-    var home=[57.625498, 39.884828];
-    var other=[];
-    var current = null;
-    function add_new_place(){
-        document.getElementById('places-here').innerHTML += "" +
-            "<div class=\"panel-fill d-inline-flex align-items-center\">\n" +
-            "        <div class=\"other-icon\"></div>\n" +
-            "        <div class=\"flex-row\">\n" +
-            "            <div><h3 class=\"text-common text-common2\">Метка</h3></div>\n" +
-            "            <div style='display:none;'><h3 class=\"text-description\"></h3></div>\n" +
-            "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
-            "        </div>\n" +
-            "        <div style=\"width: 100%;\" class=\"d-flex align-items-center justify-content-end\">\n" +
-            "            <div><h3 class=\"text-link\"><a href=\"#\" onclick=\"callpopup(this)\">Добавить</a></h3></div>\n" +
-            "        </div>\n" +
-            "    </div>";
-    }
-    function make_route(){
-        if(current.children[1].children[0].children[0].innerHTML == 'Дом'){
-            if(localStorage != undefined){
-                localStorage.setItem('d_lat',home[0]);
-                localStorage.setItem('d_lon',home[1]);
-                document.location.href='../../screens/Home/home.html';
+    <script>
+        var home = [57.625498, 39.884828];
+        var other = [];
+        var current = null;
+        function add_new_place() {
+            document.getElementById('places-here').innerHTML += "" +
+                "<div class=\"panel-fill d-inline-flex align-items-center\">\n" +
+                "        <div class=\"other-icon\"></div>\n" +
+                "        <div class=\"flex-row\">\n" +
+                "            <div><h3 class=\"text-common text-common2\">Метка</h3></div>\n" +
+                "            <div style='display:none;'><h3 class=\"text-description\"></h3></div>\n" +
+                "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
+                "        </div>\n" +
+                "        <div style=\"width: 100%;\" class=\"d-flex align-items-center justify-content-end\">\n" +
+                "            <div><h3 class=\"text-link\"><a href=\"#\" onclick=\"callpopup(this)\">Добавить</a></h3></div>\n" +
+                "        </div>\n" +
+                "    </div>";
+        }
+        function make_route() {
+            if (current.children[1].children[0].children[0].innerHTML == 'Дом') {
+                if (localStorage != undefined) {
+                    localStorage.setItem('d_lat', home[0]);
+                    localStorage.setItem('d_lon', home[1]);
+                    document.location.href = '../../screens/Home/home.html';
+                }
             }
         }
-    }
-    function change_address(){
-        // <div style='display: none'><input type="text" class="form-control" id='review-input' placeholder="..."></div>
-        current.children[1].innerHTML += "<div><input onfocusout='save_new_address()' type=\"text\" class=\"form-control\" id='review-input' placeholder=\"...\"></div>";
-        current.children[1].children[1].style.display = "none";
-        closepopup()
-    }
-    function delete_address(){
-        if(current.children[1].children[0].children[0].innerHTML == 'Метка'){
-            current.remove();
-        }else {
+        function change_address() {
+            // <div style='display: none'><input type="text" class="form-control" id='review-input' placeholder="..."></div>
+            current.children[1].innerHTML += "<div><input onfocusout='save_new_address()' type=\"text\" class=\"form-control\" id='review-input' placeholder=\"...\"></div>";
             current.children[1].children[1].style.display = "none";
-            current.children[2].children[0].children[0].children[0].innerHTML = "Добавить";
+            closepopup()
         }
-        closepopup()
-    }
-    function callpopup(el){
-        document.getElementById("popup1").style.display='block';
-        current = el.parentElement.parentElement.parentElement.parentElement;
-    }
-    function closepopup(){
-        document.getElementById("popup1").style.display='none';
-    }
-    function save_new_address(){
-        let text = current.children[1].children[2].children[0].value;
-        current.children[1].children[2].remove();
-        current.children[1].children[1].style.display = "block";
-        current.children[1].children[1].children[0].innerHTML = text;
-        current.children[2].children[0].children[0].children[0].innerHTML = "Изменить";
-    }
-</script>
+        function delete_address() {
+            if (current.children[1].children[0].children[0].innerHTML == 'Метка') {
+                current.remove();
+            } else {
+                current.children[1].children[1].style.display = "none";
+                current.children[2].children[0].children[0].children[0].innerHTML = "Добавить";
+            }
+            closepopup()
+        }
+        function callpopup(el) {
+            document.getElementById("popup1").style.display = 'block';
+            current = el.parentElement.parentElement.parentElement.parentElement;
+        }
+        function closepopup() {
+            document.getElementById("popup1").style.display = 'none';
+        }
+        function save_new_address() {
+            let text = current.children[1].children[2].children[0].value;
+            current.children[1].children[2].remove();
+            current.children[1].children[1].style.display = "block";
+            current.children[1].children[1].children[0].innerHTML = text;
+            current.children[2].children[0].children[0].children[0].innerHTML = "Изменить";
+        }
+    </script>
 </body>
+
 </html>
