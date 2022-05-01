@@ -137,10 +137,8 @@
     <!-- <script src="../../ui-kit/js/deeplinks.js"></script> -->
 
     <script>
-        const url = 'https://trip.backend.xredday.ru';
+        const url = 'https://park.backend.xredday.ru';
         function check_credentials() {
-
-            api_userdata(localStorage.auth_key).then((res) => localStorage.name = res[2]);
             document.getElementById('header-name').innerHTML = localStorage.name;
 
             if (localStorage != undefined) {
@@ -190,6 +188,7 @@
         }
         document.addEventListener('deviceready', () => {
             api_userdata(localStorage.auth_key).then((userdata) => {
+                debugger;
                 localStorage.setItem('name', userdata[2]);
                 localStorage.setItem('gender', userdata[3]);
                 localStorage.setItem('login', userdata[5]);
