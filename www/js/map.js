@@ -1,17 +1,17 @@
-var HEIGHT = window.innerHeight+'px';
+var HEIGHT = window.innerHeight + 'px';
 var pos = [57.625398, 39.885228];
 var scale = 13;
 var locs = [];
 
 var permissions;
 
-setTimeout(()=>{
+document.addEventListener('deviceready', () => {
     cordovaHTTP.post("https://park.backend.xredday.ru/",
         {
             'request':
-                {
-                    "action": "data",
-                }
+            {
+                "action": "data",
+            }
         },
         {},
         function (response) {
@@ -28,26 +28,26 @@ setTimeout(()=>{
             console.log(response.data);
         }
     );
-},2000);
+});
 
-var onSuccess = function(position) {
-    pos = [position.coords.latitude,position.coords.longitude];
-    console.log('Latitude: '          + position.coords.latitude          + '\n' +
-        'Longitude: '         + position.coords.longitude         + '\n' +
-        'Altitude: '          + position.coords.altitude          + '\n' +
-        'Accuracy: '          + position.coords.accuracy          + '\n' +
-        'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-        'Heading: '           + position.coords.heading           + '\n' +
-        'Speed: '             + position.coords.speed             + '\n' +
-        'Timestamp: '         + position.timestamp                + '\n');
+var onSuccess = function (position) {
+    pos = [position.coords.latitude, position.coords.longitude];
+    console.log('Latitude: ' + position.coords.latitude + '\n' +
+        'Longitude: ' + position.coords.longitude + '\n' +
+        'Altitude: ' + position.coords.altitude + '\n' +
+        'Accuracy: ' + position.coords.accuracy + '\n' +
+        'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+        'Heading: ' + position.coords.heading + '\n' +
+        'Speed: ' + position.coords.speed + '\n' +
+        'Timestamp: ' + position.timestamp + '\n');
 };
 
 function onError(error) {
-    alert('code: '    + error.code    + '\n' +
+    alert('code: ' + error.code + '\n' +
         'message: ' + error.message + '\n');
 }
 
-setTimeout(()=>{
+setTimeout(() => {
     permissions = cordova.plugins.permissions;
     var list = [
         permissions.ACCESS_FINE_LOCATION
@@ -60,22 +60,22 @@ setTimeout(()=>{
         document.location.href = "../../screens/AccessError/accessError.html";
     }
 
-    function success( status ) {
-        if( !status.hasPermission ) {
+    function success(status) {
+        if (!status.hasPermission) {
 
             permissions.requestPermissions(
                 list,
-                function(status) {
-                    if( !status.hasPermission ) error();
+                function (status) {
+                    if (!status.hasPermission) error();
                 },
                 error);
         }
     }
-},2000);
+}, 2000);
 
-function get_location(){
+function get_location() {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    map.flyTo(pos,18);
+    map.flyTo(pos, 18);
     update_markers();
 }
 
@@ -83,7 +83,7 @@ document.getElementById("map").style.height = HEIGHT;
 
 var map = L.map('map', {
     center: pos,
-    zoom:scale,
+    zoom: scale,
     zoomControl: false,
     maxZoom: 18
 })
@@ -96,49 +96,49 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     zoomOffset: -1,
     accessToken: 'pk.eyJ1IjoiaHVzY2tlciIsImEiOiJja3pkMTZ0cmUwNGYzMm9tcW5pa200dDJkIn0.-NLqcskaelmtyL5zpaBLzQ'
 }).addTo(map);
-map.on('move',redraw);
-map.on('scale',redraw);
+map.on('move', redraw);
+map.on('scale', redraw);
 var markers = L.markerClusterGroup({
     showCoverageOnHover: false,
     maxClusterRadius: 80
 });
-var pos_marker = L.marker(new L.LatLng(pos[0], pos[1]), );
+var pos_marker = L.marker(new L.LatLng(pos[0], pos[1]),);
 var routing_control = L.Routing.control({
     waypoints: [
         null
     ],
-    createMarker: function() { return null; },
+    createMarker: function () { return null; },
     show: false,
     showAlternatives: false,
-    addWaypoints:false,
+    addWaypoints: false,
     draggableWaypoints: false,
-    lineOptions : {
-        addWaypoints:false,
+    lineOptions: {
+        addWaypoints: false,
         draggableWaypoints: false,
     },
     router: L.Routing.mapbox('pk.eyJ1IjoiaHVzY2tlciIsImEiOiJja3pkMTZ0cmUwNGYzMm9tcW5pa200dDJkIn0.-NLqcskaelmtyL5zpaBLzQ')
 });
 routing_control.addTo(map);
 
-if(localStorage != undefined){
-    if(localStorage.getItem('prev_place') != null){
+if (localStorage != undefined) {
+    if (localStorage.getItem('prev_place') != null) {
         idx = localStorage.getItem('prev_place');
-        map.flyTo([locs[idx][0],locs[idx][1]],18);
+        map.flyTo([locs[idx][0], locs[idx][1]], 18);
         get_info(parseInt(idx));
     }
 }
-function update_markers(){
+function update_markers() {
     map.removeLayer(markers);
     markers = L.markerClusterGroup({
         showCoverageOnHover: false,
         maxClusterRadius: 80
     });
     let idx = 0;
-    locs.forEach((el)=>{
+    locs.forEach((el) => {
         icon = L.divIcon({
             className: 'custom-div-icon',
             html: "<div class=\"status-icon\">\n" +
-                "        <a href=\"#\" onclick=\"get_info(["+idx+"])\">\n" +
+                "        <a href=\"#\" onclick=\"get_info([" + idx + "])\">\n" +
                 "            <div class=\"status-icon-inner status-icon-" + el[2] + " d-flex justify-content-center align-items-center\">\n" +
                 "                <div>\n" +
                 "                    <p class=\"status-icon-text\">" + el[2] + "</p>\n" +
@@ -149,7 +149,7 @@ function update_markers(){
             iconSize: [30, 42],
             iconAnchor: [15, 42]
         });
-        let marker = L.marker(new L.LatLng(el[0], el[1]), { icon: icon});
+        let marker = L.marker(new L.LatLng(el[0], el[1]), { icon: icon });
         // marker.bindPopup(title);
         markers.addLayer(marker);
         idx++;
@@ -162,45 +162,45 @@ function update_markers(){
         iconSize: [30, 42],
         iconAnchor: [15, 42]
     });
-    if (map.hasLayer(pos_marker)){
+    if (map.hasLayer(pos_marker)) {
         map.removeLayer(pos_marker);
     }
-    pos_marker = L.marker(new L.LatLng(pos[0], pos[1]), { icon: icon});
+    pos_marker = L.marker(new L.LatLng(pos[0], pos[1]), { icon: icon });
     map.addLayer(markers);
     map.addLayer(pos_marker);
 }
 
 update_markers();
-function make_route(start, end){
+function make_route(start, end) {
     map.removeControl(routing_control);
     routing_control = L.Routing.control({
         waypoints: [
             start,
             end
         ],
-        createMarker: function() { return null; },
+        createMarker: function () { return null; },
         show: false,
         showAlternatives: false,
-        addWaypoints:false,
+        addWaypoints: false,
         draggableWaypoints: false,
-        lineOptions : {
-            addWaypoints:false,
+        lineOptions: {
+            addWaypoints: false,
             draggableWaypoints: false,
         },
         router: L.Routing.mapbox('pk.eyJ1IjoiaHVzY2tlciIsImEiOiJja3pkMTZ0cmUwNGYzMm9tcW5pa200dDJkIn0.-NLqcskaelmtyL5zpaBLzQ')
     });
     routing_control.addTo(map);
 }
-function zoomin(){
+function zoomin() {
     map.zoomIn(1);
 }
-function zoomout(){
+function zoomout() {
     map.zoomOut(1);
 }
 
 redraw()
 
-function redraw(){
+function redraw() {
 
 
 
@@ -212,31 +212,31 @@ var index = elasticlunr(function () {
     this.addField('body');
     this.setRef('id');
 });
-locs.forEach((el,t)=>{
+locs.forEach((el, t) => {
     index.addDoc({
-        'body':el[3],
-        'latitude':el[0],
-        'longitude':el[1],
-        'id':t
+        'body': el[3],
+        'latitude': el[0],
+        'longitude': el[1],
+        'id': t
     })
 })
-function search(input_str){
+function search(input_str) {
     results = index.search(input_str);
     document.getElementById("search-results1").innerHTML = "";
-    results.forEach((el)=>{
+    results.forEach((el) => {
         document.getElementById('search-results1').innerHTML += "" +
-            "<div><a onclick='search_clicked(["+el.doc.latitude+","+el.doc.longitude+"])'>\n" +
+            "<div><a onclick='search_clicked([" + el.doc.latitude + "," + el.doc.longitude + "])'>\n" +
             "                    <div class=\"bg-white w-100 d-inline-flex p-2\">\n" +
             "                        <div class=\"time-icon me-3\"></div>\n" +
-            "                        <div><h3 class=\"text-common\">"+el.doc.body+"</h3></div>\n" +
+            "                        <div><h3 class=\"text-common\">" + el.doc.body + "</h3></div>\n" +
             "                    </div>\n" +
             "                </a></div>";
     });
 }
-function search_clicked(coords){
-    map.flyTo(coords,16);
+function search_clicked(coords) {
+    map.flyTo(coords, 16);
     search_history_close();
 }
-setInterval(()=>{
+setInterval(() => {
     search(document.getElementById('line-edit').value);
-},1000);
+}, 1000);
