@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="../../css/bootstrap.css">
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="style.css">
+    <script src="../../js/redirects.js"></script>
+    <script src="../../js/deeplinks.js"></script>
+
 </head>
 
 <body style="height:100vh;">
     <div class="screen-hat">
-        <button class="btn arrow-back">
-            <a href="../Profile+avatar/profile_main.html">
+        <button class="btn arrow-back" onclick="redirect_profile_avatar()">
+            <a>
                 <img src="../../svg/arrow_back.svg" alt="arrow-back">
             </a>
         </button>
@@ -47,8 +50,8 @@
             </div>
 
             <div>
-                <a href="../Profile+avatar/profile_main.html">
-                    <button class="btn btn-hollow" id="return_button">
+                <a>
+                    <button class="btn btn-hollow" id="return_button" onclick="redirect_profile_avatar()">
                         <p class="btn-text">Назад</p>
                     </button>
                 </a>

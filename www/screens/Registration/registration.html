@@ -10,11 +10,14 @@
     <link rel="stylesheet" href="style.css">
 
     <title>Registration</title>
+    <script src="../../js/redirects.js"></script>
+    <script src="../../js/deeplinks.js"></script>
+
 </head>
 
 <body>
-    <button class="btn arrow-back">
-        <a href="../Login/login.html">
+    <button class="btn arrow-back" onclick="redirect_login()">
+        <a>
             <img src="../../svg/arrow_back.svg" alt="arrow-back">
         </a>
     </button>
@@ -78,8 +81,8 @@
                     <p class="btn-text">Зарегистрироваться</p>
                 </button>
             </a>
-            <a href="../Login/login.html">
-                <button class="btn btn-hollow">
+            <a>
+                <button class="btn btn-hollow" onclick="redirect_login()">
                     <p class="btn-text">Отменить</p>
                 </button>
             </a>

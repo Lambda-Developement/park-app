@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="styles.css">
     <title>Map</title>
+    <script src="../../js/redirects.js"></script>
+    <script src="../../js/deeplinks.js"></script>
+
 </head>
 <body onload="get_settings()">
 
 
 <div class="screen-hat">
-    <button class="btn arrow-back">
-        <a href="../Profile+avatar/profile_main.html">
+    <button class="btn arrow-back" onclick="redirect_profile_avatar()">
+        <a>
             <img src="../../svg/arrow_back.svg" alt="arrow-back">
         </a>
     </button>

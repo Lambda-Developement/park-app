@@ -18,6 +18,9 @@
     <script src="../../js/lunr.stemmer.support.js"></script>
     <script src="../../js/lunr.ru.js"></script>
     <title>Home</title>
+    <script src="../../js/redirects.js"></script>
+    <script src="../../js/deeplinks.js"></script>
+
 </head>
 
 <body onload="update_zoom()">
@@ -49,7 +52,7 @@
                 </div>
             </div>
             <div class="d-flex flex-column align-items-center">
-                <div><a href="../Profile+avatar/profile_main.html">
+                <div><a onclick="redirect_profile_avatar()">
                         <div class="profile-icon"></div>
                     </a></div>
                 <div>
@@ -57,7 +60,7 @@
                 </div>
             </div>
             <div class="d-flex flex-column align-items-center">
-                <div><a href="../Favourites/favourites.html">
+                <div><a onclick="redirect_favourites()">
                         <div class="bookmark-icon"></div>
                     </a></div>
                 <div>
@@ -136,7 +139,7 @@
                                 </div>
                             </div>
                             <div><button class="btn btn-hollow2 new"
-                                    onclick="document.location.href='../Parkzone%20INFO/park_info.html'"></button></div>
+                                    onclick="redirect_parkzone()"></button></div>
                         </div>
                     </div>
                 </div>

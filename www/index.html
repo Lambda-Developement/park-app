@@ -16,22 +16,10 @@
     </p>
 </div>
 <script>
-    setTimeout(()=>{
-        universalLinks.subscribe(null, function (eventData) {
-            // do some work
-            console.log('Link: ' + eventData.url);
-            console.log('Args: ' + eventData.params);
-            if (eventData.url.includes('password')){
-                document.location.href='screens/Reset Password/resetPassword.html';
-            }
-            if (eventData.url.includes('mail')){
-                document.location.href='screens/MailConfirmation/mailConfimation.html';
-            }
-        });
-        document.location.href = "screens/Home/home.html";
-    },3000);
+    isIndex = true;
 </script>
 <script src="cordova.js"></script>
-
+<script src="js/redirects.js"></script>
+<script src="js/deeplinks.js"></script>
 </body>
 </html>

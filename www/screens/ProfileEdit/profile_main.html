@@ -10,12 +10,15 @@
     <link rel="stylesheet" href="style.css">
 
     <title>Profile+avatar</title>
+    <script src="../../js/redirects.js"></script>
+    <script src="../../js/deeplinks.js"></script>
+
 </head>
 
 <body onload="check_credentials()">
     <div class="screen-hat">
-        <button class="btn arrow-back">
-            <a href="../Profile+avatar/profile_main.html">
+        <button onclick="redirect_profile_avatar()" class="btn arrow-back">
+            <a>
                 <img src="../../svg/arrow_back.svg" alt="arrow-back">
             </a>
         </button>

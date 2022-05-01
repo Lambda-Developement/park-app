@@ -10,11 +10,14 @@
     <link rel="stylesheet" href="style.css">
 
     <title>Login</title>
+    <script src="../../js/redirects.js"></script>
+    <script src="../../js/deeplinks.js"></script>
+
 </head>
 
 <body>
-    <button class="btn arrow-back">
-        <a href="../Home/home.html">
+    <button class="btn arrow-back" onclick="redirect_home()">
+        <a>
             <!-- Существование  этой кнопки здесь нелогично, поэтому display:none -->
             <img src="../../svg/arrow_back.svg" alt="arrow-back">
         </a>
@@ -35,7 +38,7 @@
         <div class="mb-3">
             <input type="password" class="form-control" id="password_field" placeholder="******">
         </div>
-        <a href="../Forget%20password/forget_password.html" class="login-container__forget-password">Забыли пароль?</a>
+        <a onclick="redirect_forget_password()" class="login-container__forget-password">Забыли пароль?</a>
 
         <!-- <a class="mb-3" href="../Profile+avatar/profile_main.html" style="z-index: 99;"> -->
         <a class="mb-3" href="#" style="z-index: 99;">
@@ -43,7 +46,7 @@
                 <p class="btn-text">Войти</p>
             </button>
         </a>
-        <a href="../Registration/registration.html" style="z-index: 100;">
+        <a onclick="redirect_registration()" style="z-index: 100;">
             <button class="btn btn-hollow2">
                 <p class="btn-text">Зарегистрироваться</p>
             </button>
@@ -123,7 +126,7 @@
                         console.log(response.data);
                         localStorage.setItem("auth_key", response.data);
                         if (response.data) {
-                            window.location.href = "../Profile+avatar/profile_main.html";
+                            redirect_profile_avatar();
                         }
 
 

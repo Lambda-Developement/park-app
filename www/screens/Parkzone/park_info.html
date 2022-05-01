@@ -8,12 +8,15 @@
     <link rel="stylesheet" href="../../css/styles.css" />
     <link rel="stylesheet" href="styles.css" />
     <title>Park Info</title>
+    <script src="../../js/redirects.js"></script>
+    <script src="../../js/deeplinks.js"></script>
+
 </head>
 
 <body onload="check_cards()">
     <div class="screen-hat">
-        <button class="btn arrow-back">
-            <a href="../Home/home.html">
+        <button class="btn arrow-back" onclick="redirect_home()">
+            <a>
                 <img src="../../svg/arrow_back.svg" alt="arrow-back" />
             </a>
         </button>

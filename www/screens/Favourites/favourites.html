@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="styles.css">
     <title>Favourites</title>
+    <script src="../../js/redirects.js"></script>
+    <script src="../../js/deeplinks.js"></script>
+
 </head>
 <body>
 
 
 <div class="screen-hat">
-    <button class="btn arrow-back">
-        <a href="../Profile+avatar/profile_main.html">
+    <button class="btn arrow-back" onclick="redirect_profile_avatar()">
+        <a>
             <img src="../../svg/arrow_back.svg" alt="arrow-back">
         </a>
     </button>
@@ -98,7 +101,7 @@
             if(localStorage != undefined){
                 localStorage.setItem('d_lat',home[0]);
                 localStorage.setItem('d_lon',home[1]);
-                document.location.href='../../screens/Home/home.html';
+                redirect_home();
             }
         }
     }
