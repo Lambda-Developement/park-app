@@ -46,7 +46,7 @@ document.addEventListener('deviceready', () => {
         "index.html"
     ];
     api_kval(localStorage.getItem('auth_key')).then(
-        () => { if (cur_page == "login.html") redirect("../Map/map.html") },
+        () => { if (cur_page == "login.html") redirect("../Profile+avatar/profile_main.html") },
         () => { if (!no_redirect.includes(cur_page)) redirect_login(); });
 });
 // }, 3000);
