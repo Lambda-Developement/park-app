@@ -31,13 +31,13 @@
 
     <div class="profile-screen">
         <div class="avatar-area">
-            <img src="../../jpg/avatar.png" alt="roma.jpeg" class="avatar-area__image">
+            <img src="../../jpg/avatar.png" alt="roma.jpeg" class="avatar-area__image" id="avatar">
             <h3 class="text-bold" id="header-name">
                 Пользователь
             </h3>
             <div>
-                <a onclick="redirect_profile_edit()" class="edit-link"><img src="../../svg/edit.svg"
-                        alt="edit__ico" class="edit-link__ico">Изменить</a>
+                <a onclick="redirect_profile_edit()" class="edit-link"><img src="../../svg/edit.svg" alt="edit__ico"
+                        class="edit-link__ico">Изменить</a>
             </div>
         </div>
         <div class="nav-section">
@@ -168,9 +168,17 @@
     <script src="../../cordova.js"></script>
     <script src="../../js/api.js"></script>
     <script>
-        document.addEventListener('deviceready', ()=>{
+        const url = 'https://park.backend.xredday.ru';
+        document.addEventListener('deviceready', () => {
             api_kval(localStorage.auth_key).then(() => { }, () => redirect_login());
+            api_userdata(localStorage.auth_key).then((userdata) => {
+                if (userdata[1] != null) {
+                    document.getElementById('avatar').src = `${url}/${userdata[1]}`;
+                }
+            });
         })
+
+
     </script>
 </body>
 

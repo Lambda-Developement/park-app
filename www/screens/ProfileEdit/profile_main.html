@@ -28,10 +28,9 @@
     </div>
     <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
-    <form action="https://trip.backend.xredday.ru/" method="post" enctype="multipart/form-data" target="dummyframe">
+    <form action="https://park.backend.xredday.ru/" method="post" enctype="multipart/form-data" target="dummyframe">
         <div class="avatar-area" style="display:flex;flex-direction:column;justify-content: center;">
             <label for="image" style="cursor:pointer;">
-
                 <input type="text" name="request" style="display:none;" id="hidden_input">
                 <script>
                     document.getElementById("hidden_input").value = `{"action":"picupd","user_key":"${localStorage.auth_key}"}`;
@@ -188,7 +187,6 @@
         }
         document.addEventListener('deviceready', () => {
             api_userdata(localStorage.auth_key).then((userdata) => {
-                debugger;
                 localStorage.setItem('name', userdata[2]);
                 localStorage.setItem('gender', userdata[3]);
                 localStorage.setItem('login', userdata[5]);

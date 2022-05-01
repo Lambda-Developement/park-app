@@ -11,6 +11,7 @@ async function __basic_api_call(method, data, auth_key = null) {
         }
     };
     let headers = {}
+    console.log("PENDING API CALL");
 
     return await new Promise((resolve, reject) => {
         cordovaHTTP.post(__backend_url, request_body, headers,
