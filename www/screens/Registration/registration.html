@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="style.css">
 
     <title>Registration</title>
+    <script src="../../js/api.js"></script>
     <script src="../../js/redirects.js"></script>
     <script src="../../js/deeplinks.js"></script>
 
@@ -157,46 +158,10 @@
         callbackFunction();
 
         function api_authorize(email, password) {
-            // Recieves email and password in plain.
-
-            cordovaHTTP.post("https://park.backend.xredday.ru/",
-                {
-                    'request':
-                    {
-                        "action": "login",
-                        "data": { "login": email, "pass": password }
-                    }
-                },
-                {},
-                function (response) {
-                    // prints 200
-                    console.log(response.status);
-
-                    try {
-                        console.log(response.data);
-                        localStorage.setItem("auth_key", response.data);
-                        if (response.data) {
-                            window.location.href = "../Profile+avatar/profile_main.html";
-                        }
-
-
-
-                    } catch (e) {
-                        console.error("JSON parsing error");
-                    }
-                },
-                function (response) {
-                    // prints 403
-                    console.log(response.status);
-                    errorMessage.style.visibility = "visible";
-
-
-                    //prints Permission denied
-                    console.log(response.data);
-
-                }
-            );
-
+            // Login
+            api_login(email, password).then(
+                () => window.location.href = "../Profile+avatar/profile_main.html",
+                () => errorMessage.style.visibility = "visible");
         }
 
         function api_reg(
@@ -205,42 +170,14 @@
             email = emailField.value) {
             // Recieves email and password in plain.
 
-            cordovaHTTP.post("https://park.backend.xredday.ru/",
-                {
-                    'request':
-                    {
-                        "action": "reg",
-                        "data": { "name": name, "mail": email, "pass": password }
-                    }
+            api_register(name, email, password).then(
+                () => {
+                    window.location.href = "../MailConfirmation/mailConfirmationInfo.html"
                 },
-                {},
-                function (response) {
-                    // prints 200
-                    alert(response.status);
-
-                    try {
-                        console.log(response.data);
-                        setTimeout(() => {
-                            api_authorize(email, password);
-                        }, 5000);
-
-
-
-
-                    } catch (e) {
-                        console.error("JSON parsing error");
-                    }
-                },
-                function (response) {
-                    // prints 403
-                    console.log(response.status);
-
-                    //prints Permission denied
-                    console.log(response.data);
-
+                () => {
+                    console.log("registration fail");
                 }
             );
-
         }
     </script>
 
