@@ -15,7 +15,7 @@
 
 </head>
 
-<body onload="check_credentials()">
+<body>
     <div class="screen-hat">
         <button onclick="redirect_home()" class="btn arrow-back">
             <a>
@@ -136,13 +136,7 @@
 
     </div>
     <script>
-        function check_credentials() {
-            if (localStorage != undefined) {
-                if (localStorage.getItem('name') != null && localStorage.getItem('name').length > 0) {
-                    document.getElementById('header-name').innerHTML = localStorage.getItem('name');
-                }
-            }
-        }
+
         function callpopup() {
             document.getElementById('popup2').style.display = 'block';
         }
@@ -168,6 +162,14 @@
     <script src="../../cordova.js"></script>
     <script src="../../js/api.js"></script>
     <script>
+
+        // function check_credentials() {
+        //     if (localStorage != undefined) {
+        //         if (localStorage.getItem('name') != null && localStorage.getItem('name').length > 0) {
+        //             document.getElementById('header-name').innerHTML = localStorage.getItem('name');
+        //         }
+        //     }
+        // }
         const url = 'https://park.backend.xredday.ru';
         document.addEventListener('deviceready', () => {
             api_kval(localStorage.auth_key).then(() => { }, () => redirect_login());
@@ -175,6 +177,7 @@
                 if (userdata[1] != null) {
                     document.getElementById('avatar').src = `${url}/${userdata[1]}`;
                 }
+                document.getElementById('header-name').innerHTML = userdata[2];
             });
         })
 
