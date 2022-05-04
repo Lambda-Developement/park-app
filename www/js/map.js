@@ -18,6 +18,21 @@ document.addEventListener('deviceready', () => {
             console.log(response.status);
             try {
                 locs = JSON.parse(response.data);
+                if (localStorage != undefined) {
+                    if (localStorage.getItem('prev_place') != null) {
+                        idx = localStorage.getItem('prev_place');
+                        map.flyTo([locs[idx][0], locs[idx][1]], 18);
+                        get_info(parseInt(idx));
+                    }
+                    if(localStorage.getItem('d_lat') != null){
+                        lat = localStorage.getItem('d_lat');
+                        lon = localStorage.getItem('d_lon');
+                        localStorage.removeItem('d_lat');
+                        localStorage.removeItem('d_lon');
+                        // map.flyTo([lat, lon], 18);
+                        make_route(pos,[lat,lon]);
+                    }
+                }
                 update_markers();
             } catch (e) {
                 console.error("JSON parsing error");
@@ -120,13 +135,7 @@ var routing_control = L.Routing.control({
 });
 routing_control.addTo(map);
 
-if (localStorage != undefined) {
-    if (localStorage.getItem('prev_place') != null) {
-        idx = localStorage.getItem('prev_place');
-        map.flyTo([locs[idx][0], locs[idx][1]], 18);
-        get_info(parseInt(idx));
-    }
-}
+
 function update_markers() {
     map.removeLayer(markers);
     markers = L.markerClusterGroup({
@@ -138,7 +147,7 @@ function update_markers() {
         icon = L.divIcon({
             className: 'custom-div-icon',
             html: "<div class=\"status-icon\">\n" +
-                "        <a href=\"#\" onclick=\"get_info([" + idx + "])\">\n" +
+                "        <a href=\"#\" onclick=\"get_info(" + idx + ")\">\n" +
                 "            <div class=\"status-icon-inner status-icon-" + el[2] + " d-flex justify-content-center align-items-center\">\n" +
                 "                <div>\n" +
                 "                    <p class=\"status-icon-text\">" + el[2] + "</p>\n" +

@@ -130,12 +130,12 @@
                             <div><button class="btn btn-hollow new">
                                     <div class="download-icon"></div>
                                 </button> </div>
-                            <div><button class="btn btn-hollow new">
+                            <div><button id="add_favourite" class="btn btn-hollow new" onclick="add_favourite()">
                                     <div class="bookmark2-icon"></div>
                                 </button> </div>
-                            <div class="status-icon-1 d-flex justify-content-center align-items-center">
+                            <div id="status-icon-wrapper" class="d-flex justify-content-center align-items-center">
                                 <div>
-                                    <p class="status-icon-text">1</p>
+                                    <p class="status-icon-text" id="status-icon-text" >1</p>
                                 </div>
                             </div>
                             <div><button class="btn btn-hollow2 new"
@@ -186,7 +186,45 @@
             if (localStorage != undefined) {
                 localStorage.setItem('prev_place', park_id);
             }
+            document.getElementById('status-icon-wrapper').classList.add(`status-icon-${locs[park][2]}`);
+            document.getElementById('status-icon-text').innerHTML = locs[park][2];
             document.getElementById('text-description').innerHTML = locs[park][3];
+            let favs = localStorage.getItem('favourites');
+            if (favs != null && favs != 'undefined'){
+                favs = JSON.parse(favs);
+                if(favs.includes(`${park}`)){
+                    document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+                }else{
+                    document.getElementById('add_favourite').style.background = "rgba(240, 240, 240, 1)";
+                }
+            }
+        }
+        function add_favourite(){
+            let p_it = localStorage.getItem('prev_place');
+            let favs = localStorage.getItem('favourites');
+            // debugger;
+            if (favs != null && favs != 'undefined'){
+                favs = JSON.parse(favs);
+                if(favs.includes(p_it)){
+                    favs = favs.filter(function (e) {
+                        return e != p_it;
+                    });
+                    favs = JSON.stringify(favs);
+                    localStorage.setItem('favourites',favs);
+                    document.getElementById('add_favourite').style.background = "rgba(240, 240, 240, 1)";
+                }else{
+                    favs.push(p_it);
+                    favs = JSON.stringify(favs);
+                    localStorage.setItem('favourites',favs);
+                    document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+                }
+            }else{
+                favs = [];
+                favs.push(p_it);
+                favs = JSON.stringify(favs);
+                localStorage.setItem('favourites',favs);
+                document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+            }
         }
         function close_info() {
             document.getElementById("info").style.display = "none";
