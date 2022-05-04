@@ -130,7 +130,7 @@
                             <div><button class="btn btn-hollow new">
                                     <div class="download-icon"></div>
                                 </button> </div>
-                            <div><button id="add_favourite" class="btn btn-hollow new" onclick="add_favourite()">
+                            <div><button id="add_favourite" class="btn btn-hollow new" onclick="callpopup()">
                                     <div class="bookmark2-icon"></div>
                                 </button> </div>
                             <div id="status-icon-wrapper" class="d-flex justify-content-center align-items-center">
@@ -164,10 +164,40 @@
             </div>
         </div>
     </div>
-
+    <div class="favourites-popup" id="popup1">
+        <div class="favourites-popup-wrapper d-flex justify-content-center">
+            <div>
+                <div class="mb-3" style="width: 335px">
+                    <div class="panel round-up d-flex align-items-center justify-content-center">
+                        <div><h3 class="text-common"><a href="#" onclick="add_as_home()" style="color:rgba(65,65,65,1);">Добавить как "Дом"</a></h3></div>
+                    </div>
+                    <div class="panel d-flex align-items-center justify-content-center">
+                        <h3 class="text-common"><a href="#" onclick="add_as_work()" style="color:rgba(65,65,65,1);">Добавить как "Работа"</a></h3>
+                    </div>
+                    <div class="panel d-flex align-items-center justify-content-center">
+                        <h3 class="text-common"><a href="#" onclick="add_favourite()" style="color:rgba(65,65,65,1);">Добавить парковку</a></h3>
+                    </div>
+                    <div class="panel round-down d-flex align-items-center justify-content-center">
+                        <h3 class="text-common"><a href="#" onclick="delete_address()" style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
+                    </div>
+                </div>
+                <div class="mb-3" style="width: 335px">
+                    <div class="panel round-up round-down d-flex align-items-center justify-content-center">
+                        <h3 class="text-common"><a href="#" onclick="closepopup()" style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         var current_park = [57.615398, 39.885228];
         var park_id = 0;
+        function callpopup(){
+            document.getElementById("popup1").style.display='block';
+        }
+        function closepopup(){
+            document.getElementById("popup1").style.display='none';
+        }
         function search_history_open() {
             document.getElementById('search-history').style.display = 'block';
             document.getElementById('search-icon').classList.add('grey-close-icon');
@@ -192,12 +222,22 @@
             let favs = localStorage.getItem('favourites');
             if (favs != null && favs != 'undefined'){
                 favs = JSON.parse(favs);
-                if(favs.includes(`${park}`)){
+                if(favs.includes(`${park}`) || localStorage.getItem('home') == `${park}` || localStorage.getItem('work') == `${park}`){
                     document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
                 }else{
                     document.getElementById('add_favourite').style.background = "rgba(240, 240, 240, 1)";
                 }
             }
+        }
+        function add_as_home(){
+            localStorage.setItem('home',localStorage.getItem('prev_place'));
+            document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+            closepopup();
+        }
+        function add_as_work(){
+            localStorage.setItem('work',localStorage.getItem('prev_place'));
+            document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+            closepopup();
         }
         function add_favourite(){
             let p_it = localStorage.getItem('prev_place');
@@ -225,6 +265,7 @@
                 localStorage.setItem('favourites',favs);
                 document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
             }
+            closepopup();
         }
         function close_info() {
             document.getElementById("info").style.display = "none";

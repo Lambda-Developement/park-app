@@ -32,7 +32,7 @@
         <div class="home-icon"></div>
         <div class="flex-row">
             <div><h3 class="text-common text-common2">Дом</h3></div>
-            <div><h3 class="text-description">улица Городской Вал, 31</h3></div>
+            <div><h3 style="display: none" class="text-description" id="home-description">улица Городской Вал, 31</h3></div>
         </div>
         <div style="width: 100%;" class="d-flex align-items-center justify-content-end">
             <!-- Ниже отсебятина -->
@@ -43,11 +43,11 @@
         <div class="work-icon"></div>
         <div class="flex-row">
             <div><h3 class="text-common text-common2">Работа</h3></div>
-            <div style="display: none"><h3 class="text-description">улица Городской Вал, 31</h3></div>
+            <div><h3 style="display: none" class="text-description" id="work-description">улица Городской Вал, 31</h3></div>
             <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->
         </div>
         <div style="width: 100%;" class="d-flex align-items-center justify-content-end">
-            <div><h3 class="text-link"><a href="#" onclick="callpopup(this)">Добавить</a></h3></div>
+            <div><h3 class="text-link"><a href="#" onclick="callpopup(this)">Изменить</a></h3></div>
         </div>
     </div>
 </div>
@@ -95,14 +95,23 @@
             "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
             "        </div>\n" +
             "        <div style=\"width: 100%;\" class=\"d-flex align-items-center justify-content-end\">\n" +
-            "            <div><h3 class=\"text-link\"><a href=\"#\" onclick=\"callpopup(this)\">Добавить</a></h3></div>\n" +
+            "            <div><h3 class=\"text-link\"><a href=\"#\" onclick=\"callpopup(this)\">Изменить</a></h3></div>\n" +
             "        </div>\n" +
             "    </div>";
     }
     function make_route(){
         if(localStorage != undefined){
-            localStorage.setItem('d_lat',locs[current_favourite][0]);
-            localStorage.setItem('d_lon',locs[current_favourite][1]);
+            if(current.children[1].children[0].children[0].innerHTML == 'Дом'){
+                localStorage.setItem('d_lat',locs[localStorage.getItem('home')][0]);
+                localStorage.setItem('d_lon',locs[localStorage.getItem('home')][1]);
+            }
+            else if(current.children[1].children[0].children[0].innerHTML == 'Работа'){
+                localStorage.setItem('d_lat',locs[localStorage.getItem('work')][0]);
+                localStorage.setItem('d_lon',locs[localStorage.getItem('work')][1]);
+            }else{
+                localStorage.setItem('d_lat',locs[current_favourite][0]);
+                localStorage.setItem('d_lon',locs[current_favourite][1]);
+            }
             redirect_home();
         }
     }
@@ -125,15 +134,21 @@
                     favs = JSON.stringify();
                     localStorage.setItem('favourites',favs);
                 }
-        }else {
+        }else if(current.children[1].children[0].children[0].innerHTML != 'Дом') {
             current.children[1].children[1].style.display = "none";
-            current.children[2].children[0].children[0].children[0].innerHTML = "Добавить";
+            current.children[2].children[0].children[0].children[0].innerHTML = "Изменить";
+            localStorage.removeItem('work');
+        }else{
+            current.children[1].children[1].style.display = "none";
+            current.children[2].children[0].children[0].children[0].innerHTML = "Изменить";
+            localStorage.removeItem('home');
         }
         closepopup()
     }
     function callpopup(el,p_id){
         document.getElementById("popup1").style.display='block';
         current = el.parentElement.parentElement.parentElement.parentElement;
+        console.log(current);
         current_favourite = p_id;
     }
     function closepopup(){
@@ -159,6 +174,15 @@
                 console.log(response.status);
                 try {
                     locs = JSON.parse(response.data);
+                    if(localStorage.getItem('home') != null){
+                        document.getElementById('home-description').innerHTML = locs[localStorage.getItem('home')][3];
+                        document.getElementById('home-description').style.display = 'block';
+                    }
+                    if(localStorage.getItem('work') != null){
+                        document.getElementById('work-description').innerHTML = locs[localStorage.getItem('work')][3];
+                        document.getElementById('work-description').style.display = 'block';
+
+                    }
                     favs = localStorage.getItem('favourites');
                     if (favs != null && favs != 'undefined'){
                         favs = JSON.parse(favs);
