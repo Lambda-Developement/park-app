@@ -10,7 +10,7 @@
     <title>Park Info</title>
     <script src="../../js/redirects.js"></script>
     <script src="../../js/deeplinks.js"></script>
-
+    <script src="../../js/api.js"></script>
 </head>
 
 <body onload="check_cards()">
@@ -36,7 +36,7 @@
         </div>
         <div class="panel panel-up">
             <h3 class="text-bold">Парковка</h3>
-            <h3 class="text-description">Россия, Ярославль, улица Чайковского</h3>
+            <h3 class="text-description" id="info-description">Россия, Ярославль, улица Чайковского</h3>
             <div class="d-inline-flex justify-content-between align-items-center" style="width: 100%">
                 <div>
                     <h3 class="text-description" style="color: rgba(168, 168, 168, 1)">
@@ -201,18 +201,18 @@
             <div class="panel-grey">
                 <div class="d-inline-flex align-items-center">
                     <div style="margin-right: 10px">
-                        <h3 class="text-attention">4,9</h3>
+                        <h3 class="text-attention" id="average-score">4,9</h3>
                     </div>
                     <div class="d-flex flex-column">
                         <div class="d-inline-flex">
-                            <div class="rate-icon"></div>
-                            <div class="rate-icon"></div>
-                            <div class="rate-icon"></div>
-                            <div class="rate-icon"></div>
-                            <div class="rate-icon"></div>
+                            <div class="rate-icon" id="rate-1"></div>
+                            <div class="rate-icon" id="rate-2"></div>
+                            <div class="rate-icon" id="rate-3"></div>
+                            <div class="rate-icon" id="rate-4"></div>
+                            <div class="rate-icon" id="rate-5"></div>
                         </div>
                         <div>
-                            <p class="text-common">6 оценок</p>
+                            <p class="text-common" id="reviews-cnt">6 оценок</p>
                         </div>
                     </div>
                 </div>
@@ -689,6 +689,9 @@
                 document.getElementById("review-text").innerHTML = "Добавить";
             } else {
                 let prev_review = document.getElementById("review-input").value;
+                api_crrev(localStorage.getItem('prev_place'), rate, localStorage.getItem('auth_key'), prev_review).then((res) => {
+                    console.log('done');
+                }, () => console.log('error'));
                 document.getElementById("review-" + review_count).remove();
                 document.getElementById("reviews-here").innerHTML +=
                     "" +
@@ -735,6 +738,7 @@
                 review_count++;
                 document.getElementById("reviews-count").innerHTML =
                     "Отзывов: " + (review_count + 2);
+                update_page();
             }
             review_btn_state = !review_btn_state;
         }
@@ -825,6 +829,67 @@
                 }
             }
         }
+        function load_reviews(result) {
+            let rate = parseFloat(result[0]).toFixed(1);
+            document.getElementById('average-score').innerHTML = rate;
+            [1, 2, 3, 4, 5].forEach((el) => {
+                document.getElementById(`rate-${el}`).className = (rate >= el) ? "rate-icon" : "unrate-icon";
+            })
+            let reviews = result[1];
+            document.getElementById('reviews-count').innerHTML = `Отзывов: ${result[1].length}`;
+            document.getElementById('reviews-cnt').innerHTML = `Оценок: ${result[1].length}`;
+            console.log(reviews);
+            reviews.forEach(el => {
+                let name = el[0][0];
+                console.log(el);
+                console.log(name);
+                if (name == localStorage.getItem('name')) {
+                    document.getElementById('add_btn').disabled = true;
+                }
+                let rate = el[1];
+                let body = el[2];
+                document.getElementById('reviews-here').innerHTML += "" +
+                    "<div id='review-" + (review_count) + "' class=\"review d-flex flex-column mb-3\">\n" +
+                    "                    <div class=\"d-inline-flex align-items-center mb-2\">\n" +
+                    "                        <div class=\"circle d-flex justify-content-center align-items-center me-3\"><div><h3 class=\"text-attention in-circle\">" + name[0].toUpperCase() + "</h3></div></div>\n" +
+                    "                        <div><h3 class=\"text-common\">" + name + "</h3></div>\n" +
+                    "                    </div>\n" +
+                    "                    <div class=\"d-inline-flex align-items-center mb-2\">\n" +
+                    "                        <div class=\"d-inline-flex justify-content-center align-items-center me-3\">\n" +
+                    "                            <div class=\"" + (rate >= 1 ? "rate-icon" : "star-icon-rate") + " small\"></div>\n" +
+                    "                            <div class=\"" + (rate >= 2 ? "rate-icon" : "star-icon-rate") + " small\"></div>\n" +
+                    "                            <div class=\"" + (rate >= 3 ? "rate-icon" : "star-icon-rate") + " small\"></div>\n" +
+                    "                            <div class=\"" + (rate >= 4 ? "rate-icon" : "star-icon-rate") + " small\"></div>\n" +
+                    "                            <div class=\"" + (rate >= 5 ? "rate-icon" : "star-icon-rate") + " small\"></div>\n" +
+                    "                        </div>\n" +
+                    // "                        <div><h3 class=\"text-description\">Только что</h3></div>\n" +
+                    "                    </div>\n" +
+                    "                    <div>\n" +
+                    "                        <p class=\"text-common\">\n" +
+                    "                            " + body + "\n" +
+                    "                        </p>\n" +
+                    "                    </div>\n" +
+                    "                </div>";
+                review_count++;
+            });
+        }
+        function update_page() {
+            document.getElementById('reviews-here').innerHTML = "";
+            api_userdata(localStorage.getItem('auth_key')).then((userdata) => {
+                localStorage.setItem('name', userdata[2]);
+                api_data().then((res) => {
+                    document.getElementById('info-description').innerHTML = res[localStorage.getItem('prev_place')][3];
+                    // if (localStorage.getItem('g_distance') != null) {
+                    //     document.getElementById('info-distance').innerHTML = `${localStorage.getItem('g_distance')} km`
+                    // }
+                    // document.getElementById('info-photo').style.background = `url(https://trip.backend.xredday.ru/${res[localStorage.getItem('prev_place')][4]})`;
+                });
+                api_getrev(localStorage.getItem('prev_place')).then((res) => load_reviews(res), () => console.log('error'));
+            });
+        }
+        document.addEventListener('deviceready',()=>{
+           update_page();
+        });
     </script>
     <script>
         function export_parking() {
@@ -859,9 +924,8 @@
             // именно айдишников тк скорее всего будет локальная база какая-нибудь
             // откуда можно будет подгружать данные о парковках
         }
-
-
     </script>
+    <script src="../../cordova.js"></script>
 </body>
 
 </html>
