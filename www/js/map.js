@@ -40,6 +40,11 @@ document.addEventListener('deviceready', () => {
                         // map.flyTo([lat, lon], 18);
                         make_route(pos,[lat,lon]);
                     }
+                    if(localStorage.getItem('make_route') != null){
+                        p_id = localStorage.getItem('make_route');
+                        make_route(pos,[locs[p_id][0],locs[p_id][1]]);
+                        localStorage.removeItem('make_route');
+                    }
                 }
                 update_markers();
             } catch (e) {

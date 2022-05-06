@@ -303,10 +303,10 @@
     <div class="btn-panel" style="display: flex">
         <div class="d-inline-flex justify-content-evenly container">
             <div class="geoinfo">
-                <button class="btn btn-hollow2">Маршрут</button>
+                <button class="btn btn-hollow2" onclick="get_route()">Маршрут</button>
             </div>
             <div class="geoinfo">
-                <button class="btn btn-hollow">Отсюда</button>
+                <button class="btn btn-hollow" onclick="get_route()">Отсюда</button>
             </div>
             <div class="geoinfo">
                 <button class="btn btn-hollow" id="export-btn" onclick="export_parking()">
@@ -876,6 +876,10 @@
                     "                </div>";
                 review_count++;
             });
+        }
+        function get_route() {
+            localStorage.setItem('make_route', localStorage.getItem('prev_place'));
+            redirect_home();
         }
         function update_page() {
             document.getElementById('reviews-here').innerHTML = "";
