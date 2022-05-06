@@ -18,6 +18,14 @@ document.addEventListener('deviceready', () => {
             console.log(response.status);
             try {
                 locs = JSON.parse(response.data);
+                locs.forEach((el, t) => {
+                    index.addDoc({
+                        'body': el[3],
+                        'latitude': el[0],
+                        'longitude': el[1],
+                        'id': t
+                    })
+                })
                 if (localStorage != undefined) {
                     if (localStorage.getItem('prev_place') != null) {
                         idx = localStorage.getItem('prev_place');
@@ -221,29 +229,56 @@ var index = elasticlunr(function () {
     this.addField('body');
     this.setRef('id');
 });
-locs.forEach((el, t) => {
-    index.addDoc({
-        'body': el[3],
-        'latitude': el[0],
-        'longitude': el[1],
-        'id': t
-    })
-})
+
 function search(input_str) {
     results = index.search(input_str);
     document.getElementById("search-results1").innerHTML = "";
+    if (results.length == 0){
+        let hs = localStorage.getItem('history');
+        if (hs != null && hs != 'undefined'){
+            try {
+                hs = JSON.parse(hs);
+                hs = hs.reverse();
+                hs.forEach( idx => {
+                    document.getElementById('search-results1').innerHTML += "" +
+                        "<div><a onclick='search_clicked([" + locs[idx][0] + "," + locs[idx][1] + "]," + idx +")'>\n" +
+                        "                    <div class=\"bg-white w-100 d-inline-flex p-2\">\n" +
+                        "                        <div class=\"time-icon me-3\"></div>\n" +
+                        "                        <div><h3 class=\"text-common\">" + locs[idx][3] + "</h3></div>\n" +
+                        "                    </div>\n" +
+                        "                </a></div>";
+                })
+            }catch (e){
+                console.log(e);
+            }
+        }
+    }
     results.forEach((el) => {
         document.getElementById('search-results1').innerHTML += "" +
-            "<div><a onclick='search_clicked([" + el.doc.latitude + "," + el.doc.longitude + "])'>\n" +
+            "<div><a onclick='search_clicked([" + el.doc.latitude + "," + el.doc.longitude +"],"+el.doc.id+")'>\n" +
             "                    <div class=\"bg-white w-100 d-inline-flex p-2\">\n" +
-            "                        <div class=\"time-icon me-3\"></div>\n" +
+            "                        <div class=\"time-icon-empty me-3\"></div>\n" +
             "                        <div><h3 class=\"text-common\">" + el.doc.body + "</h3></div>\n" +
             "                    </div>\n" +
             "                </a></div>";
     });
 }
-function search_clicked(coords) {
+function search_clicked(coords,id) {
     map.flyTo(coords, 16);
+    let hs = localStorage.getItem('history');
+    if (hs != null && hs != 'undefined'){
+        try {
+            hs = JSON.parse(hs);
+            hs.push(id);
+            hs = JSON.stringify(hs);
+            localStorage.setItem('history',hs);
+        }catch(e){
+            console.log(e);
+        }
+    }
+    if(hs == null){
+        localStorage.setItem('history',`[${id}]`);
+    }
     search_history_close();
 }
 setInterval(() => {

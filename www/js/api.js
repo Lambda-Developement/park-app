@@ -137,7 +137,7 @@ async function api_remindconf(pass, conf) {
 // api_userdata(auth_key).then((userdata) => { var name = userdata[2]; });
 
 // Sobaka-app
-async function api_getrev(id, auth_key, type = 0) {
+async function api_getrev(id, auth_key=null, type = 0) {
     // "getrev" api call (auth_key required)
     // returns [average, reviews[]], где average - средняя оценка экскурсии,
     // reviews[] - массив, содержащий все оценки. Массив reviews состоит из
@@ -162,7 +162,7 @@ async function api_groutes(auth_key) {
 }
 
 // Sobaka-app
-async function api_data(auth_key) {
+async function api_data(auth_key=null) {
     // "data" api call (auth_key required)
     // returns array of [lat, lon, description]
     let data = {
@@ -182,12 +182,12 @@ async function api_tourdata(id, auth_key) {
 }
 
 // Sobaka-app
-async function api_crrev(id, type, mark, auth_key, review = "") {
+async function api_crrev(id, mark, auth_key, review = "") {
     // "crrev" api call (auth_key required)
     // returns nothing
     let data = {
         'id': id,
-        'type': type, // 0 for excursion, 1 for route
+        // 'type': type, // 0 for excursion, 1 for route
         'mark': mark, // 1-5
         'review': review,
     }

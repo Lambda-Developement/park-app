@@ -263,6 +263,14 @@ img{
     background-position: center center;
     background-size:24px;
 }
+.time-icon-empty{
+    width:24px;
+    height:24px;
+    background: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:24px;
+}
 h3.text-common{
     margin:0;
 }
