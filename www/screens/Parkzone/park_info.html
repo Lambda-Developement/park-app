@@ -44,7 +44,7 @@
                     </h3>
                 </div>
                 <div>
-                    <h3 class="text-description" style="color: rgba(168, 168, 168, 1)">
+                    <h3 class="text-description" id='info-distance' style="color: rgba(168, 168, 168, 1)">
                         1.2 km
                     </h3>
                 </div>
@@ -883,9 +883,9 @@
                 localStorage.setItem('name', userdata[2]);
                 api_data().then((res) => {
                     document.getElementById('info-description').innerHTML = res[localStorage.getItem('prev_place')][3];
-                    // if (localStorage.getItem('g_distance') != null) {
-                    //     document.getElementById('info-distance').innerHTML = `${localStorage.getItem('g_distance')} km`
-                    // }
+                    if (localStorage.getItem('p_distance') != null) {
+                        document.getElementById('info-distance').innerHTML = `${localStorage.getItem('p_distance')} km`
+                    }
                     // document.getElementById('info-photo').style.background = `url(https://trip.backend.xredday.ru/${res[localStorage.getItem('prev_place')][4]})`;
                 });
                 api_getrev(parseInt(localStorage.getItem('prev_place'))+1,localStorage.getItem('auth_key')).then((res) => load_reviews(res), () => console.log('error'));

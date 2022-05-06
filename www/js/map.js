@@ -284,3 +284,7 @@ function search_clicked(coords,id) {
 setInterval(() => {
     search(document.getElementById('line-edit').value);
 }, 1000);
+function calc_distance_to_geopoint(g_id){
+    let meters = map.distance(L.latLng(pos[0],pos[1]),L.latLng(locs[g_id][0],locs[g_id][1]));
+    return parseFloat(meters/1000.0).toFixed(1);
+}

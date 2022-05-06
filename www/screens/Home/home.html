@@ -122,7 +122,7 @@
                                 <h3 class="text-description">Круглосуточно</h3>
                             </div>
                             <div>
-                                <h3 class="text-description">1,2 km</h3>
+                                <h3 class="text-description" id="info-distance">1,2 km</h3>
                             </div>
                         </div>
                         <div class="d-inline-flex justify-content-evenly">
@@ -215,10 +215,12 @@
             park_id = park;
             if (localStorage != undefined) {
                 localStorage.setItem('prev_place', park_id);
+                localStorage.setItem('p_distance', calc_distance_to_geopoint(localStorage.getItem('prev_place')));
             }
             document.getElementById('status-icon-wrapper').classList.add(`status-icon-${locs[park][2]}`);
             document.getElementById('status-icon-text').innerHTML = locs[park][2];
             document.getElementById('text-description').innerHTML = locs[park][3];
+            document.getElementById('info-distance').innerHTML = `${calc_distance_to_geopoint(localStorage.getItem('prev_place'))} km`;
             let favs = localStorage.getItem('favourites');
             if (favs != null && favs != 'undefined'){
                 favs = JSON.parse(favs);
