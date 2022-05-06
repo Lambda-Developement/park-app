@@ -170,18 +170,18 @@
             <div class="panel-grey">
                 <div class="d-inline-flex align-items-center">
                     <div style="margin-right: 10px">
-                        <h3 class="text-attention">4,9</h3>
+                        <h3 class="text-attention" id="average-score2">4,9</h3>
                     </div>
                     <div class="d-flex flex-column">
                         <div class="d-inline-flex">
-                            <div class="rate-icon"></div>
-                            <div class="rate-icon"></div>
-                            <div class="rate-icon"></div>
-                            <div class="rate-icon"></div>
-                            <div class="rate-icon"></div>
+                            <div class="rate-icon" id="rate-12"></div>
+                            <div class="rate-icon" id="rate-22"></div>
+                            <div class="rate-icon" id="rate-32"></div>
+                            <div class="rate-icon" id="rate-42"></div>
+                            <div class="rate-icon" id="rate-52"></div>
                         </div>
                         <div>
-                            <p class="text-common">6 оценок</p>
+                            <p class="text-common" id="reviews-cnt2">6 оценок</p>
                         </div>
                     </div>
                 </div>
@@ -349,7 +349,7 @@
                 </div>
             </div>
             <div class="review">
-                <button class="btn btn-filled" onclick="review_btn_click()">
+                <button class="btn btn-filled" id="add_btn" onclick="review_btn_click()">
                     <p class="btn-text" id="review-text">Написать отзыв</p>
                 </button>
             </div>
@@ -689,7 +689,7 @@
                 document.getElementById("review-text").innerHTML = "Добавить";
             } else {
                 let prev_review = document.getElementById("review-input").value;
-                api_crrev(localStorage.getItem('prev_place'), rate, localStorage.getItem('auth_key'), prev_review).then((res) => {
+                api_crrev(parseInt(localStorage.getItem('prev_place'))+1, rate, localStorage.getItem('auth_key'), prev_review).then((res) => {
                     console.log('done');
                 }, () => console.log('error'));
                 document.getElementById("review-" + review_count).remove();
@@ -799,14 +799,16 @@
             update_icons();
         }
         function star_rate_clicked(el) {
-            ['1', '2', '3', '4', '5'].forEach(b => {
-                if (el.id == 'star-rate-' + b) {
-                    rate = parseInt(b);
-                    if (review_btn_state)
-                        review_btn_click();
-                }
-            })
-            update_icons();
+            if (document.getElementById('add_btn').disabled != true) {
+                ['1', '2', '3', '4', '5'].forEach(b => {
+                    if (el.id == 'star-rate-' + b) {
+                        rate = parseInt(b);
+                        if (review_btn_state)
+                            review_btn_click();
+                    }
+                })
+                update_icons();
+            }
 
         }
         function update_icons() {
@@ -832,13 +834,15 @@
         function load_reviews(result) {
             let rate = parseFloat(result[0]).toFixed(1);
             document.getElementById('average-score').innerHTML = rate;
+            document.getElementById('average-score2').innerHTML = rate;
             [1, 2, 3, 4, 5].forEach((el) => {
                 document.getElementById(`rate-${el}`).className = (rate >= el) ? "rate-icon" : "unrate-icon";
+                document.getElementById(`rate-${el}2`).className = (rate >= el) ? "rate-icon" : "unrate-icon";
             })
             let reviews = result[1];
             document.getElementById('reviews-count').innerHTML = `Отзывов: ${result[1].length}`;
             document.getElementById('reviews-cnt').innerHTML = `Оценок: ${result[1].length}`;
-            console.log(reviews);
+            document.getElementById('reviews-cnt2').innerHTML = `Оценок: ${result[1].length}`;
             reviews.forEach(el => {
                 let name = el[0][0];
                 console.log(el);
@@ -884,7 +888,7 @@
                     // }
                     // document.getElementById('info-photo').style.background = `url(https://trip.backend.xredday.ru/${res[localStorage.getItem('prev_place')][4]})`;
                 });
-                api_getrev(localStorage.getItem('prev_place')).then((res) => load_reviews(res), () => console.log('error'));
+                api_getrev(parseInt(localStorage.getItem('prev_place'))+1,localStorage.getItem('auth_key')).then((res) => load_reviews(res), () => console.log('error'));
             });
         }
         document.addEventListener('deviceready',()=>{
@@ -919,7 +923,7 @@
             console.log(JSON.parse(localStorage.getItem("favourite_parking")))
 
             // Не смог сделать массив в локал стораже
-            // Но вот идея 
+            // Но вот идея
             // // Favs - массив айдишников избранных парковок
             // именно айдишников тк скорее всего будет локальная база какая-нибудь
             // откуда можно будет подгружать данные о парковках
