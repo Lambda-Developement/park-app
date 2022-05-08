@@ -26,7 +26,7 @@
     </div>
 
     <div class="container">
-        <div class="image-frame my-3">
+        <div class="image-frame my-3" id="info-photo">
             <div class="ontop d-inline-flex align-items-center">
                 <div class="photos-icon"></div>
                 <div>
@@ -74,13 +74,13 @@
         </div>
         <div class="panel geoinfo panel-down mb-2">
             <h3 class="text-description mb-1">Особенности</h3>
-            <p class="text-common mb-1">
-                <span class="text-description">Парковка:</span> охраняемая, надземная,
-                платная
+            <p class="text-common mb-1" id="info-descr">
+<!--                <span class="text-description">Парковка:</span> охраняемая, надземная,-->
+<!--                платная-->
             </p>
-            <p class="text-common mb-1">
-                <span class="text-description">За первый час:</span> 60₽
-            </p>
+<!--            <p class="text-common mb-1">-->
+<!--                <span class="text-description">За первый час:</span> 60₽-->
+<!--            </p>-->
         </div>
         <div class="payment">
             <div class="panel">
@@ -887,10 +887,11 @@
                 localStorage.setItem('name', userdata[2]);
                 api_data().then((res) => {
                     document.getElementById('info-description').innerHTML = res[localStorage.getItem('prev_place')][3];
+                    document.getElementById('info-descr').innerHTML = res[localStorage.getItem('prev_place')][4];
                     if (localStorage.getItem('p_distance') != null) {
                         document.getElementById('info-distance').innerHTML = `${localStorage.getItem('p_distance')} km`
                     }
-                    // document.getElementById('info-photo').style.background = `url(https://trip.backend.xredday.ru/${res[localStorage.getItem('prev_place')][4]})`;
+                    document.getElementById('info-photo').style.background = `url(https://park.backend.xredday.ru/${res[localStorage.getItem('prev_place')][5]})`;
                 });
                 api_getrev(parseInt(localStorage.getItem('prev_place'))+1,localStorage.getItem('auth_key')).then((res) => load_reviews(res), () => console.log('error'));
             });
