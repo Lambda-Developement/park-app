@@ -142,6 +142,7 @@
     </div>
     <script>
 
+        // Открытие, закрытие попа окон на удаление истории
         function callpopup() {
             document.getElementById('popup2').style.display = 'block';
         }
@@ -153,12 +154,15 @@
             closepopup();
         }
 
+        // Открытие, закрытие попа окон на выход из аккаунта
         function callpopup_exit_account() {
             document.getElementById('popup3').style.display = 'block';
         }
         function closepopup_exit_account() {
             document.getElementById('popup3').style.display = 'none';
         }
+
+        // Выход из аккаунта
         function logout() {
             localStorage.removeItem('auth_key');
             document.location.href = '../Login/login.html';
@@ -168,14 +172,9 @@
     <script src="../../js/api.js"></script>
     <script>
 
-        // function check_credentials() {
-        //     if (localStorage != undefined) {
-        //         if (localStorage.getItem('name') != null && localStorage.getItem('name').length > 0) {
-        //             document.getElementById('header-name').innerHTML = localStorage.getItem('name');
-        //         }
-        //     }
-        // }
         const url = 'https://park.backend.xredday.ru';
+
+        // Загрузка данных пользователя
         document.addEventListener('deviceready', () => {
             api_kval(localStorage.auth_key).then(() => { }, () => redirect_login());
             api_userdata(localStorage.auth_key).then((userdata) => {

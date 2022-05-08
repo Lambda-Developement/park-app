@@ -51,9 +51,9 @@
         </div>
     </div>
 </div>
-<div class="panel-fill d-inline-flex align-items-center justify-content-center">
-    <div><h3 class="text-link"><a href="#" onclick="add_new_place()" >Новое место</a></h3></div>
-</div>
+<!--<div class="panel-fill d-inline-flex align-items-center justify-content-center">-->
+<!--    <div><h3 class="text-link"><a href="#" onclick="add_new_place()" >Новое место</a></h3></div>-->
+<!--</div>-->
 
 <!-- Ниже идет попуп -->
 <div class="favourites-popup" id="popup1">
@@ -85,6 +85,8 @@
     var current = null;
     var locs = [];
     var current_favourite;
+
+    // Добавлние нового места
     function add_new_place(){
         document.getElementById('places-here').innerHTML += "" +
             "<div class=\"panel-fill d-inline-flex align-items-center\">\n" +
@@ -99,6 +101,8 @@
             "        </div>\n" +
             "    </div>";
     }
+
+    // Построение маршрута
     function make_route(){
         if(localStorage != undefined){
             if(current.children[1].children[0].children[0].innerHTML == 'Дом'){
@@ -115,12 +119,16 @@
             redirect_home();
         }
     }
+
+    // Изменение адреса
     function change_address(){
         // <div style='display: none'><input type="text" class="form-control" id='review-input' placeholder="..."></div>
         current.children[1].innerHTML += "<div><input onfocusout='save_new_address()' type=\"text\" class=\"form-control\" id='review-input' placeholder=\"...\"></div>";
         current.children[1].children[1].style.display = "none";
         closepopup()
     }
+
+    // Удаление избранного
     function delete_address(){
         if(current.children[1].children[0].children[0].innerHTML != 'Дом' &&
             current.children[1].children[0].children[0].innerHTML != 'Работа'){
@@ -145,6 +153,8 @@
         }
         closepopup()
     }
+
+    // Открытие, закрытие попап окна
     function callpopup(el,p_id){
         document.getElementById("popup1").style.display='block';
         current = el.parentElement.parentElement.parentElement.parentElement;
@@ -154,6 +164,8 @@
     function closepopup(){
         document.getElementById("popup1").style.display='none';
     }
+
+    // Сохранение нового адреса
     function save_new_address(){
         let text = current.children[1].children[2].children[0].value;
         current.children[1].children[2].remove();
@@ -161,6 +173,8 @@
         current.children[1].children[1].children[0].innerHTML = text;
         current.children[2].children[0].children[0].children[0].innerHTML = "Изменить";
     }
+
+    // Получение данных о парковках и избранных
     document.addEventListener('deviceready', () => {
         cordovaHTTP.post("https://park.backend.xredday.ru/",
             {

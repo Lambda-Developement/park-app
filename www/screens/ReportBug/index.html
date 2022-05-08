@@ -65,6 +65,8 @@
 <script src="../../cordova.js"></script>
 <script>
     var error_message = document.getElementById("textarea_bug").value
+
+    // Отправка бага
     function send_bug() {
         cordovaHTTP.post("https://park.backend.xredday.ru/",
             {
@@ -87,6 +89,8 @@
     }
 </script>
 <script>
+
+    // Валидация данных
     const validateEmail = (email) => {
         var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);

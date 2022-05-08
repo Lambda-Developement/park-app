@@ -90,9 +90,10 @@
 
         </div>
     </div>
-    <!-- Вежливо украдено из логинки -->
     <script src="../../cordova.js"></script>
     <script>
+
+        // Валидация данных
         const validateEmail = (email) => {
             var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
@@ -157,6 +158,7 @@
 
         callbackFunction();
 
+        // Авторизация
         function api_authorize(email, password) {
             // Login
             api_login(email, password).then(
@@ -164,6 +166,7 @@
                 () => errorMessage.style.visibility = "visible");
         }
 
+        // Регистрация пользователя
         function api_reg(
             name = nameField.value,
             password = passwordField.value,

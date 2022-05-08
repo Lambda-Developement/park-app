@@ -137,6 +137,8 @@
     <script src="../../js/deeplinks.js"></script>
     <script>
         const url = 'https://park.backend.xredday.ru';
+
+        // Обновление данных пользователя
         function check_credentials() {
             document.getElementById('header-name').innerHTML = localStorage.name;
 
@@ -153,6 +155,7 @@
             }
         }
 
+        // Применение настроек
         function apply_changes() {
             if (localStorage != undefined) {
                 //['name','sex','birth1','birth2','birth3','email','phone'].forEach(el=>{
@@ -185,6 +188,8 @@
             check_credentials();
             redirect_profile();
         }
+
+        // Получение данных пользователя
         document.addEventListener('deviceready', () => {
             api_userdata(localStorage.auth_key).then((userdata) => {
                 localStorage.setItem('name', userdata[2]);

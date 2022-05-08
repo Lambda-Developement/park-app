@@ -5,6 +5,8 @@ var locs = [];
 
 var permissions;
 
+
+// Получение информации о парковках
 document.addEventListener('deviceready', () => {
     cordovaHTTP.post("https://park.backend.xredday.ru/",
         {
@@ -75,6 +77,7 @@ function onError(error) {
         'message: ' + error.message + '\n');
 }
 
+// Запрос разрешений
 setTimeout(() => {
     permissions = cordova.plugins.permissions;
     var list = [
@@ -101,6 +104,7 @@ setTimeout(() => {
     }
 }, 2000);
 
+// Получение текущего местоположения
 function get_location() {
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
     map.flyTo(pos, 18);
@@ -109,6 +113,7 @@ function get_location() {
 
 document.getElementById("map").style.height = HEIGHT;
 
+// Настройка карты
 var map = L.map('map', {
     center: pos,
     zoom: scale,
@@ -148,7 +153,7 @@ var routing_control = L.Routing.control({
 });
 routing_control.addTo(map);
 
-
+// Обновление маркеров
 function update_markers() {
     map.removeLayer(markers);
     markers = L.markerClusterGroup({
@@ -193,6 +198,8 @@ function update_markers() {
 }
 
 update_markers();
+
+// Построение маршрута
 function make_route(start, end) {
     map.removeControl(routing_control);
     routing_control = L.Routing.control({
@@ -213,9 +220,13 @@ function make_route(start, end) {
     });
     routing_control.addTo(map);
 }
+
+// Приближение карты
 function zoomin() {
     map.zoomIn(1);
 }
+
+// Отдаление карты
 function zoomout() {
     map.zoomOut(1);
 }
@@ -235,6 +246,7 @@ var index = elasticlunr(function () {
     this.setRef('id');
 });
 
+// Поиск парковок
 function search(input_str) {
     results = index.search(input_str);
     document.getElementById("search-results1").innerHTML = "";
@@ -268,6 +280,8 @@ function search(input_str) {
             "                </a></div>";
     });
 }
+
+// Обработчик нажатия на строчку поиска
 function search_clicked(coords,id) {
     map.flyTo(coords, 16);
     let hs = localStorage.getItem('history');
@@ -289,6 +303,8 @@ function search_clicked(coords,id) {
 setInterval(() => {
     search(document.getElementById('line-edit').value);
 }, 1000);
+
+// Получение расстояни от текущего местоположения до парковки
 function calc_distance_to_geopoint(g_id){
     let meters = map.distance(L.latLng(pos[0],pos[1]),L.latLng(locs[g_id][0],locs[g_id][1]));
     return parseFloat(meters/1000.0).toFixed(1);

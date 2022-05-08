@@ -56,6 +56,8 @@
     <script src="../../js/api.js"></script>
     <script>
 
+        // Валидация данных
+
         errorMessage = document.getElementById("error-msg");
         errorMessage.style.visibility = "hidden";
 
@@ -97,6 +99,7 @@
 
         callbackFunction();
 
+        // Логин
         function login(email, password) {
             errorMessage.style.visibility = "hidden";
 
@@ -105,7 +108,7 @@
             api_authorize(email, password);
         }
 
-
+        // Авторизация
         function api_authorize(email, password) {
             // Recieves email and password in plain.
 

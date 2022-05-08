@@ -469,6 +469,8 @@
         var review_btn_state = true;
         var review_count = 0;
         var rate = 5;
+
+        // Переключение в режим отызвов
         function switch_review() {
             document.getElementById("geoinfo").classList.remove("active");
             document.getElementById("review").classList.add("active");
@@ -486,6 +488,8 @@
                 temp[i].style.display = "none";
             }
         }
+
+        // Переключение в режим осмотра парковки
         function switch_geoinfo() {
             document.getElementById("review").classList.remove("active");
             document.getElementById("geoinfo").classList.add("active");
@@ -503,6 +507,8 @@
                 temp[i].style.display = "none";
             }
         }
+
+        // Переключение в режим оплаты
         function switch_payment() {
             document.getElementById("geoinfo").classList.remove("active");
             document.getElementById("review").classList.remove("active");
@@ -520,6 +526,8 @@
                 temp[i].style.display = "none";
             }
         }
+
+        // Открытие, закрытие попап окон
         function callpopup() {
             document.getElementById("popup1").style.display = "block";
             document.getElementById("line-edit3").value = "";
@@ -533,6 +541,8 @@
             document.getElementById("popup1").style.display = "none";
             document.getElementById("popup2").style.display = "none";
         }
+
+        // Добавление карты
         function add_card() {
             if (localStorage != undefined) {
                 if (localStorage.getItem("card1_num") == null) {
@@ -568,6 +578,8 @@
             clear_card_highlight();
             clear_card_dates();
         }
+
+        // Удаление карты
         function clear_card_highlight() {
             Array.prototype.forEach.call(document.getElementsByClassName("line-success"), function (a) { a.classList.remove("line-success") });
             Array.prototype.forEach.call(document.getElementsByClassName("line-fail"), function (a) { a.classList.remove("line-fail") });
@@ -577,6 +589,7 @@
             document.getElementById("expireMM").value = "";
         }
 
+        // Удаление всех карт
         function clear_cards() {
             if (localStorage != undefined) {
                 [
@@ -593,6 +606,8 @@
             check_cards();
             closepopup();
         }
+
+        // Обработчик нажатия на радио кнопку
         function radio_click(el) {
             ["option1", "option2", "option3"].forEach((b) => {
                 if (document.getElementById(b) != null) {
@@ -601,6 +616,8 @@
             });
             el.checked = true;
         }
+
+        // Проверка карт
         function check_cards() {
             if (localStorage != undefined) {
                 document.getElementById("cards-here").innerHTML = "";
@@ -651,6 +668,8 @@
                 }
             }
         }
+
+        // Обработчик нажатия на кнопку с отзывами
         function review_btn_click() {
             let name = "Роман";
             if (localStorage != undefined) {
@@ -743,6 +762,7 @@
             review_btn_state = !review_btn_state;
         }
 
+        // Валидация карт
         var checkLuhn = function (cardNo) {
             var s = 0;
             var doubleDigit = false;
@@ -790,6 +810,7 @@
         cardExpiryMM.onchange = concat_data;
         cardExpiryYY.onchange = concat_data;
 
+        // Обработчик нажатия на кнопку с рейтингом
         function rate_clicked(el) {
             ["1", "2", "3", "4", "5"].forEach((b) => {
                 if (el.id == "rate-" + b) {
@@ -811,6 +832,8 @@
             }
 
         }
+
+        // Обновление рейтинга
         function update_icons() {
             for (i = 1; i <= 5; i++) {
                 if (i <= rate) {
@@ -831,6 +854,8 @@
                 }
             }
         }
+
+        // Загрузка отзывов
         function load_reviews(result) {
             let rate = parseFloat(result[0]).toFixed(1);
             document.getElementById('average-score').innerHTML = rate;
@@ -877,10 +902,14 @@
                 review_count++;
             });
         }
+
+        // Построение маршрута
         function get_route() {
             localStorage.setItem('make_route', localStorage.getItem('prev_place'));
             redirect_home();
         }
+
+        // Обновление страницы
         function update_page() {
             document.getElementById('reviews-here').innerHTML = "";
             api_userdata(localStorage.getItem('auth_key')).then((userdata) => {
@@ -901,11 +930,11 @@
         });
     </script>
     <script>
+
+         // Экспорт парковок
         function export_parking() {
-            // Потом джейсон можно заполнить данными из шаблонизатора
             var parking = {
                 "id": 123123123,
-                //То что ниже лучше запросами или хотя бы частично (архитектуру не знаю не могу скзаать)
                 "title": "Парковка",
                 "address": "Россия, Ярославль, улица Чайковского",
                 "rating": 4.9,
@@ -915,10 +944,8 @@
         }
 
         function add_favourite_parking() {
-            // Потом джейсон можно заполнить данными из шаблонизатора
             var parking = {
                 "id": 69,
-                //То что ниже лучше запросами или хотя бы частично (архитектуру не знаю не могу скзаать)
                 "title": "Парковка",
                 "address": "Россия, Ярославль, улица Чайковского",
                 "rating": 4.9,
@@ -926,12 +953,6 @@
 
             localStorage.setItem("favourite_parking", JSON.stringify(parking))
             console.log(JSON.parse(localStorage.getItem("favourite_parking")))
-
-            // Не смог сделать массив в локал стораже
-            // Но вот идея
-            // // Favs - массив айдишников избранных парковок
-            // именно айдишников тк скорее всего будет локальная база какая-нибудь
-            // откуда можно будет подгружать данные о парковках
         }
     </script>
     <script src="../../cordova.js"></script>
