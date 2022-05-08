@@ -891,7 +891,7 @@
                     if (localStorage.getItem('p_distance') != null) {
                         document.getElementById('info-distance').innerHTML = `${localStorage.getItem('p_distance')} km`
                     }
-                    document.getElementById('info-photo').style.background = `url(https://park.backend.xredday.ru/${res[localStorage.getItem('prev_place')][5]})`;
+                    document.getElementById('info-photo').style.backgroundImage = `url(https://park.backend.xredday.ru/${res[localStorage.getItem('prev_place')][5]})`;
                 });
                 api_getrev(parseInt(localStorage.getItem('prev_place'))+1,localStorage.getItem('auth_key')).then((res) => load_reviews(res), () => console.log('error'));
             });

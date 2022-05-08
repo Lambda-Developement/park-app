@@ -100,7 +100,7 @@
                 <div class="parking-info d-flex align-items-center flex-row">
                     <div class="w-50 h-100">
                         <a class="h-100 w-100 m-0 p-0">
-                            <div class="park-photo"></div>
+                            <div class="park-photo" id="info-photo"></div>
                         </a>
                     </div>
                     <div class="d-flex flex-column w-100 container">
@@ -221,6 +221,7 @@
             document.getElementById('status-icon-text').innerHTML = locs[park][2];
             document.getElementById('text-description').innerHTML = locs[park][3];
             document.getElementById('info-distance').innerHTML = `${calc_distance_to_geopoint(localStorage.getItem('prev_place'))} km`;
+            document.getElementById('info-photo').style.backgroundImage = `url(https://park.backend.xredday.ru/${locs[park][5]})`;
             let favs = localStorage.getItem('favourites');
             if (favs != null && favs != 'undefined'){
                 favs = JSON.parse(favs);
