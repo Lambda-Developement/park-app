@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="profile-screen">
+    <div class="profile-screen blur" id="profile-screen">
         <div class="avatar-area">
             <img src="../../jpg/avatar.png" alt="roma.jpeg" class="avatar-area__image" id="avatar">
             <h3 class="text-bold" id="header-name">
@@ -135,6 +135,11 @@
 
 
     </div>
+    <div class="loading" id="loading">
+        <div class="spinner-border text-primary m-auto" role="status">
+            <span class="sr-only"></span>
+        </div>
+    </div>
     <script>
 
         function callpopup() {
@@ -178,6 +183,10 @@
                     document.getElementById('avatar').src = `${url}/${userdata[1]}`;
                 }
                 document.getElementById('header-name').innerHTML = userdata[2];
+                setTimeout(()=>{
+                    document.getElementById('profile-screen').classList.remove('blur');
+                    document.getElementById('loading').style.display = 'none';
+                },500);
             });
         })
 
