@@ -17,7 +17,7 @@ document.addEventListener('deviceready', () => {
             // Подтверждение регистрации
             conf = eventData.url.split("/")[eventData.url.split("/").length - 1];
             console.log(`api_regconf(${conf})`);
-            api_regconf(conf).then(
+            api_confirmregistration(conf).then(
                 (success) => {
                     redirect("/screens/MailConfirmation/mailConfirmation.html");
                 }
@@ -45,7 +45,7 @@ document.addEventListener('deviceready', () => {
         "mailConfirmationInfo.html",
         "index.html"
     ];
-    api_kval(localStorage.getItem('auth_key')).then(
+    api_checkkey(localStorage.getItem('auth_key')).then(
         () => { if (cur_page == "login.html") redirect("../Profile+avatar/profile_main.html") },
         () => { if (!no_redirect.includes(cur_page)) redirect_login(); });
 });

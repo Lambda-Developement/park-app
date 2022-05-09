@@ -53,55 +53,55 @@ async function api_login(login, password) {
     return await __basic_api_call("login", data);
 }
 
-async function api_kval(auth_key) {
-    // "kval" api call (auth_key not required)
+async function api_checkkey(auth_key) {
+    // "checkkey" api call (auth_key not required)
     // returns nothing (resolve if good reject if bad)
     let data = {
         'key': auth_key,
     }
-    return await __basic_api_call("kval", data);
+    return await __basic_api_call("checkkey", data);
 }
 
 async function api_register(name, mail, pass) {
-    // "reg" api call (auth_key not required)
+    // "register" api call (auth_key not required)
     // returns nothing (resolve if good reject if bad)
     let data = {
         'name': name,
         'mail': mail,
         'pass': pass,
     }
-    return await __basic_api_call("reg", data);
+    return await __basic_api_call("register", data);
 }
 
-async function api_regconf(conf) {
-    // "regconf" api call (auth_key not required)
+async function api_confirmregistration(conf) {
+    // "confirmregistration" api call (auth_key not required)
     // returns nothing (resolve if good reject if bad)
     let data = {
         'conf': conf,
     }
-    return await __basic_api_call("regconf", data);
+    return await __basic_api_call("confirmregistration", data);
 }
 
-async function api_remind(mail) {
-    // "remind" api call (auth_key not required)
+async function api_remindrequest(mail) {
+    // "remindrequest" api call (auth_key not required)
     // returns nothing (resolve if good reject if bad)
     let data = {
         'mail': mail,
     }
-    return await __basic_api_call("remind", data);
+    return await __basic_api_call("remindrequest", data);
 }
 
-async function api_emsg(text) {
-    // "emsg" api call (auth_key not required)
+async function api_errornotification(text) {
+    // "errornotification" api call (auth_key not required)
     // returns nothing (resolve if good reject if bad)
     let data = {
         'text': text,
     }
-    return await __basic_api_call("emsg", data);
+    return await __basic_api_call("errornotification", data);
 }
 
-async function api_pupd(auth_key, diff) {
-    // "pupd" api call (auth_key not required)
+async function api_profiledataupdate(auth_key, diff) {
+    // "profiledataupdate" api call (auth_key not required)
     // returns nothing (resolve if good reject if bad)
     // types: name - str; gender - 0, 1 man, 2 girl; dob - ???; phone - str???; pass - str
 
@@ -109,36 +109,35 @@ async function api_pupd(auth_key, diff) {
     const fields = ['name', 'gender', 'dob', 'phone', 'pass'];
     // Explicitly forbid other fields.
     fields.forEach((field) => { if (diff[field] != undefined) data[field] = diff[field] });
-    return await __basic_api_call("pupd", data, auth_key);
+    return await __basic_api_call("profiledataupdate", data, auth_key);
 }
 
-async function api_userdata(auth_key) {
-    // "userdata" api call (auth_key required)
+async function api_getprofiledata(auth_key) {
+    // "getprofiledata" api call (auth_key required)
     // returns [id, avatar_loc, name, gender, dob, login, phone]
     //  dob - это int, в котором 0 - н/опр, 1 - М, 2 - Ж, а для получения
     // avatar_loc, перед полученной ссылкой добавьте https://trip.backend.xredday.ru/
     let data = {
         // Empty
     }
-    return await __basic_api_call("userdata", data, auth_key);
+    return await __basic_api_call("getprofiledata", data, auth_key);
 }
 
-async function api_remindconf(pass, conf) {
-    // "remindconf" api call
+async function api_remindconfirmation(pass, conf) {
+    // "remindconfirmation" api call
     // returns [id, avatar_loc, name, gender, dob, login, phone]
     let data = {
         'pass': pass,
         'conf': conf
     }
-    return await __basic_api_call("remindconf", data);
+    return await __basic_api_call("remindconfirmation", data);
 }
 
 // Getting field
 // api_userdata(auth_key).then((userdata) => { var name = userdata[2]; });
 
-// Sobaka-app
-async function api_getrev(id, auth_key=null, type = 0) {
-    // "getrev" api call (auth_key required)
+async function api_getreviewlist(id, auth_key=null, type = 0) {
+    // "getreviewlist" api call (auth_key required)
     // returns [average, reviews[]], где average - средняя оценка экскурсии,
     // reviews[] - массив, содержащий все оценки. Массив reviews состоит из
     // [udata[], mark, review], где udata[] - массив [name, avatarloc] содержащий
@@ -147,43 +146,22 @@ async function api_getrev(id, auth_key=null, type = 0) {
         'id': id,
         'type': type,
     }
-    return await __basic_api_call("getrev", data, auth_key);
+    return await __basic_api_call("getreviewlist", data, auth_key);
 }
 
-// Sobaka-app
-async function api_groutes(auth_key) {
-    // "getrev" api call (auth_key required)
-    // returns [id, name, points, distance, duration, description]
-    // Поле description может быть NULL.
-    let data = {
-        //Empty
-    }
-    return await __basic_api_call("groutes", data, auth_key);
-}
 
-// Sobaka-app
-async function api_data(auth_key=null) {
-    // "data" api call (auth_key required)
+async function api_getdata(auth_key=null) {
+    // "getdata" api call (auth_key required)
     // returns array of [lat, lon, description]
     let data = {
         // Empty
     }
-    return await __basic_api_call("data", data, auth_key);
+    return await __basic_api_call("getdata", data, auth_key);
 }
 
-// Sobaka-app
-async function api_tourdata(id, auth_key) {
-    // "tourdata" api call (auth_key required)
-    // returns array of [audio, subtitles]
-    let data = {
-        'id': id
-    }
-    return await __basic_api_call("tourdata", data, auth_key);
-}
 
-// Sobaka-app
-async function api_crrev(id, mark, auth_key, review = "") {
-    // "crrev" api call (auth_key required)
+async function api_setreview(id, mark, auth_key, review = "") {
+    // "setreview" api call (auth_key required)
     // returns nothing
     let data = {
         'id': id,
@@ -191,7 +169,7 @@ async function api_crrev(id, mark, auth_key, review = "") {
         'mark': mark, // 1-5
         'review': review,
     }
-    return await __basic_api_call("crrev", data, auth_key);
+    return await __basic_api_call("setreview", data, auth_key);
 }
 
 
@@ -213,23 +191,11 @@ function api_test() {
             console.log(`localStorage["auth_key"]: ${localStorage.getItem("auth_key")}`);
 
             // kval
-            api_kval(res_key).then(
+            api_checkkey(res_key).then(
                 (res) => {
                     console.log(`kval: ${res == ""}`);
                 }, err
             );
-            // //data
-            // auth_key = localStorage.getItem("auth_key");
-            // api_data(auth_key).then((res) => console.log(`data: ${res}`), err);
-
-            // //tourdata
-            // id = 33
-            // auth_key = localStorage.getItem("auth_key");
-            // api_tourdata(id, auth_key).then((res) => console.log(`tourdata: ${res}`), err);
-
-            // //groutes
-            // auth_key = localStorage.getItem("auth_key");
-            // api_tourdata(auth_key).then((res) => console.log(`groutes: ${res}`), err);
 
             //crrev
             id = 33
@@ -237,23 +203,23 @@ function api_test() {
             type = 0
             auth_key = localStorage.getItem("auth_key");
             review_message = `Last_auth_key: ${auth_key}`;
-            api_crrev(id, type, mark, auth_key, review_message).then((res) => console.log(`crrev: ${res}`), err);
+            api_setreview(id, type, mark, auth_key, review_message).then((res) => console.log(`crrev: ${res}`), err);
 
             //getrev
             id = 33
             auth_key = localStorage.getItem("auth_key");
-            api_getrev(id, auth_key).then((res) => console.log(`getrev(${id}): ${res}`), err);
+            api_getreviewlist(id, auth_key).then((res) => console.log(`getrev(${id}): ${res}`), err);
 
             //pupd
             diff = {
                 phone: "+79611616996",
             };
             auth_key = localStorage.getItem("auth_key");
-            api_pupd(auth_key, diff).then((res) => console.log(`pupd: ${res}`), err);
+            api_profiledataupdate(auth_key, diff).then((res) => console.log(`pupd: ${res}`), err);
 
             //userdata
             auth_key = localStorage.getItem("auth_key");
-            api_userdata(auth_key).then((res) => console.log(`userdata(${auth_key}): ${res}`), err);
+            api_getprofiledata(auth_key).then((res) => console.log(`userdata(${auth_key}): ${res}`), err);
 
         },
         err
@@ -275,9 +241,9 @@ function api_test() {
 
     //remind
     //haven't tested well...
-    api_remind(mail_t).then((res) => console.log(`remind: ${res == ""}`), err);
+    api_remindrequest(mail_t).then((res) => console.log(`remind: ${res == ""}`), err);
 
     //emsg
     emsg = "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups";
-    api_emsg(emsg).then((res) => console.log(`emsg: ${res == ""}`), err);
+    api_errornotification(emsg).then((res) => console.log(`emsg: ${res == ""}`), err);
 }

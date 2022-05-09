@@ -176,8 +176,8 @@
 
         // Загрузка данных пользователя
         document.addEventListener('deviceready', () => {
-            api_kval(localStorage.auth_key).then(() => { }, () => redirect_login());
-            api_userdata(localStorage.auth_key).then((userdata) => {
+            api_checkkey(localStorage.auth_key).then(() => { }, () => redirect_login());
+            api_getprofiledata(localStorage.auth_key).then((userdata) => {
                 if (userdata[1] != null) {
                     document.getElementById('avatar').src = `${url}/${userdata[1]}`;
                 }

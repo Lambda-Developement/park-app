@@ -708,7 +708,7 @@
                 document.getElementById("review-text").innerHTML = "Добавить";
             } else {
                 let prev_review = document.getElementById("review-input").value;
-                api_crrev(parseInt(localStorage.getItem('prev_place'))+1, rate, localStorage.getItem('auth_key'), prev_review).then((res) => {
+                api_setreview(parseInt(localStorage.getItem('prev_place'))+1, rate, localStorage.getItem('auth_key'), prev_review).then((res) => {
                     console.log('done');
                 }, () => console.log('error'));
                 document.getElementById("review-" + review_count).remove();
@@ -912,9 +912,9 @@
         // Обновление страницы
         function update_page() {
             document.getElementById('reviews-here').innerHTML = "";
-            api_userdata(localStorage.getItem('auth_key')).then((userdata) => {
+            api_getprofiledata(localStorage.getItem('auth_key')).then((userdata) => {
                 localStorage.setItem('name', userdata[2]);
-                api_data().then((res) => {
+                api_getdata().then((res) => {
                     document.getElementById('info-description').innerHTML = res[localStorage.getItem('prev_place')][3];
                     document.getElementById('info-descr').innerHTML = res[localStorage.getItem('prev_place')][4];
                     if (localStorage.getItem('p_distance') != null) {
@@ -922,7 +922,7 @@
                     }
                     document.getElementById('info-photo').style.backgroundImage = `url(https://park.backend.xredday.ru/${res[localStorage.getItem('prev_place')][5]})`;
                 });
-                api_getrev(parseInt(localStorage.getItem('prev_place'))+1,localStorage.getItem('auth_key')).then((res) => load_reviews(res), () => console.log('error'));
+                api_getreviewlist(parseInt(localStorage.getItem('prev_place'))+1,localStorage.getItem('auth_key')).then((res) => load_reviews(res), () => console.log('error'));
             });
         }
         document.addEventListener('deviceready',()=>{

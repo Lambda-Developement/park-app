@@ -177,7 +177,7 @@
                     localStorage.setItem(el, value);
                 });
                 console.log(values);
-                api_pupd(localStorage.auth_key, values).then((a) => {
+                api_profiledataupdate(localStorage.auth_key, values).then((a) => {
                     console.log('userdata updated');
                 });
                 el = document.getElementById('new-prof-pic');
@@ -191,7 +191,7 @@
 
         // Получение данных пользователя
         document.addEventListener('deviceready', () => {
-            api_userdata(localStorage.auth_key).then((userdata) => {
+            api_getprofiledata(localStorage.auth_key).then((userdata) => {
                 localStorage.setItem('name', userdata[2]);
                 localStorage.setItem('gender', userdata[3]);
                 localStorage.setItem('login', userdata[5]);
