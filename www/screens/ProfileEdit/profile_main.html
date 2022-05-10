@@ -33,7 +33,7 @@
             <label for="image" style="cursor:pointer;">
                 <input type="text" name="request" style="display:none;" id="hidden_input">
                 <script>
-                    document.getElementById("hidden_input").value = `{"action":"picupd","user_key":"${localStorage.auth_key}"}`;
+                    document.getElementById("hidden_input").value = `{"action":"profilepictureupdate","user_key":"${localStorage.auth_key}"}`;
                 </script>
                 <input type='file' name="new_avatar_img" style="display: none;" id="image"
                     accept="image/jpeg, image/png">
@@ -48,6 +48,7 @@
                         if (file) {
                             avatar.src = URL.createObjectURL(file)
                         }
+
                         document.getElementById("image").form.submit()
                     }
                 </script>
