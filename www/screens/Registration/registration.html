@@ -175,10 +175,16 @@
 
             api_register(name, email, password).then(
                 () => {
-                    window.location.href = "../MailConfirmation/mailConfirmationInfo.html"
+                    setTimeout(()=>{
+                        api_login(email, password).then(
+                            (res) => {
+                                localStorage.setItem('auth_key',res);
+                                window.location.href = "../Profile+avatar/profile_main.html";
+                            });
+                    },2000);
                 },
-                () => {
-                    console.log("registration fail");
+                (res) => {
+                    alert(`Ошибка при регистрации. Код ошибки: ${res}`);
                 }
             );
         }
