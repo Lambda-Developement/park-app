@@ -46,7 +46,8 @@ document.addEventListener('deviceready', () => {
         "index.html"
     ];
     api_checkkey(localStorage.getItem('auth_key')).then(
-        () => { if (cur_page == "login.html") redirect("../Profile+avatar/profile_main.html") },
-        () => { if (!no_redirect.includes(cur_page)) redirect_login(); });
+        () => { if (cur_page == "login.html") redirect("../Profile+avatar/profile_main.html") }
+       // , () => { if (!no_redirect.includes(cur_page)) redirect_login(); }
+       );
 });
 // }, 3000);
