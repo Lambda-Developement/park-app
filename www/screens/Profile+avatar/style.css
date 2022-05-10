@@ -1,4 +1,3 @@
-
 * {
     box-sizing: border-box;
 }
@@ -32,7 +31,7 @@ body {
 
 .avatar-area {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -40,12 +39,13 @@ body {
     height: 80%;
     display:flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .avatar-area__image {
     width:122px;
     height: 122px;
-    border-radius: 0.75rem;
+    border-radius: 50%;
     margin: 1rem 0 0.5rem 0;
 }
 
@@ -63,8 +63,10 @@ body {
 .nav-section {
     display:flex;
     flex-direction: column;
+    width: 355px;
+
     
-    margin-top: 3rem;
+    margin-top: 20px;
     flex-grow: 1;
 }
 
@@ -76,6 +78,7 @@ body {
     justify-content: flex-start;
 
     background-color:white;
+    margin-bottom: 20px;
     border: 0;
     border-radius: 0;
     height: 42px;
