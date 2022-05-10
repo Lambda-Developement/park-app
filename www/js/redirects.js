@@ -74,3 +74,7 @@ function redirect_reset_password(){
 function redirect_reset_password_email(){
     redirect('/screens/ResetPasswordEmail/resetPassword.html');
 }
+// Редирект в выбор парковки
+function redirect_add_favourite(){
+    redirect('/screens/AddFavourite/home.html');
+}

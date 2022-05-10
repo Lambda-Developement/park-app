@@ -166,7 +166,7 @@ function update_markers() {
             className: 'custom-div-icon',
             html: "<div class=\"status-icon\">\n" +
                 "        <a href=\"#\" onclick=\"get_info(" + idx + ")\">\n" +
-                "            <div class=\"status-icon-inner status-icon-" + el[2] + " d-flex justify-content-center align-items-center\">\n" +
+                "            <div class=\"status-icon-inner status-icon-" + el[2] + " d-flex justify-content-center align-items-center "+(localStorage.getItem('park_choose')==idx ?'glow':'')+"\">\n" +
                 "                <div>\n" +
                 "                    <p class=\"status-icon-text\">" + el[2] + "</p>\n" +
                 "                </div>\n" +

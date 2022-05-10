@@ -91,6 +91,11 @@
         closepopup()
     }
 
+    function choose_park(){
+        localStorage.setItem('park_type', 'park');
+        redirect_add_favourite();
+    }
+
     // Удаление избранного
     function delete_address(){
         current.remove();
@@ -153,6 +158,12 @@
                                 "        </div>\n" +
                                 "    </div>";
                         });
+                        if(localStorage.getItem('park_choose') != null){
+                            console.log(localStorage.getItem('park_type'));
+                            console.log(localStorage.getItem('park_choose'));
+                            localStorage.removeItem('park_choose');
+                            localStorage.removeItem('park_type');
+                        }
                     }
                 } catch (e) {
                     console.error("JSON parsing error");
