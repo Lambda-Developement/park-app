@@ -48,7 +48,7 @@ h3.text-common2{
 }
 .panel-fill{
     width: 100%;
-    height:64px;
+    height:80px;
     background: rgb(255,255,255);
     margin-bottom: 1px;
 }
@@ -100,7 +100,8 @@ h3.text-common{
     border-radius: 12px 12px 0px 0px;
 }
 .other-icon{
-    width:10px;
+    min-width:10px;
+    max-width: 10px;
     height:10px;
     margin-left:35px;
     margin-right: 15px;
