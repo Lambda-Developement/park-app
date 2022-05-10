@@ -12,7 +12,7 @@ document.addEventListener('deviceready', () => {
         {
             'request':
             {
-                "action": "data",
+                "action": "getdata",
             }
         },
         {},
@@ -29,7 +29,7 @@ document.addEventListener('deviceready', () => {
                     })
                 })
                 if (localStorage != undefined) {
-                    if (localStorage.getItem('prev_place') != null) {
+                    if (localStorage.getItem('prev_place') != null && localStorage.getItem('prev_place') !='undefined') {
                         idx = localStorage.getItem('prev_place');
                         map.flyTo([locs[idx][0], locs[idx][1]], 18);
                         get_info(parseInt(idx));
