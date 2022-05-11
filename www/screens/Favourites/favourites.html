@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,171 +12,200 @@
     <script src="../../js/deeplinks.js"></script>
 
 </head>
+
 <body>
 
 
-<div class="screen-hat">
-    <button class="btn arrow-back" onclick="redirect_profile_avatar()">
-        <a>
-            <img src="../../svg/arrow_back.svg" alt="arrow-back">
-        </a>
-    </button>
-    <div class="mb-3">
-        <h3 class="text-header">
-            Избранные места
-        </h3>
+    <div class="screen-hat">
+        <button class="btn arrow-back" onclick="redirect_profile_avatar()">
+            <a>
+                <img src="../../svg/arrow_back.svg" alt="arrow-back">
+            </a>
+        </button>
+        <div class="mb-3">
+            <h3 class="text-header">
+                Избранные места
+            </h3>
+        </div>
     </div>
-</div>
-<div class="spacer"></div>
-<div id="places-here">
+    <div class="spacer"></div>
+    <div id="places-here">
 
-</div>
-<!--<div class="panel-fill d-inline-flex align-items-center justify-content-center">-->
-<!--    <div><h3 class="text-link"><a href="#" onclick="add_new_place()" >Новое место</a></h3></div>-->
-<!--</div>-->
-
-<!-- Ниже идет попуп -->
-<div class="favourites-popup" id="popup1">
-    <div class="favourites-popup-wrapper d-flex justify-content-center">
-        <div>
-            <div class="mb-3" style="width: 335px">
-<!--                <div class="panel round-up d-flex align-items-center justify-content-center">-->
-<!--                    <div><h3 class="text-common"><a href="#" onclick="make_route()" style="color:rgba(65,65,65,1);">Построить маршрут</a></h3></div>-->
-<!--                </div>-->
-<!--                <div class="panel d-flex align-items-center justify-content-center">-->
-<!--                    <h3 class="text-common"><a href="#" onclick="change_address()" style="color:rgba(65,65,65,1);">Указать другой адрес</a></h3>-->
-<!--                </div>-->
-                <div class="panel round-up round-down d-flex align-items-center justify-content-center">
-                    <h3 class="text-common"><a href="#" onclick="delete_address()" style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
-                </div>
+    </div>
+    <a href="#" onclick="choose_park('park')">
+        <div class="panel-fill d-inline-flex align-items-center justify-content-center">
+            <div>
+                <h3 class="text-link">Новое место</h3>
             </div>
-            <div class="mb-3" style="width: 335px">
-                <div class="panel round-up round-down d-flex align-items-center justify-content-center">
-                    <h3 class="text-common"><a href="#" onclick="closepopup()" style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a></h3>
+        </div>
+    </a>
+    <!-- Ниже идет попуп -->
+    <div class="favourites-popup" id="popup1">
+        <div class="favourites-popup-wrapper d-flex justify-content-center">
+            <div>
+                <div class="mb-3" style="width: 335px">
+                    <!--                <div class="panel round-up d-flex align-items-center justify-content-center">-->
+                    <!--                    <div><h3 class="text-common"><a href="#" onclick="make_route()" style="color:rgba(65,65,65,1);">Построить маршрут</a></h3></div>-->
+                    <!--                </div>-->
+                    <!--                <div class="panel d-flex align-items-center justify-content-center">-->
+                    <!--                    <h3 class="text-common"><a href="#" onclick="change_address()" style="color:rgba(65,65,65,1);">Указать другой адрес</a></h3>-->
+                    <!--                </div>-->
+                    <div class="panel round-up round-down d-flex align-items-center justify-content-center">
+                        <h3 class="text-common"><a href="#" onclick="delete_address()"
+                                style="color:rgba(221, 58, 58, 1);">Удалить</a></h3>
+                    </div>
+                </div>
+                <div class="mb-3" style="width: 335px">
+                    <div class="panel round-up round-down d-flex align-items-center justify-content-center">
+                        <h3 class="text-common"><a href="#" onclick="closepopup()"
+                                style="font-weight: 600; color:rgba(65,65,65,1);">Отменить</a></h3>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="../../cordova.js"></script>
-<script>
-    var home=[57.625498, 39.884828];
-    var other=[];
-    var current = null;
-    var locs = [];
-    var current_favourite;
+    <script src="../../cordova.js"></script>
+    <script>
+        var home = [57.625498, 39.884828];
+        var other = [];
+        var current = null;
+        var locs = [];
+        var current_favourite;
 
-    // Построение маршрута
-    function make_route(){
-        if(localStorage != undefined){
-            if(current.children[1].children[0].children[0].innerHTML == 'Дом'){
-                localStorage.setItem('d_lat',locs[localStorage.getItem('home')][0]);
-                localStorage.setItem('d_lon',locs[localStorage.getItem('home')][1]);
+        // Построение маршрута
+        function make_route() {
+            if (localStorage != undefined) {
+                if (current.children[1].children[0].children[0].innerHTML == 'Дом') {
+                    localStorage.setItem('d_lat', locs[localStorage.getItem('home')][0]);
+                    localStorage.setItem('d_lon', locs[localStorage.getItem('home')][1]);
+                }
+                else if (current.children[1].children[0].children[0].innerHTML == 'Работа') {
+                    localStorage.setItem('d_lat', locs[localStorage.getItem('work')][0]);
+                    localStorage.setItem('d_lon', locs[localStorage.getItem('work')][1]);
+                } else {
+                    localStorage.setItem('d_lat', locs[current_favourite][0]);
+                    localStorage.setItem('d_lon', locs[current_favourite][1]);
+                }
+                redirect_home();
             }
-            else if(current.children[1].children[0].children[0].innerHTML == 'Работа'){
-                localStorage.setItem('d_lat',locs[localStorage.getItem('work')][0]);
-                localStorage.setItem('d_lon',locs[localStorage.getItem('work')][1]);
-            }else{
-                localStorage.setItem('d_lat',locs[current_favourite][0]);
-                localStorage.setItem('d_lon',locs[current_favourite][1]);
+        }
+
+        // Изменение адреса
+        function change_address() {
+            // <div style='display: none'><input type="text" class="form-control" id='review-input' placeholder="..."></div>
+            current.children[1].innerHTML += "<div><input onfocusout='save_new_address()' type=\"text\" class=\"form-control\" id='review-input' placeholder=\"...\"></div>";
+            current.children[1].children[1].style.display = "none";
+            closepopup()
+        }
+
+        // Создает диалог выбора парковки
+        function choose_park(park_type) { // park_type: "work" | "home" | "park
+            localStorage.setItem('park_type', park_type);
+            redirect_add_favourite();
+        }
+
+        // Удаление избранного
+        function delete_address() {
+            current.remove();
+            favs = localStorage.getItem('favourites');
+            if (favs != null && favs != 'undefined') {
+                favs = JSON.parse(favs);
+                favs = favs.filter(function (e) {
+                    return e != current_favourite;
+                });
+                favs = JSON.stringify(favs);
+                localStorage.setItem('favourites', favs);
             }
+            closepopup()
+        }
+
+        // Открытие, закрытие попап окна
+        function callpopup(el, p_id) {
+            document.getElementById("popup1").style.display = 'block';
+            current = el.parentElement.parentElement.parentElement;
+            console.log(current);
+            current_favourite = p_id;
+        }
+        function closepopup() {
+            document.getElementById("popup1").style.display = 'none';
+        }
+
+        function redirect_back(num) {
+            localStorage.setItem('prev_place', num);
             redirect_home();
         }
-    }
 
-    // Изменение адреса
-    function change_address(){
-        // <div style='display: none'><input type="text" class="form-control" id='review-input' placeholder="..."></div>
-        current.children[1].innerHTML += "<div><input onfocusout='save_new_address()' type=\"text\" class=\"form-control\" id='review-input' placeholder=\"...\"></div>";
-        current.children[1].children[1].style.display = "none";
-        closepopup()
-    }
-
-    // Создает диалог выбора парковки
-    function choose_park(park_type){ // park_type: "work" | "home" | "park
-        localStorage.setItem('park_type', type);
-        redirect_add_favourite();
-    }
-
-    // Удаление избранного
-    function delete_address(){
-        current.remove();
-        favs = localStorage.getItem('favourites');
-        if (favs != null && favs != 'undefined') {
-            favs = JSON.parse(favs);
-            favs = favs.filter(function (e) {
-                return e != current_favourite;
-            });
-            favs = JSON.stringify(favs);
-            localStorage.setItem('favourites',favs);
-        }
-        closepopup()
-    }
-
-    // Открытие, закрытие попап окна
-    function callpopup(el,p_id){
-        document.getElementById("popup1").style.display='block';
-        current = el.parentElement.parentElement.parentElement;
-        console.log(current);
-        current_favourite = p_id;
-    }
-    function closepopup(){
-        document.getElementById("popup1").style.display='none';
-    }
-
-    function redirect_back(num){
-        localStorage.setItem('prev_place',num);
-        redirect_home();
-    }
-
-    // Получение данных о парковках и избранных
-    document.addEventListener('deviceready', () => {
-        cordovaHTTP.post("https://park.backend.xredday.ru/",
-            {
-                'request':
+        // Получение данных о парковках и избранных
+        document.addEventListener('deviceready', () => {
+            cordovaHTTP.post("https://park.backend.xredday.ru/",
+                {
+                    'request':
                     {
                         "action": "getdata",
                     }
-            },
-            {},
-            function (response) {
-                console.log(response.status);
-                try {
-                    locs = JSON.parse(response.data);
-                    favs = localStorage.getItem('favourites');
-                    if (favs != null && favs != 'undefined'){
-                        favs = JSON.parse(favs);
-                        favs.forEach((el)=>{
-                            document.getElementById('places-here').innerHTML += "" +
-                                `<div class=\"panel-fill d-inline-flex align-items-center\">\n` +
-                                `        <div class=\"other-icon\" onclick='redirect_back(${el})'></div>\n` +
-                                `        <div style=\"width: 100%;\" class=\"flex-row\" onclick='redirect_back(${el})'>\n` +
-                                `            <div><h3 class=\"text-common text-common2\">${locs[el][3]}</h3></div>\n` +
-                                "            <div style='display:none;'><h3 class=\"text-description\"></h3></div>\n" +
-                                "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
-                                "        </div>\n" +
-                                "        <div class=\"me-3 d-flex align-items-center justify-content-end\">\n" +
-                                `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${el})\"><a href=\"#\">Удалить</a></h3></div>\n` +
-                                "        </div>\n" +
-                                "    </div>";
-                        });
-                        if(localStorage.getItem('park_choose') != null){
+                },
+                {},
+                function (response) {
+                    console.log(response.status);
+                    try {
+                        debugger;
+                        if (!(localStorage.favourites != '0' && localStorage.favourites != '[]' && localStorage.favourites != '' && localStorage.favourites != undefined)) {
+                            localStorage.favourites = '[]'
+                        }
+                        locs = JSON.parse(response.data);
+                        if (localStorage.getItem('park_choose') != null && localStorage.park_type == "park") {
                             console.log(localStorage.getItem('park_type'));
                             console.log(localStorage.getItem('park_choose'));
+                            // document.getElementById('places-here').innerHTML += "" +
+                            //     `<div class=\"panel-fill d-inline-flex align-items-center\">\n` +
+                            //     `        <div class=\"other-icon\" onclick='redirect_back(${localStorage.getItem('park_choose')})'></div>\n` +
+                            //     `        <div style=\"width: 100%;\" class=\"flex-row\" onclick='redirect_back(${el})'>\n` +
+                            //     `            <div><h3 class=\"text-common text-common2\">${locs[localStorage.getItem('park_choose')][3]}</h3></div>\n` +
+                            //     "            <div style='display:none;'><h3 class=\"text-description\"></h3></div>\n" +
+                            //     "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
+                            //     "        </div>\n" +
+                            //     "        <div class=\"me-3 d-flex align-items-center justify-content-end\">\n" +
+                            //     `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${localStorage.getItem('park_choose')})\"><a href=\"#\">Удалить</a></h3></div>\n` +
+                            //     "        </div>\n" +
+                            //     "    </div>";
+                            if (localStorage.favourites != '[]' && localStorage.favourites != '' && localStorage.favourites != undefined) {
+                                localStorage.favourites = JSON.stringify([...[JSON.parse(localStorage.favourites)], localStorage.getItem('park_choose')]);
+                            } else {
+                                localStorage.favourites = JSON.stringify([localStorage.getItem('park_choose')]);
+                            }
                             localStorage.removeItem('park_choose');
                             localStorage.removeItem('park_type');
                         }
+                        favs = localStorage.getItem('favourites');
+                        if (favs != null && favs != 'undefined') {
+                            favs = JSON.parse(favs);
+                            favs.forEach((el) => {
+                                document.getElementById('places-here').innerHTML += "" +
+                                    `<div class=\"panel-fill d-inline-flex align-items-center\">\n` +
+                                    `        <div class=\"other-icon\" onclick='redirect_back(${el})'></div>\n` +
+                                    `        <div style=\"width: 100%;\" class=\"flex-row\" onclick='redirect_back(${el})'>\n` +
+                                    `            <div><h3 class=\"text-common text-common2\">${locs[el][3]}</h3></div>\n` +
+                                    "            <div style='display:none;'><h3 class=\"text-description\"></h3></div>\n" +
+                                    "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
+                                    "        </div>\n" +
+                                    "        <div class=\"me-3 d-flex align-items-center justify-content-end\">\n" +
+                                    `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${el})\"><a href=\"#\">Удалить</a></h3></div>\n` +
+                                    "        </div>\n" +
+                                    "    </div>";
+                            });
+
+                        }
+                    } catch (e) {
+                        console.error(`JSON parsing error: ${e}`);
                     }
-                } catch (e) {
-                    console.error("JSON parsing error");
+                },
+                function (response) {
+                    console.log(response.status);
+                    console.log(response.data);
                 }
-            },
-            function (response) {
-                console.log(response.status);
-                console.log(response.data);
-            }
-        );
-    });
-</script>
+            );
+        });
+    </script>
 </body>
+
 </html>
