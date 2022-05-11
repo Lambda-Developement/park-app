@@ -32,9 +32,10 @@
     <div class="profile-screen
 <!--    blur-->
 " id="profile-screen">
-        <div class="mt-4 mb-2" style="width: 355px;box-shadow: 0px 7px 16px -6px rgba(0, 0, 0, 0.04); height: 100px; background-color: white; border-radius: 12px; display: flex; flex-direction: row; justify-content: center;">
+        <div class="mt-4 mb-2"
+            style="padding: 0 2%; width: 355px;box-shadow: 0px 7px 16px -6px rgba(0, 0, 0, 0.04); height: 100px; justify-content: center; background-color: white; border-radius: 12px; display: flex; flex-direction: row; justify-content: center;">
             <a class="avatar-area d-flex flex-row" onclick="redirect_profile_edit()"
-                style="width: 355px; height: 100px; margin: 10px; margin-right: 15px;">
+                style="width: 355px; height: 100px; display:flex; ">
                 <div style="background-image: url(../../jpg/avatar.png); height: 64px; width: 64px; margin-right: 20px; background-size: 64px; margin-left: 5px;"
                     class="avatar-area__image" id="avatar"></div>
                 <h3 class="text-bold" id="header-name">
@@ -72,7 +73,7 @@
 
                 </a>
             </div>
-            
+
             <div>
                 <a onclick="redirect_license()">
                     <div class="nav-item round-down">
@@ -91,10 +92,12 @@
                     </div>
                 </a>
             </div>
-            <div class="nav-item round-up round-down" id="btn-clean-history" onclick="callpopup()" style="margin-top: 20px;">
+            <div class="nav-item round-up round-down" id="btn-clean-history" onclick="callpopup()"
+                style="margin-top: 20px;">
                 <p class="btn-text title" style="color: #3486F4">Очистить историю поиска</p>
             </div>
-            <button class="btn btn-hollow my-4" style="width: 100%;" id="btn-exit-account" onclick="callpopup_exit_account()">
+            <button class="btn btn-hollow my-4" style="width: 100%;" id="btn-exit-account"
+                onclick="callpopup_exit_account()">
                 <p class="btn-text">Выйти из аккаунта</p>
             </button>
         </div>
@@ -137,11 +140,11 @@
 
 
     </div>
-<!--    <div class="loading" id="loading">-->
-<!--        <div class="spinner-border text-primary m-auto" role="status">-->
-<!--            <span class="sr-only"></span>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="loading" id="loading">-->
+    <!--        <div class="spinner-border text-primary m-auto" role="status">-->
+    <!--            <span class="sr-only"></span>-->
+    <!--        </div>-->
+    <!--    </div>-->
     <script>
 
         // Открытие, закрытие попа окон на удаление истории
