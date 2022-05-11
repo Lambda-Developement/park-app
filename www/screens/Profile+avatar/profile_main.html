@@ -36,7 +36,7 @@
             <a class="avatar-area d-flex flex-row" onclick="redirect_profile_edit()"
                 style="width: 355px; height: 100px; margin: 10px; margin-right: 15px;">
                 <div style="background-image: url(../../jpg/avatar.png); height: 64px; width: 64px; margin-right: 20px; background-size: 64px; margin-left: 5px;"
-                    lass="avatar-area__image" id="avatar"></div>
+                    class="avatar-area__image" id="avatar"></div>
                 <h3 class="text-bold" id="header-name">
                     Пользователь
                 </h3>
@@ -181,7 +181,7 @@
             api_checkkey(localStorage.auth_key).then(() => { }, () => redirect_login());
             api_getprofiledata(localStorage.auth_key).then((userdata) => {
                 if (userdata[1] != null) {
-                    document.getElementById('avatar').src = `${url}/${userdata[1]}`;
+                    document.getElementById('avatar').style.backgroundImage = `url(${url}/${userdata[1]})`;
                 }
                 document.getElementById('header-name').innerHTML = userdata[2];
                 setTimeout(() => {
