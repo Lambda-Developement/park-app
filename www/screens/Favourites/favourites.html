@@ -42,41 +42,41 @@
         }
     </style>
     <div id="places-here" style="margin:0% 3%; display:flex; flex-direction: column;">
-<!--         <div class="panel-fill d-inline-flex align-items-center">-->
-<!--            <div class="other-icon" onclick='redirect_back({el})'></div>-->
-<!--            <div style="width: 100%;" class="flex-row" onclick='redirect_back({el})'>-->
-<!--                <div>-->
-<!--                    <h3 class="text-common text-common2">Парковка у дома</h3>-->
-<!--                </div>-->
-<!--                <div style=''>-->
-<!--                    <h3 class="text-description">Адрес абобоича, 32</h3>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="me-3 d-flex align-items-center justify-content-end">-->
-<!--                <div>-->
-<!--                    <h3 class="text-link d-flex justify-content-center align-items-center" style='height: 50px;'-->
-<!--                        onclick="callpopup(this,$})"><a href="#"><img-->
-<!--                                style="background-color:#74BFF1; border-radius: 50%; padding: 18px;" src="home.svg"-->
-<!--                                alt=""></a></h3>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="panel-fill d-inline-flex align-items-center">-->
-<!--            <div class="other-icon2" onclick='choose_park("work")'></div>-->
-<!--            <div style="width: 100%;" class="flex-row" onclick='choose_park("work")'>-->
-<!--                <div>-->
-<!--                    <h3 class="text-common text-common2">Парковка у работы</h3>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="panel-fill d-inline-flex align-items-center">-->
-<!--            <div class="other-icon2" onclick='choose_park("home")'></div>-->
-<!--            <div style="width: 100%;" class="flex-row" onclick='choose_park("home")'>-->
-<!--                <div>-->
-<!--                    <h3 class="text-common text-common2">Парковка у дома</h3>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--         <div class="panel-fill d-inline-flex align-items-center">-->
+        <!--            <div class="other-icon" onclick='redirect_back({el})'></div>-->
+        <!--            <div style="width: 100%;" class="flex-row" onclick='redirect_back({el})'>-->
+        <!--                <div>-->
+        <!--                    <h3 class="text-common text-common2">Парковка у дома</h3>-->
+        <!--                </div>-->
+        <!--                <div style=''>-->
+        <!--                    <h3 class="text-description">Адрес абобоича, 32</h3>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            <div class="me-3 d-flex align-items-center justify-content-end">-->
+        <!--                <div>-->
+        <!--                    <h3 class="text-link d-flex justify-content-center align-items-center" style='height: 50px;'-->
+        <!--                        onclick="callpopup(this,$})"><a href="#"><img-->
+        <!--                                style="background-color:#74BFF1; border-radius: 50%; padding: 18px;" src="home.svg"-->
+        <!--                                alt=""></a></h3>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <div class="panel-fill d-inline-flex align-items-center">-->
+        <!--            <div class="other-icon2" onclick='choose_park("work")'></div>-->
+        <!--            <div style="width: 100%;" class="flex-row" onclick='choose_park("work")'>-->
+        <!--                <div>-->
+        <!--                    <h3 class="text-common text-common2">Парковка у работы</h3>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <!--        <div class="panel-fill d-inline-flex align-items-center">-->
+        <!--            <div class="other-icon2" onclick='choose_park("home")'></div>-->
+        <!--            <div style="width: 100%;" class="flex-row" onclick='choose_park("home")'>-->
+        <!--                <div>-->
+        <!--                    <h3 class="text-common text-common2">Парковка у дома</h3>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
     </div>
 
 
@@ -149,10 +149,10 @@
         // Удаление избранного
         function delete_address() {
             current.remove();
-            if(localStorage.getItem('home') == current_favourite){
+            if (localStorage.getItem('home') == current_favourite) {
                 localStorage.removeItem('home');
             }
-            if(localStorage.getItem('work') == current_favourite){
+            if (localStorage.getItem('work') == current_favourite) {
                 localStorage.removeItem('work');
             }
             favs = localStorage.getItem('favourites');
@@ -202,12 +202,12 @@
                             localStorage.favourites = '[]'
                         }
                         locs = JSON.parse(response.data);
-                        if(localStorage.getItem('park_choose') != null && localStorage.getItem('park_type') == 'home'){
-                            localStorage.setItem('home',localStorage.getItem('park_choose'));
+                        if (localStorage.getItem('park_choose') != null && localStorage.getItem('park_type') == 'home') {
+                            localStorage.setItem('home', localStorage.getItem('park_choose'));
                             localStorage.removeItem('park_choose');
                             localStorage.removeItem('park_type');
                         }
-                        if(localStorage.getItem('park_choose') != null && localStorage.getItem('park_type') == 'work'){
+                        if (localStorage.getItem('park_choose') != null && localStorage.getItem('park_type') == 'work') {
                             localStorage.setItem('work', localStorage.getItem('park_choose'));
                             localStorage.removeItem('park_choose');
                             localStorage.removeItem('park_type');
@@ -241,13 +241,13 @@
                             localStorage.removeItem('park_type');
                             redirect_favourites();
                         }
-                        if(localStorage.getItem('home') != null){
+                        if (localStorage.getItem('home') != null) {
                             el = localStorage.getItem('home');
                             document.getElementById('places-here').innerHTML += "" +
                                 `<div class=\"panel-fill d-inline-flex align-items-center\">\n` +
                                 `        <div class=\"other-icon\" onclick='redirect_back(${el})'></div>\n` +
                                 `        <div style=\"width: 100%;\" class=\"flex-row\" onclick='redirect_back(${el})'>\n` +
-                                `            <div><h3 class=\"text-common text-common2 header-park\">Парковка</h3></div>\n` +
+                                `            <div><h3 class=\"text-common text-common2 header-park\">Парковка у дома</h3></div>\n` +
                                 `            <div style=''><h3 class=\"text-description\">${locs[el][3]}</h3></div>\n` +
                                 "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
                                 "        </div>\n" +
@@ -256,12 +256,12 @@
                                 `alt=""></a></a></h3></div>\n` +
                                 "        </div>\n" +
                                 "    </div>";
-                        }else{
+                        } else {
                             document.getElementById('places-here').innerHTML += "" +
                                 `
                                 <div class="panel-fill d-inline-flex align-items-center">
-                                    <div class="other-icon2" onclick='choose_park("home")'></div>
-                                    <div style="width: 100%;" class="flex-row" onclick='choose_park("home")'>
+                                    <div style="width: 100%; height:100%; align-items:center; justify-content:flex-start; display: flex;" class="flex-row rofl" onclick='choose_park("home")'>
+                                        <img src="plus.svg" height=32px width=32px style="margin-left: 2rem;"></img>
                                         <div>
                                             <h3 class="text-common text-common2">Парковка у дома</h3>
                                         </div>
@@ -269,27 +269,28 @@
                                 </div>
                                 `;
                         }
-                        if(localStorage.getItem('work') != null){
+                        if (localStorage.getItem('work') != null) {
                             el = localStorage.getItem('work');
                             document.getElementById('places-here').innerHTML += "" +
                                 `<div class=\"panel-fill d-inline-flex align-items-center\">\n` +
                                 `        <div class=\"other-icon\" onclick='redirect_back(${el})'></div>\n` +
                                 `        <div style=\"width: 100%;\" class=\"flex-row\" onclick='redirect_back(${el})'>\n` +
-                                `            <div><h3 class=\"text-common text-common2 header-park\">Парковка</h3></div>\n` +
+                                `            <div><h3 class=\"text-common text-common2 header-park\">Парковка у работы</h3></div>\n` +
                                 `            <div style=''><h3 class=\"text-description\">${locs[el][3]}</h3></div>\n` +
                                 "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
                                 "        </div>\n" +
                                 "        <div class=\"me-3 d-flex align-items-center justify-content-end\">\n" +
-                                `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${el})\"><a href=\"#\"><img style="background-color:#74BFF1; border-radius: 50%; padding: 18px;" class="elemicon" src="park.svg"` +
+                                `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${el})\"><a href=\"#\"><img style="background-color:#74BFF1; border-radius: 50%; padding: 18px;" class="elemicon" src="work.svg"` +
                                 `alt=""></a></a></h3></div>\n` +
                                 "        </div>\n" +
                                 "    </div>";
-                        }else{
+                        } else {
+                            // <div class="other-icon2" onclick='choose_park("work")'></div>
                             document.getElementById('places-here').innerHTML += "" +
                                 `
                                 <div class="panel-fill d-inline-flex align-items-center">
-                                    <div class="other-icon2" onclick='choose_park("work")'></div>
-                                    <div style="width: 100%;" class="flex-row" onclick='choose_park("work")'>
+                                    <div style="width: 100%; height:100%; align-items:center; justify-content:flex-start; display: flex;" class="flex-row rofl" onclick='choose_park("work")'>
+                                        <img src="plus.svg" height=32px width=32px style="margin-left: 2rem;"></img>
                                         <div>
                                             <h3 class="text-common text-common2">Парковка у работы</h3>
                                         </div>
@@ -332,13 +333,16 @@
                             //     else ob.innerHTML = "Парковка";
                             // }
                             document.getElementById('places-here').innerHTML += "" +
-                                "<a href=\"#\" onclick=\"choose_park('park')\">" +
-                                "<div class='panel-fill d-inline-flex align-items-center justify-content-center'>" +
-                                "      <div>" +
-                                "            <h3 class='text-link' style='text-decoration:none;'>Новое место</h3>" +
-                                "       </div>" +
-                                "  </div>" +
-                                " </a>";
+                                `
+                                <div class="panel-fill d-inline-flex align-items-center">
+                                    <div style="width: 100%; height:100%; align-items:center; justify-content:flex-start; display: flex;" class="flex-row rofl" onclick='choose_park("park")'>
+                                        <img src="plus.svg" height=32px width=32px style="margin-left: 2rem;"></img>
+                                        <div>
+                                            <h3 class="text-common text-common2">Новое место</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                `;
                         }
                     } catch (e) {
                         console.error(`JSON parsing error: ${e}`);
@@ -352,6 +356,15 @@
         });
     </script>
 </body>
+<style>
+    .rofl:first-child {
+        align-self: flex-end;
+    }
+
+    .rofl:last-child {
+        align-self: flex-end;
+    }
+</style>
 <script>
 
 
