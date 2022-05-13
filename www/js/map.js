@@ -2,6 +2,7 @@ var HEIGHT = window.innerHeight + 'px';
 var pos = [57.625398, 39.885228];
 var scale = 13;
 var locs = [];
+var geolocation_started = false;
 
 var permissions;
 
@@ -106,9 +107,14 @@ setTimeout(() => {
 
 // Получение текущего местоположения
 function get_location() {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    if(!geolocation_started){
+        setInterval(()=>{
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+            update_markers();
+        },20000);
+        geolocation_started = true;
+    }
     map.flyTo(pos, 18);
-    update_markers();
 }
 
 document.getElementById("map").style.height = HEIGHT;
