@@ -314,14 +314,14 @@
 <!--                </button>-->
 <!--            </div>-->
             <div class="geoinfo">
-                <button class="btn btn-hollow" id="favourite-btn" onclick="add_favourite_parking()">
+                <button class="btn btn-hollow" id="add_favourite2" onclick="add_favourite_parking()">
                     <div class="bookmark-icon"></div>
                 </button>
             </div>
             <div class="geoinfo">
-                <div class="status-icon status-icon-1 d-flex justify-content-center align-items-center">
+                <div id="status-icon-wrapper2"  class="status-icon d-flex justify-content-center align-items-center">
                     <div>
-                        <p class="status-icon-text">1</p>
+                        <p id='status-icon-text2' class="status-icon-text">1</p>
                     </div>
                 </div>
             </div>
@@ -337,14 +337,14 @@
 <!--                </button>-->
 <!--            </div>-->
             <div class="payment">
-                <button class="btn btn-hollow">
+                <button class="btn btn-hollow" id="add_favourite" onclick="add_favourite_parking()">
                     <div class="bookmark-icon"></div>
                 </button>
             </div>
             <div class="payment">
-                <div class="status-icon status-icon-1 d-flex justify-content-center align-items-center">
+                <div id="status-icon-wrapper" class="status-icon d-flex justify-content-center align-items-center">
                     <div>
-                        <p class="status-icon-text">1</p>
+                        <p id='status-icon-text' class="status-icon-text">1</p>
                     </div>
                 </div>
             </div>
@@ -694,11 +694,11 @@
                     "                    </div>\n" +
                     '                    <div class="d-inline-flex align-items-center mb-2">\n' +
                     '                        <div class="d-inline-flex justify-content-center align-items-center me-3">\n' +
-                    "                            <div class=\"rate-icon small\" id='rate-1' onclick='rate_clicked(this)'></div>\n" +
-                    "                            <div class=\"rate-icon small\" id='rate-2' onclick='rate_clicked(this)'></div>\n" +
-                    "                            <div class=\"rate-icon small\" id='rate-3' onclick='rate_clicked(this)'></div>\n" +
-                    "                            <div class=\"rate-icon small\" id='rate-4' onclick='rate_clicked(this)'></div>\n" +
-                    "                            <div class=\"rate-icon small\" id='rate-5' onclick='rate_clicked(this)'></div>\n" +
+                    // "                            <div class=\"rate-icon small\" id='rate-1' onclick='rate_clicked(this)'></div>\n" +
+                    // "                            <div class=\"rate-icon small\" id='rate-2' onclick='rate_clicked(this)'></div>\n" +
+                    // "                            <div class=\"rate-icon small\" id='rate-3' onclick='rate_clicked(this)'></div>\n" +
+                    // "                            <div class=\"rate-icon small\" id='rate-4' onclick='rate_clicked(this)'></div>\n" +
+                    // "                            <div class=\"rate-icon small\" id='rate-5' onclick='rate_clicked(this)'></div>\n" +
                     "                        </div>\n" +
                     "                    </div>\n" +
                     '                    <div class="new-review-input">\n' +
@@ -844,15 +844,15 @@
                     document.getElementById('star-rate-' + i).classList.add('star-icon');
                 }
             }
-            for (i = 1; i <= 5; i++) {
-                if (i <= rate) {
-                    document.getElementById('rate-' + i).classList.remove('star-icon-rate');
-                    document.getElementById('rate-' + i).classList.add('rate-icon')
-                } else {
-                    document.getElementById('rate-' + i).classList.remove('rate-icon');
-                    document.getElementById('rate-' + i).classList.add('star-icon-rate');
-                }
-            }
+            // for (i = 1; i <= 5; i++) {
+            //     if (i <= rate) {
+            //         document.getElementById('rate-' + i).classList.remove('star-icon-rate');
+            //         document.getElementById('rate-' + i).classList.add('rate-icon')
+            //     } else {
+            //         document.getElementById('rate-' + i).classList.remove('rate-icon');
+            //         document.getElementById('rate-' + i).classList.add('star-icon-rate');
+            //     }
+            // }
         }
 
         // Загрузка отзывов
@@ -917,10 +917,26 @@
                 api_getdata().then((res) => {
                     document.getElementById('info-description').innerHTML = res[localStorage.getItem('prev_place')][3];
                     document.getElementById('info-descr').innerHTML = res[localStorage.getItem('prev_place')][4];
+                    document.getElementById('status-icon-wrapper').classList.add(`status-icon-${res[localStorage.getItem('prev_place')][2]}`);
+                    document.getElementById('status-icon-text').innerHTML = res[localStorage.getItem('prev_place')][2];
+                    document.getElementById('status-icon-wrapper2').classList.add(`status-icon-${res[localStorage.getItem('prev_place')][2]}`);
+                    document.getElementById('status-icon-text2').innerHTML = res[localStorage.getItem('prev_place')][2];
                     if (localStorage.getItem('p_distance') != null) {
                         document.getElementById('info-distance').innerHTML = `${localStorage.getItem('p_distance')} km`
                     }
                     document.getElementById('info-photo').style.backgroundImage = `url(https://park.backend.xredday.ru/${res[localStorage.getItem('prev_place')][5]})`;
+                    let park = localStorage.getItem('prev_place');
+                    let favs = localStorage.getItem('favourites');
+                    if (favs != null && favs != 'undefined'){
+                        favs = JSON.parse(favs);
+                        if(favs.includes(`${park}`) || localStorage.getItem('home') == park || localStorage.getItem('work') == 'park'){
+                            document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+                            document.getElementById('add_favourite2').style.background = "rgba(52, 134, 244, 0.20)";
+                        }else{
+                            document.getElementById('add_favourite').style.background = "rgba(240, 240, 240, 1)";
+                            document.getElementById('add_favourite2').style.background = "rgba(240, 240, 240, 1)";
+                        }
+                    }
                 });
                 api_getreviewlist(parseInt(localStorage.getItem('prev_place'))+1,localStorage.getItem('auth_key')).then((res) => load_reviews(res), () => console.log('error'));
             });
@@ -944,15 +960,34 @@
         }
 
         function add_favourite_parking() {
-            var parking = {
-                "id": 69,
-                "title": "Парковка",
-                "address": "Россия, Ярославль, улица Чайковского",
-                "rating": 4.9,
+            let p_it = localStorage.getItem('prev_place');
+            let favs = localStorage.getItem('favourites');
+            // debugger;
+            if (favs != null && favs != 'undefined'){
+                favs = JSON.parse(favs);
+                if(favs.includes(p_it)){
+                    favs = favs.filter(function (e) {
+                        return e != p_it;
+                    });
+                    favs = JSON.stringify(favs);
+                    localStorage.setItem('favourites',favs);
+                    document.getElementById('add_favourite').style.background = "rgba(240, 240, 240, 1)";
+                    document.getElementById('add_favourite2').style.background = "rgba(240, 240, 240, 1)";
+                }else{
+                    favs.push(p_it);
+                    favs = JSON.stringify(favs);
+                    localStorage.setItem('favourites',favs);
+                    document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+                    document.getElementById('add_favourite2').style.background = "rgba(52, 134, 244, 0.20)";
+                }
+            }else{
+                favs = [];
+                favs.push(p_it);
+                favs = JSON.stringify(favs);
+                localStorage.setItem('favourites',favs);
+                document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+                document.getElementById('add_favourite2').style.background = "rgba(52, 134, 244, 0.20)";
             }
-
-            localStorage.setItem("favourite_parking", JSON.stringify(parking))
-            console.log(JSON.parse(localStorage.getItem("favourite_parking")))
         }
     </script>
     <script src="../../cordova.js"></script>
