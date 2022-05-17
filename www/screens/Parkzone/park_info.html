@@ -319,9 +319,9 @@
                 </button>
             </div>
             <div class="geoinfo">
-                <div class="status-icon status-icon-1 d-flex justify-content-center align-items-center">
+                <div id="status-icon-wrapper2"  class="status-icon d-flex justify-content-center align-items-center">
                     <div>
-                        <p class="status-icon-text">1</p>
+                        <p id='status-icon-text2' class="status-icon-text">1</p>
                     </div>
                 </div>
             </div>
@@ -342,9 +342,9 @@
                 </button>
             </div>
             <div class="payment">
-                <div class="status-icon status-icon-1 d-flex justify-content-center align-items-center">
+                <div id="status-icon-wrapper" class="status-icon d-flex justify-content-center align-items-center">
                     <div>
-                        <p class="status-icon-text">1</p>
+                        <p id='status-icon-text' class="status-icon-text">1</p>
                     </div>
                 </div>
             </div>
@@ -917,6 +917,10 @@
                 api_getdata().then((res) => {
                     document.getElementById('info-description').innerHTML = res[localStorage.getItem('prev_place')][3];
                     document.getElementById('info-descr').innerHTML = res[localStorage.getItem('prev_place')][4];
+                    document.getElementById('status-icon-wrapper').classList.add(`status-icon-${res[localStorage.getItem('prev_place')][2]}`);
+                    document.getElementById('status-icon-text').innerHTML = res[localStorage.getItem('prev_place')][2];
+                    document.getElementById('status-icon-wrapper2').classList.add(`status-icon-${res[localStorage.getItem('prev_place')][2]}`);
+                    document.getElementById('status-icon-text2').innerHTML = res[localStorage.getItem('prev_place')][2];
                     if (localStorage.getItem('p_distance') != null) {
                         document.getElementById('info-distance').innerHTML = `${localStorage.getItem('p_distance')} km`
                     }
