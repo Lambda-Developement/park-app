@@ -314,7 +314,7 @@
 <!--                </button>-->
 <!--            </div>-->
             <div class="geoinfo">
-                <button class="btn btn-hollow" id="favourite-btn" onclick="add_favourite_parking()">
+                <button class="btn btn-hollow" id="add_favourite2" onclick="add_favourite_parking()">
                     <div class="bookmark-icon"></div>
                 </button>
             </div>
@@ -337,7 +337,7 @@
 <!--                </button>-->
 <!--            </div>-->
             <div class="payment">
-                <button class="btn btn-hollow">
+                <button class="btn btn-hollow" id="add_favourite" onclick="add_favourite_parking()">
                     <div class="bookmark-icon"></div>
                 </button>
             </div>
@@ -925,6 +925,18 @@
                         document.getElementById('info-distance').innerHTML = `${localStorage.getItem('p_distance')} km`
                     }
                     document.getElementById('info-photo').style.backgroundImage = `url(https://park.backend.xredday.ru/${res[localStorage.getItem('prev_place')][5]})`;
+                    let park = localStorage.getItem('prev_place');
+                    let favs = localStorage.getItem('favourites');
+                    if (favs != null && favs != 'undefined'){
+                        favs = JSON.parse(favs);
+                        if(favs.includes(`${park}`) || localStorage.getItem('home') == park || localStorage.getItem('work') == 'park'){
+                            document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+                            document.getElementById('add_favourite2').style.background = "rgba(52, 134, 244, 0.20)";
+                        }else{
+                            document.getElementById('add_favourite').style.background = "rgba(240, 240, 240, 1)";
+                            document.getElementById('add_favourite2').style.background = "rgba(240, 240, 240, 1)";
+                        }
+                    }
                 });
                 api_getreviewlist(parseInt(localStorage.getItem('prev_place'))+1,localStorage.getItem('auth_key')).then((res) => load_reviews(res), () => console.log('error'));
             });
@@ -948,15 +960,34 @@
         }
 
         function add_favourite_parking() {
-            var parking = {
-                "id": 69,
-                "title": "Парковка",
-                "address": "Россия, Ярославль, улица Чайковского",
-                "rating": 4.9,
+            let p_it = localStorage.getItem('prev_place');
+            let favs = localStorage.getItem('favourites');
+            // debugger;
+            if (favs != null && favs != 'undefined'){
+                favs = JSON.parse(favs);
+                if(favs.includes(p_it)){
+                    favs = favs.filter(function (e) {
+                        return e != p_it;
+                    });
+                    favs = JSON.stringify(favs);
+                    localStorage.setItem('favourites',favs);
+                    document.getElementById('add_favourite').style.background = "rgba(240, 240, 240, 1)";
+                    document.getElementById('add_favourite2').style.background = "rgba(240, 240, 240, 1)";
+                }else{
+                    favs.push(p_it);
+                    favs = JSON.stringify(favs);
+                    localStorage.setItem('favourites',favs);
+                    document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+                    document.getElementById('add_favourite2').style.background = "rgba(52, 134, 244, 0.20)";
+                }
+            }else{
+                favs = [];
+                favs.push(p_it);
+                favs = JSON.stringify(favs);
+                localStorage.setItem('favourites',favs);
+                document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
+                document.getElementById('add_favourite2').style.background = "rgba(52, 134, 244, 0.20)";
             }
-
-            localStorage.setItem("favourite_parking", JSON.stringify(parking))
-            console.log(JSON.parse(localStorage.getItem("favourite_parking")))
         }
     </script>
     <script src="../../cordova.js"></script>
