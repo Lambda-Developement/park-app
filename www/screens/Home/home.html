@@ -95,56 +95,55 @@
                 <button class="btn btn-hollow btn-gps" onclick="get_location()"></button>
             </div>
         </div>
-        <div id="info" style="z-index: 2;">
-            <div class="parking-popup d-flex justify-content-center align-items-center">
-                <div class="parking-info d-flex align-items-center flex-row">
-                    <div class="w-50 h-100">
-                        <a class="h-100 w-100 m-0 p-0">
-                            <div class="park-photo" id="info-photo"></div>
-                        </a>
-                    </div>
-                    <div class="d-flex flex-column w-100 container">
-                        <div class="d-inline-flex justify-content-between">
-                            <div>
-                                <h3 class="text-header">Парковка</h3>
-                            </div>
-                            <div>
-                                <div class="close-icon d-flex justify-content-center align-items-center">
-                                    <div><a href="#" onclick="close_info()">x</a></div>
-                                </div>
-                            </div>
+            <div id="info" style="z-index: -1;" onclick="redirect_parkzone()">
+                <div class="parking-popup d-flex justify-content-center align-items-center">
+                    <div class="parking-info d-flex align-items-center flex-row">
+                        <div class="w-50 h-100">
+                            <a class="h-100 w-100 m-0 p-0">
+                                <div class="park-photo" id="info-photo"></div>
+                            </a>
                         </div>
-                        <div class="mb-3">
-                            <h3 class="text-description" id="text-description">Россия, Ярославль, улица Чайковского</h3>
-                        </div>
-                        <div class="d-inline-flex justify-content-between mb-2">
-                            <div>
-                                <h3 class="text-description">Круглосуточно</h3>
-                            </div>
-                            <div>
-                                <h3 class="text-description" id="info-distance">1,2 km</h3>
-                            </div>
-                        </div>
-                        <div class="d-inline-flex justify-content-evenly">
-                            <div><button class="btn btn-hollow new" onclick="route_to_park()">Маршрут</button> </div>
-<!--                            <div><button class="btn btn-hollow new">-->
-<!--                                    <div class="download-icon"></div>-->
-<!--                                </button> </div>-->
-                            <div><button id="add_favourite" class="btn btn-hollow new" onclick="add_favourite()">
-                                    <div class="bookmark2-icon"></div>
-                                </button> </div>
-                            <div id="status-icon-wrapper" class="d-flex justify-content-center align-items-center">
+                        <div class="d-flex flex-column w-100 container">
+                            <div class="d-inline-flex justify-content-between">
                                 <div>
-                                    <p class="status-icon-text" id="status-icon-text" >1</p>
+                                    <h3 class="text-header">Парковка</h3>
+                                </div>
+                                <div>
+                                    <div class="close-icon d-flex justify-content-center align-items-center">
+                                        <div><a href="#" onclick="event.stopPropagation();close_info()">x</a></div>
+                                    </div>
                                 </div>
                             </div>
-                            <div><button class="btn btn-hollow2 new"
-                                    onclick="redirect_parkzone()"></button></div>
+                            <div class="mb-3">
+                                <h3 class="text-description" id="text-description">Россия, Ярославль, улица Чайковского
+                                </h3>
+                            </div>
+                            <div class="d-inline-flex justify-content-between mb-2">
+                                <div>
+                                    <h3 class="text-description">Круглосуточно</h3>
+                                </div>
+                                <div>
+                                    <h3 class="text-description" id="info-distance">1,2 km</h3>
+                                </div>
+                            </div>
+                            <div class="d-inline-flex justify-content-evenly">
+                                <div><button class="btn btn-hollow new" onclick="event.stopPropagation();route_to_park()">Маршрут</button>
+                                </div>
+
+                                <div><button id="add_favourite" class="btn btn-hollow new" onclick="event.stopPropagation();add_favourite()">
+                                        <div class="bookmark2-icon"></div>
+                                    </button> </div>
+                                <div id="status-icon-wrapper" class="d-flex justify-content-center align-items-center">
+                                    <div>
+                                        <p class="status-icon-text" id="status-icon-text">1</p>
+                                    </div>
+                                </div>
+                                <div><button class="btn btn-hollow2 new" onclick="event.stopPropagation();redirect_parkzone()"></button></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         <div id="search-history">
             <div class="search-history">
                 <div class="d-flex flex-column px-2 overflow-scroll h-100" id="search-results1">
@@ -169,11 +168,11 @@
         var park_id = 0;
 
         // Открытие, закрытие попап окон
-        function callpopup(){
-            document.getElementById("popup1").style.display='block';
+        function callpopup() {
+            document.getElementById("popup1").style.display = 'block';
         }
-        function closepopup(){
-            document.getElementById("popup1").style.display='none';
+        function closepopup() {
+            document.getElementById("popup1").style.display = 'none';
         }
 
         // Открытие, закрытие окна с поиском
@@ -204,7 +203,7 @@
             document.getElementById('info-distance').innerHTML = `${calc_distance_to_geopoint(localStorage.getItem('prev_place'))} km`;
             document.getElementById('info-photo').style.backgroundImage = `url(https://park.backend.xredday.ru/${locs[park][5]})`;
             let favs = localStorage.getItem('favourites');
-            if (favs != null && favs != 'undefined'){
+            if (favs != null && favs != 'undefined') {
                 favs = JSON.parse(favs);
                 if(favs.includes(`${park}`) && (localStorage.getItem('home') == park || localStorage.getItem('work') == 'park')){
                     document.getElementById('add_favourite').onclick = redirect_favourites;
@@ -213,38 +212,39 @@
                     document.getElementById('add_favourite').onclick = redirect_favourites;
                 }
                 if(favs.includes(`${park}`) || localStorage.getItem('home') == park || localStorage.getItem('work') == 'park'){
+
                     document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
-                }else{
+                } else {
                     document.getElementById('add_favourite').style.background = "rgba(240, 240, 240, 1)";
                 }
             }
         }
 
         // Добавить парковку в избранное
-        function add_favourite(){
+        function add_favourite() {
             let p_it = localStorage.getItem('prev_place');
             let favs = localStorage.getItem('favourites');
             // debugger;
-            if (favs != null && favs != 'undefined'){
+            if (favs != null && favs != 'undefined') {
                 favs = JSON.parse(favs);
-                if(favs.includes(p_it)){
+                if (favs.includes(p_it)) {
                     favs = favs.filter(function (e) {
                         return e != p_it;
                     });
                     favs = JSON.stringify(favs);
-                    localStorage.setItem('favourites',favs);
+                    localStorage.setItem('favourites', favs);
                     document.getElementById('add_favourite').style.background = "rgba(240, 240, 240, 1)";
-                }else{
+                } else {
                     favs.push(p_it);
                     favs = JSON.stringify(favs);
-                    localStorage.setItem('favourites',favs);
+                    localStorage.setItem('favourites', favs);
                     document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
                 }
-            }else{
+            } else {
                 favs = [];
                 favs.push(p_it);
                 favs = JSON.stringify(favs);
-                localStorage.setItem('favourites',favs);
+                localStorage.setItem('favourites', favs);
                 document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
             }
         }
@@ -252,7 +252,7 @@
         // Закрыть информацию
         function close_info() {
             document.getElementById("info").style.display = "none";
-            make_route(null,null);
+            make_route(null, null);
         }
 
         // Обновить приближение карты
