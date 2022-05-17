@@ -77,11 +77,9 @@
         </div>
         <div class="spacer"></div>
         <div class="button-footer" style="display:flex; flex-direction: column; align-content: center;">
-            <a href="">
-                <button class="btn btn-filled mb-3" onclick="api_reg()">
-                    <p class="btn-text">Зарегистрироваться</p>
-                </button>
-            </a>
+            <button type="button" class="btn btn-filled mb-3" onclick="api_reg()">
+                <p class="btn-text">Зарегистрироваться</p>
+            </button>
             <a>
                 <button class="btn btn-hollow" onclick="redirect_login()">
                     <p class="btn-text">Отменить</p>
@@ -170,7 +168,8 @@
         function api_reg(
             name = nameField.value,
             password = passwordField.value,
-            email = emailField.value) {
+            email = emailField.value)
+            {
             // Recieves email and password in plain.
 
             api_register(name, email, password).then(
