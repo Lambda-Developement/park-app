@@ -113,7 +113,7 @@
         var current = null;
         var locs = [];
         var current_favourite;
-
+        var current_type;
         // Построение маршрута
         function make_route() {
             if (localStorage != undefined) {
@@ -149,31 +149,35 @@
         // Удаление избранного
         function delete_address() {
             current.remove();
-            if (localStorage.getItem('home') == current_favourite) {
+            if (localStorage.getItem('home') == current_favourite && current_type == 'home') {
                 localStorage.removeItem('home');
             }
-            if (localStorage.getItem('work') == current_favourite) {
+            if (localStorage.getItem('work') == current_favourite && current_type == 'work') {
                 localStorage.removeItem('work');
             }
-            favs = localStorage.getItem('favourites');
-            if (favs != null && favs != 'undefined') {
-                favs = JSON.parse(favs);
-                favs = favs.filter(function (e) {
-                    return e != current_favourite;
-                });
-                favs = JSON.stringify(favs);
-                localStorage.setItem('favourites', favs);
+            if(current_type == 'park'){
+                favs = localStorage.getItem('favourites');
+                if (favs != null && favs != 'undefined') {
+                    favs = JSON.parse(favs);
+                    favs = favs.filter(function (e) {
+                        return e != current_favourite;
+                    });
+                    favs = JSON.stringify(favs);
+                    localStorage.setItem('favourites', favs);
+                }
             }
             closepopup();
             redirect_favourites();
         }
 
         // Открытие, закрытие попап окна
-        function callpopup(el, p_id) {
+        function callpopup(el, p_id,p_type) {
+            // debugger;
             document.getElementById("popup1").style.display = 'block';
             current = el.parentElement.parentElement.parentElement;
             console.log(current);
             current_favourite = p_id;
+            current_type = p_type;
         }
         function closepopup() {
             document.getElementById("popup1").style.display = 'none';
@@ -252,7 +256,7 @@
                                 "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
                                 "        </div>\n" +
                                 "        <div class=\"me-3 d-flex align-items-center justify-content-end\">\n" +
-                                `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${el})\"><a href=\"#\"><img style="background-color:#74BFF1; border-radius: 50%; padding: 18px;" class="elemicon" src="home.svg"` +
+                                `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${el},'home')\"><a href=\"#\"><img style="background-color:#74BFF1; border-radius: 50%; padding: 18px;" class="elemicon" src="home.svg"` +
                                 `alt=""></a></a></h3></div>\n` +
                                 "        </div>\n" +
                                 "    </div>";
@@ -280,7 +284,7 @@
                                 "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
                                 "        </div>\n" +
                                 "        <div class=\"me-3 d-flex align-items-center justify-content-end\">\n" +
-                                `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${el})\"><a href=\"#\"><img style="background-color:#74BFF1; border-radius: 50%; padding: 18px;" class="elemicon" src="work.svg"` +
+                                `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${el},'work')\"><a href=\"#\"><img style="background-color:#74BFF1; border-radius: 50%; padding: 18px;" class="elemicon" src="work.svg"` +
                                 `alt=""></a></a></h3></div>\n` +
                                 "        </div>\n" +
                                 "    </div>";
@@ -311,7 +315,7 @@
                                     "            <!-- Если нужно отключить описание просто добавить свойство display: none, как сделано выше -->\n" +
                                     "        </div>\n" +
                                     "        <div class=\"me-3 d-flex align-items-center justify-content-end\">\n" +
-                                    `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${el})\"><a href=\"#\"><img style="background-color:#74BFF1; border-radius: 50%; padding: 18px;" class="elemicon" src="park.svg"` +
+                                    `            <div><h3 class=\"text-link d-flex justify-content-center align-items-center\" style='height: 50px;' onclick=\"callpopup(this,${el},'park')\"><a href=\"#\"><img style="background-color:#74BFF1; border-radius: 50%; padding: 18px;" class="elemicon" src="park.svg"` +
                                     `alt=""></a></a></h3></div>\n` +
                                     "        </div>\n" +
                                     "    </div>";

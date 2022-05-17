@@ -206,6 +206,12 @@
             let favs = localStorage.getItem('favourites');
             if (favs != null && favs != 'undefined'){
                 favs = JSON.parse(favs);
+                if(favs.includes(`${park}`) && (localStorage.getItem('home') == park || localStorage.getItem('work') == 'park')){
+                    document.getElementById('add_favourite').onclick = redirect_favourites;
+                }
+                if(localStorage.getItem('home') == park && localStorage.getItem('work') == 'park'){
+                    document.getElementById('add_favourite').onclick = redirect_favourites;
+                }
                 if(favs.includes(`${park}`) || localStorage.getItem('home') == park || localStorage.getItem('work') == 'park'){
                     document.getElementById('add_favourite').style.background = "rgba(52, 134, 244, 0.20)";
                 }else{
