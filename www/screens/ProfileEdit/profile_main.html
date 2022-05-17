@@ -200,7 +200,7 @@
                 let dob = new Date(userdata[4]);
                 localStorage.setItem('birth1', dob.getFullYear());
                 localStorage.setItem('birth2', dob.getMonth());
-                localStorage.setItem('birth3', dob.getDate());
+                localStorage.setItem('birth3', dob.getDate()+1);
                 if (userdata[1] != null) {
                     document.getElementById('avatar').src = `${url}/${userdata[1]}`;
                 }
