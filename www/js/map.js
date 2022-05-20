@@ -71,6 +71,7 @@ var onSuccess = function (position) {
         'Heading: ' + position.coords.heading + '\n' +
         'Speed: ' + position.coords.speed + '\n' +
         'Timestamp: ' + position.timestamp + '\n');
+    update_markers();
 };
 
 function onError(error) {
@@ -104,14 +105,12 @@ setTimeout(() => {
         }
     }
 }, 2000);
-
+setInterval(()=>{
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+},5000);
 // Получение текущего местоположения
 function get_location() {
     if(!geolocation_started){
-        setInterval(()=>{
-            navigator.geolocation.getCurrentPosition(onSuccess, onError);
-            update_markers();
-        },20000);
         geolocation_started = true;
     }
     map.flyTo(pos, 18);
