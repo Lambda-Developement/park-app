@@ -6,6 +6,8 @@ var geolocation_started = false;
 
 var permissions;
 
+var onFirstZoom = true;
+
 
 // Получение информации о парковках
 document.addEventListener('deviceready', () => {
@@ -59,10 +61,15 @@ document.addEventListener('deviceready', () => {
             console.log(response.data);
         }
     );
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
 });
 
 var onSuccess = function (position) {
     pos = [position.coords.latitude, position.coords.longitude];
+    if(onFirstZoom){
+        map.flyTo(pos,18);
+        onFirstZoom = false;
+    }
     console.log('Latitude: ' + position.coords.latitude + '\n' +
         'Longitude: ' + position.coords.longitude + '\n' +
         'Altitude: ' + position.coords.altitude + '\n' +
