@@ -77,7 +77,7 @@
         </div>
         <div class="spacer"></div>
         <div class="button-footer" style="display:flex; flex-direction: column; align-content: center;">
-            <button type="button" class="btn btn-filled mb-3" onclick="api_reg()">
+            <button type="button" class="btn btn-hollow  mb-3" onclick="api_reg()" id="registration_button">
                 <p class="btn-text">Зарегистрироваться</p>
             </button>
             <a>
@@ -103,12 +103,16 @@
         emailField = document.getElementById("email_input");
         passwordField = document.getElementById("password_field_1");
         passwordFieldRepeat = document.getElementById("password_field_2");
+        registerButton = registration_button;
         const callbackFunction = function () {
             emailField.classList.remove("line-success");
             emailField.classList.remove("line-danger");
             passwordField.classList.remove("line-success");
             passwordFieldRepeat.classList.remove("line-danger");
             passwordFieldRepeat.classList.remove("line-success");
+            registerButton.classList.remove("btn-filled");
+            registerButton.classList.add("btn-hollow");
+            registerButton.disabled = true;
             nameField.classList.remove("line-success");
             nameSuccessLabel.setAttribute("style", "display:none;");
             emailSuccessLabel.setAttribute("style", "display:none;");
@@ -117,24 +121,35 @@
 
 
             console.log(emailField.value);
-            if (nameField.value.length > 2) {
+            var a = nameField.value.length > 2;
+            var b = passwordField.value.length > 3;
+            var c = validateEmail(emailField.value);
+            var d = b&& passwordFieldRepeat.value == passwordField.value;
+            var e = passwordFieldRepeat.value != passwordField.value;
+            if (a) {
                 nameField.classList.add("line-success");
                 nameSuccessLabel.setAttribute("style", "display:default;");
             }
-            if (passwordField.value.length > 3) {
+            if (b) {
                 passwordField.classList.add("line-success");
             }
-            if (validateEmail(emailField.value)) {
+            if (c) {
                 emailSuccessLabel.setAttribute("style", "display:default;");
                 emailField.classList.add("line-success");
             } else if (emailField.value) {
                 emailField.classList.add("line-danger");
             };
-            if (passwordField.value.length > 3 && passwordFieldRepeat.value == passwordField.value) {
+            if (d) {
                 passwordFieldRepeat.classList.add("line-success");
             }
-            if (passwordFieldRepeat.value != passwordField.value) {
+            if (e) {
                 passwordFieldRepeat.classList.add("line-danger");
+            }
+            if (a&&b&&c&&d&&!e)
+            {
+                registerButton.disabled = false;
+                registerButton.classList.remove("btn-hollow");
+                registerButton.classList.add("btn-filled");
             }
         };
         emailField.onchange = callbackFunction;
@@ -147,7 +162,6 @@
             if (checkBoxPassword.checked) {
                 passwordField.setAttribute("type", "email");
                 passwordFieldRepeat.setAttribute("type", "email");
-
             } else {
                 passwordField.setAttribute("type", "password");
                 passwordFieldRepeat.setAttribute("type", "password");
