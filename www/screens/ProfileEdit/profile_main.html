@@ -162,14 +162,14 @@
                 //['name','sex','birth1','birth2','birth3','email','phone'].forEach(el=>{
                 let values = {};
                 let value;
-                ['name', 'gender', 'dob', 'phone'].forEach(el => {
+                ['name', 'gender', 'dob', 'phone', 'login'].forEach(el => {
                     if (el == 'dob') {
                         time = new Date(
                             document.getElementById('birth1').value,  // year
                             document.getElementById('birth2').value, // month
                             document.getElementById('birth3').value, // daY
                         )
-                        value = time.getTime();
+                        value = time.getTime()/1000;
                     } else {
                         value = document.getElementById(el).value;
                     }
@@ -197,7 +197,7 @@
                 localStorage.setItem('gender', userdata[3]);
                 localStorage.setItem('login', userdata[5]);
                 localStorage.setItem('phone', userdata[6]);
-                let dob = new Date(userdata[4]);
+                let dob = new Date(userdata[4]*1000);
                 localStorage.setItem('birth1', dob.getFullYear());
                 localStorage.setItem('birth2', dob.getMonth());
                 localStorage.setItem('birth3', dob.getDate()+1);
