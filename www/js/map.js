@@ -7,6 +7,7 @@ var geolocation_started = false;
 var permissions;
 
 var onFirstZoom = true;
+var route_finish;
 
 
 // Получение информации о парковках
@@ -43,10 +44,12 @@ document.addEventListener('deviceready', () => {
                         localStorage.removeItem('d_lat');
                         localStorage.removeItem('d_lon');
                         // map.flyTo([lat, lon], 18);
+                        route_finish = [lat,lon];
                         make_route(pos,[lat,lon]);
                     }
                     if(localStorage.getItem('make_route') != null){
                         p_id = localStorage.getItem('make_route');
+                        route_finish = [locs[p_id][0],locs[p_id][1]];
                         make_route(pos,[locs[p_id][0],locs[p_id][1]]);
                         localStorage.removeItem('make_route');
                     }
@@ -66,6 +69,9 @@ document.addEventListener('deviceready', () => {
 
 var onSuccess = function (position) {
     pos = [position.coords.latitude, position.coords.longitude];
+    if(route_finish != undefined){
+        make_route(pos,route_finish);
+    }
     if(onFirstZoom){
         map.flyTo(pos,18);
         onFirstZoom = false;

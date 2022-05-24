@@ -255,6 +255,7 @@
         // Закрыть информацию
         function close_info() {
             document.getElementById("info").style.display = "none";
+            route_finish = undefined;
             make_route(null, null);
         }
 
@@ -271,6 +272,7 @@
 
         // Построение маршрута к парковке
         function route_to_park() {
+            route_finish = current_park;
             make_route(pos, current_park);
         }
     </script>
