@@ -197,6 +197,9 @@
                 localStorage.setItem('prev_place', park_id);
                 localStorage.setItem('p_distance', calc_distance_to_geopoint(localStorage.getItem('prev_place')));
             }
+            for(let i = 0;i<11;i++){
+                document.getElementById('status-icon-wrapper').classList.remove(`status-icon-${i}`);
+            }
             document.getElementById('status-icon-wrapper').classList.add(`status-icon-${locs[park][2]}`);
             document.getElementById('status-icon-text').innerHTML = locs[park][2];
             document.getElementById('text-description').innerHTML = locs[park][3];
