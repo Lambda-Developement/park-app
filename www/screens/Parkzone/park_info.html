@@ -189,11 +189,11 @@
                     Оцените и напишите отзыв
                 </h3>
                 <div class="d-inline-flex justify-content-center container">
-                    <div class="star-icon"></div>
-                    <div class="star-icon"></div>
-                    <div class="star-icon"></div>
-                    <div class="star-icon"></div>
-                    <div class="star-icon"></div>
+                    <div class="star-icon" id="star-rate-12"></div>
+                    <div class="star-icon" id="star-rate-22"></div>
+                    <div class="star-icon" id="star-rate-32"></div>
+                    <div class="star-icon" id="star-rate-42"></div>
+                    <div class="star-icon" id="star-rate-52"></div>
                 </div>
             </div>
         </div>
@@ -843,6 +843,13 @@
                     document.getElementById('star-rate-' + i).classList.remove('rate-icon-big');
                     document.getElementById('star-rate-' + i).classList.add('star-icon');
                 }
+                if (i <= rate) {
+                    document.getElementById('star-rate-' + i + '2').classList.remove('star-icon');
+                    document.getElementById('star-rate-' + i + '2').classList.add('rate-icon-big')
+                } else {
+                    document.getElementById('star-rate-' + i + '2').classList.remove('rate-icon-big');
+                    document.getElementById('star-rate-' + i + '2').classList.add('star-icon');
+                }
             }
             // for (i = 1; i <= 5; i++) {
             //     if (i <= rate) {
@@ -857,7 +864,7 @@
 
         // Загрузка отзывов
         function load_reviews(result) {
-            let rate = parseFloat(result[0]).toFixed(1);
+            rate = parseFloat(result[0]).toFixed(1);
             document.getElementById('average-score').innerHTML = rate;
             document.getElementById('average-score2').innerHTML = rate;
             [1, 2, 3, 4, 5].forEach((el) => {
@@ -874,8 +881,10 @@
                 console.log(name);
                 if (name == localStorage.getItem('name')) {
                     document.getElementById('add_btn').disabled = true;
+                    rate = el[1];
+                    update_icons();
                 }
-                let rate = el[1];
+                rate = el[1];
                 let body = el[2];
                 document.getElementById('reviews-here').innerHTML += "" +
                     "<div id='review-" + (review_count) + "' class=\"review d-flex flex-column mb-3\">\n" +

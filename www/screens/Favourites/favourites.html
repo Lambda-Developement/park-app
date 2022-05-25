@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 
 </head>
 
-<body>
+<body style="height: 100%;">
 
 
     <div class="screen-hat">
@@ -80,9 +80,6 @@
     </div>
 
 
-    <div style="width: 100%; display:flex; justify-content:center; position:absolute; bottom:0; ">
-        <img src="fun.svg" alt="" srcset="" style="z-index:-3">
-    </div>
     <!-- Ниже идет попуп -->
     <div class="favourites-popup" id="popup1">
         <div class="favourites-popup-wrapper d-flex justify-content-center">
@@ -341,8 +338,12 @@
                             //     else if (n == 1) ob.innerHTML = "Парковка у работы";
                             //     else ob.innerHTML = "Парковка";
                             // }
-                            document.getElementById('places-here').innerHTML += "" +
-                                `
+                            let cnt = favs.length;
+                            cnt += (localStorage.getItem('work') != null? 1 : 0);
+                            cnt += (localStorage.getItem('home') != null? 1 : 0);
+                            if(cnt < 4){
+                                document.getElementById('places-here').innerHTML += "" +
+                                    `
                                 <div class="panel-fill d-inline-flex align-items-center">
                                     <div style="width: 100%; height:100%; align-items:center; justify-content:flex-start; display: flex;" class="flex-row rofl" onclick='choose_park("park")'>
                                         <img src="plus.svg" height=32px width=32px style="margin-left: 2rem;"></img>
@@ -352,7 +353,12 @@
                                     </div>
                                 </div>
                                 `;
+                            }
                         }
+                        document.getElementById('places-here').innerHTML += '' +
+                            '<div style="width: 100%; margin-bottom: 0; box-shadow: none; z-index:-3; display:flex; background: transparent; border-radius: 0; justify-content:center; position:fixed; bottom:0;">\n' +
+                            '        <img src="fun.svg" alt="" srcset="" >\n' +
+                            '    </div>';
                     } catch (e) {
                         console.error(`JSON parsing error: ${e}`);
                     }
