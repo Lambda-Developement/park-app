@@ -86,17 +86,21 @@
                 </div>
             </div>
             <div class="panel d-inline-flex align-items-center">
-                <div class="me-3">
+               <div class="me-3">
                     <h3 class="text-common">Дата рождения</h3>
                 </div>
                 <div class="w-100 me-3">
-                    <input type="number" class="form-control" id="birth1" placeholder="Год">
+                    <input type="number" class="form-control" id="birth1" placeholder="Год" min="1900" max="2020">
                 </div>
                 <div class="me-3">
-                    <input type="number" class="form-control" id="birth2" placeholder="Месяц">
+                    <input type="number" class="form-control" id="birth2" placeholder="Месяц" min="1" max="12" style="padding-left: 0;width:2rem;
+                    padding-right: 0;
+                    text-align: center">
                 </div>
                 <div class="me-3">
-                    <input type="number" class="form-control" id="birth3" placeholder="День">
+                    <input type="number" class="form-control" id="birth3" placeholder="День" min="1" max="31" style="padding-left: 0;width:2rem;
+                    padding-right: 0;
+                    text-align: center">
                 </div>
             </div>
             <div class="panel d-inline-flex align-items-center">
@@ -104,7 +108,7 @@
                     <h3 class="text-common">E-mail</h3>
                 </div>
                 <div class="w-100">
-                    <input type="email" class="form-control" id="login" placeholder="">
+                    <input type="email" class="form-control" id="login" disabled>
                 </div>
             </div>
             <div class="panel d-inline-flex align-items-center">
@@ -112,7 +116,7 @@
                     <h3 class="text-common">Телефон</h3>
                 </div>
                 <div class="w-100">
-                    <input type="tel" class="form-control" id="phone" placeholder="">
+                    <input type="tel" class="form-control" id="phone" placeholder="" pattern="[0-9]{11}">
                 </div>
             </div>
             <a href="../ResetPassword/changePassword.html">
